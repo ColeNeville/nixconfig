@@ -22,12 +22,11 @@
         modules = [
           agenix.nixosModules.default
 
-          # ./nix/hardware/common.nix
           ./nix/hardware/garuda.nix
           nixos-hardware.nixosModules.framework-12th-gen-intel
 
           ./nix/system/common.nix
-          # ./nix/system/bluetooth.nix
+          ./nix/system/bluetooth.nix
           ./nix/secret/system/zerotier.nix
           ./nix/system/garuda.nix
         ];
@@ -52,7 +51,7 @@
         modules = [
           # ./nix/home/common.nix
           # ./nix/home/python.nix
-          ./modules/home-manager/users/coleMain
+          ./nix/home/garuda.nix
         ];
 
         pkgs = import nixpkgs-unstable {

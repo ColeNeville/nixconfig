@@ -5,6 +5,7 @@
     with pkgs; [
       curl
       coreutils
+      dig
       git
       git-crypt
       util-linux

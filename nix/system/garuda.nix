@@ -119,10 +119,6 @@
     };
 
     pulseaudio.enable = false;
-
-    bluetooth = {
-      enable = true;
-    };
   };
 
   ###############################################
@@ -204,23 +200,15 @@
       # Misc Applications
       neofetch
       autokey
-      synergy
       bitwarden
       archiver
       avidemux
       rpi-imager
 
       # Random Utils
-      coreutils
-      curl
-      dig
       docker
-      git
-      git-crypt
       htop
-      util-linux
       virtualbox
-      wget
       nfs-utils
       ark
       nix-index
