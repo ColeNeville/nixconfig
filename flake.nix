@@ -26,24 +26,22 @@
           ./nix/hardware/garuda.nix
           nixos-hardware.nixosModules.framework-12th-gen-intel
 
-          # ./nix/system/common.nix
+          ./nix/system/common.nix
           # ./nix/system/bluetooth.nix
           ./nix/secret/system/zerotier.nix
-          # ./nix/system/garuda.nix
-          ./modules/nixpkgs/systems/all
-          ./modules/nixpkgs/systems/garuda
+          ./nix/system/garuda.nix
         ];
       };
 
-      bismark = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          /etc/nixos/hardware-configuration.nix
+      # bismark = nixpkgs.lib.nixosSystem {
+      #   system = "x86_64-linux";
+      #   modules = [
+      #     /etc/nixos/hardware-configuration.nix
 
-          ./modules/nixpkgs/systems/all
-          ./modules/nixpkgs/system/bismark
-        ];
-      };
+      #     ./modules/nixpkgs/systems/all
+      #     ./modules/nixpkgs/system/bismark
+      #   ];
+      # };
     };
 
     homeConfigurations = {
