@@ -74,7 +74,7 @@
     
     configFile = {
       "alacritty.yml" = {
-        source = ./config/alacritty.yml;
+        source = ../../.config/alacritty.yml;
       };
     };
 
