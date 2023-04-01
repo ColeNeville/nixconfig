@@ -1,1 +1,2 @@
 nix/secret/system/zerotier.nix filter=git-crypt diff=git-crypt
+nix/secret/system/zerotier2.nix filter=git-crypt diff=git-crypt
