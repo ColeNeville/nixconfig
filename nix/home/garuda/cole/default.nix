@@ -1,12 +1,6 @@
 { pkgs, config, ... }:
 
 {
-  home = {
-    sessionPath = [
-      "${config.home.homeDirectory}/.local/bin"
-    ];
-  };
-
   fonts.fontconfig.enable = true;
 
   programs = {
@@ -62,17 +56,6 @@
   };
 
   xdg = {
-    configHome = "${config.home.homeDirectory}/.config";
-    dataHome = "${config.home.homeDirectory}/.local/share";
-    stateHome = "${config.home.homeDirectory}/.local/state";
-    cacheHome = "${config.home.homeDirectory}/.cache";
-    
-    configFile = {
-      "alacritty.yml" = {
-        source = ../../.config/alacritty.yml;
-      };
-    };
-
     mimeApps = {
       enable = true;
 

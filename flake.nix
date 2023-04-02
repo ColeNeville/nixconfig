@@ -33,23 +33,16 @@
           ./nix/secret/system/shared/zerotier.nix
         ];
       };
-
-      # bismark = nixpkgs.lib.nixosSystem {
-      #   system = "x86_64-linux";
-      #   modules = [
-      #     /etc/nixos/hardware-configuration.nix
-
-      #     ./modules/nixpkgs/systems/all
-      #     ./modules/nixpkgs/system/bismark
-      #   ];
-      # };
     };
 
     homeConfigurations = {
       "cole@garuda" = home-manager.lib.homeManagerConfiguration {
         modules = [
+          ./nix/home/shared/common.nix
+
           ./nix/home/garuda/cole/default.nix
           ./nix/home/garuda/cole/brave.nix
+          ./nix/home/garuda/cole/alacritty.nix
         ];
 
         pkgs = import nixpkgs-unstable {
