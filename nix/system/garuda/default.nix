@@ -7,23 +7,12 @@
     efiSysMountPoint = "/boot/efi";
   };
 
-  nixpkgs = {
-    config = {
-      allowUnfree = true;
-    };
-  };
-
-  ####################################/configuration.nix###########
+  ###############################################
   # Network settings
   ###############################################
 
   networking = {
     hostName = "garuda";
-
-    networkmanager = {
-      enable = true;
-      dns = "unbound";
-    };
   };
 
   ###############################################
@@ -84,19 +73,6 @@
     };
 
     power-profiles-daemon.enable = false;
-
-    unbound = {
-      enable = true;
-
-      settings = {
-        forward-zone = [
-          {
-            name = "local.coleslab.com";
-            forward-addr = "172.30.249.193";
-          }
-        ];
-      };
-    };
   };
 
   ###############################################

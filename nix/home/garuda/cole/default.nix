@@ -2,14 +2,9 @@
 
 {
   home = {
-    username = "cole";
-    homeDirectory = "/home/cole";
-
     sessionPath = [
       "${config.home.homeDirectory}/.local/bin"
     ];
-
-    stateVersion = "22.11";
   };
 
   fonts.fontconfig.enable = true;
@@ -82,9 +77,6 @@
       enable = true;
 
       defaultApplications = {
-        "x-scheme-handler/https" = "brave.desktop";
-        "x-scheme-handler/about" = "brave.desktop";
-        "x-scheme-handler/unknown" = "brave.desktop";
         "video/mp4" = "vlc.desktop";
         "application/x-yaml" = "code.desktop";
       };

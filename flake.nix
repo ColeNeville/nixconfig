@@ -25,10 +25,12 @@
           ./nix/hardware/garuda.nix
           nixos-hardware.nixosModules.framework-12th-gen-intel
 
-          ./nix/system/common.nix
-          ./nix/system/bluetooth.nix
-          ./nix/secret/system/zerotier.nix
-          ./nix/system/garuda.nix
+          ./nix/system/shared/common.nix
+          ./nix/system/shared/bluetooth.nix
+          
+          ./nix/system/garuda/default.nix
+        
+          ./nix/secret/system/shared/zerotier.nix
         ];
       };
 
@@ -45,18 +47,20 @@
 
     homeConfigurations = {
       "cole@garuda" = home-manager.lib.homeManagerConfiguration {
-        system = "x86_64-linux";
-        homeDirectory = "/home/cole";
-        username = "cole";
         modules = [
-          # ./nix/home/common.nix
-          # ./nix/home/python.nix
-          ./nix/home/garuda.nix
+          ./nix/home/garuda/cole/default.nix
+          ./nix/home/garuda/cole/brave.nix
         ];
 
         pkgs = import nixpkgs-unstable {
           system = "x86_64-linux";
-          config.allowUnfree = true;
+          homeDirectory = "/home/cole";
+          username = "cole";
+          stateVersion = "22.11";
+
+          config = {
+            allowUnfree = true;
+          };
         };
       };
     };
