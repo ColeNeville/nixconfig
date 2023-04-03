@@ -27,10 +27,17 @@
 
           ./nix/system/shared/common.nix
           ./nix/system/shared/bluetooth.nix
+          ./nix/system/shared/docker.nix
           
           ./nix/system/garuda/default.nix
         
           ./nix/secret/system/shared/zerotier.nix
+
+          {
+            system = {
+              stateVersion = "22.11";
+            };
+          }
         ];
       };
     };
@@ -43,13 +50,19 @@
           ./nix/home/garuda/cole/default.nix
           ./nix/home/garuda/cole/brave.nix
           ./nix/home/garuda/cole/alacritty.nix
+
+          {
+            home = {
+              username = "cole";
+              homeDirectory = "/home/cole";
+
+              stateVersion = "22.11";
+            };
+          }
         ];
 
         pkgs = import nixpkgs-unstable {
           system = "x86_64-linux";
-          homeDirectory = "/home/cole";
-          username = "cole";
-          stateVersion = "22.11";
 
           config = {
             allowUnfree = true;

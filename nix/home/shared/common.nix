@@ -7,6 +7,12 @@
     ];
   };
 
+  programs = {
+    home-manager = {
+      enable = true;
+    };
+  };
+
   xdg = {
     configHome = "${config.home.homeDirectory}/.config";
     dataHome = "${config.home.homeDirectory}/.local/share";

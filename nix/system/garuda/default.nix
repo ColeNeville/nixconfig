@@ -39,13 +39,6 @@
 
         defaultSession = "plasma";
       };
-      
-      desktopManager.xfce = {
-        enable = true;
-
-        noDesktop = false;
-        enableXfwm = true;
-      };
 
       desktopManager.plasma5.enable = true;
     };
@@ -182,7 +175,6 @@
       rpi-imager
 
       # Random Utils
-      docker
       htop
       virtualbox
       nfs-utils
@@ -244,8 +236,4 @@
   };
 
   time.timeZone = "America/Edmonton";
-
-  system = {
-    stateVersion = "22.11";
-  };
 }
