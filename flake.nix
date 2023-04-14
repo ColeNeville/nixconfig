@@ -30,6 +30,7 @@
           ./nix/system/shared/docker.nix
           
           ./nix/system/garuda/default.nix
+          ./nix/system/garuda/applications.nix
         
           ./nix/secret/system/shared/zerotier.nix
 
