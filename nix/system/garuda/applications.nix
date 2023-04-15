@@ -74,7 +74,7 @@
       ark
       nix-index
       kubectl
-      helm
+      kubernetes-helm
     ];
 
     programs = {

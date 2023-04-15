@@ -11,10 +11,6 @@
       userName = "ColeNeville";
     };
 
-    alacritty = {
-      enable = true;
-    };
-
     vscode = {
       enable = true;
 
@@ -34,6 +30,14 @@
 
     gpg = {
       enable = true;
+    };
+
+    bash = {
+      enable = true;
+      sessionVariables = {
+        KUBECONFIG = "$HOME/.kube/kubeconfig";
+        SSH_ASKPASS = "/usr/bin/ksshaskpass";
+      };
     };
   };
 
