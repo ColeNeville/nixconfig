@@ -117,6 +117,10 @@
     fontconfig = {
       enable = true;
 
+      subpixel = {
+        rgba = "bgr";
+      };
+
       defaultFonts = {
         sansSerif = [ "Fira Sans" ];
         monospace = [ "Fira Code" ];

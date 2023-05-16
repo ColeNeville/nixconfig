@@ -53,7 +53,7 @@
       putty
 
       # Programming
-      python311
+      (python311.withPackages(ps: with ps; [ pip virtualenv ]))
 
       # Virtual Machines
       virt-viewer
@@ -75,6 +75,9 @@
       nix-index
       kubectl
       kubernetes-helm
+      cifs-utils
+
+      libsForQt5.ksshaskpass
     ];
 
     programs = {

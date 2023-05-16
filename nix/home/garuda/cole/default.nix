@@ -36,7 +36,7 @@
       enable = true;
       sessionVariables = {
         KUBECONFIG = "$HOME/.kube/kubeconfig";
-        SSH_ASKPASS = "/usr/bin/ksshaskpass";
+        SSH_ASKPASS = "/run/current-system/sw/bin/ksshaskpass";
       };
     };
   };
@@ -64,6 +64,13 @@
       defaultApplications = {
         "video/mp4" = "vlc.desktop";
         "application/x-yaml" = "code.desktop";
+      };
+    };
+
+    configFile = {
+      "autostart-scripts/ssh-add.sh" = {
+        source = ./.config/autostart-scripts/ssh-add.sh;
+        executable = true;
       };
     };
   };
