@@ -11,7 +11,11 @@ in {
 
   home-manager = {
     users = {
-      cole = import self.homeManagerModules.cole-full;
+      cole = {
+        imports = [
+          self.homeManagerModules.cole-full
+        ];
+      };
     };
     extraSpecialArgs = { inherit inputs; };
   };
