@@ -13,7 +13,7 @@ in {
     users = {
       cole = {
         imports = [
-          self.homeManagerModules.cole-full
+          self.homeManagerModules.users.cole-full
         ];
       };
     };

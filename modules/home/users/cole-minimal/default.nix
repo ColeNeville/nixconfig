@@ -7,6 +7,15 @@ in {
     self.homeManagerModules.mixins.common
   ];
 
+  programs = {
+    git = {
+      enable = true;
+
+      userEmail = "colewneville2@gmail.com";
+      userName = "ColeNeville";
+    };
+  };
+
   home = {
     stateVersion = "22.11";
   };
