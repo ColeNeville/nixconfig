@@ -5,7 +5,6 @@
     with pkgs; [
       # Browsers
       chromium
-      brave
       firefox
 
       # Development
@@ -42,9 +41,6 @@
       printrun
 
       # Communications
-      discord
-      keybase
-      keybase-gui
       thunderbird
 
       # Networking
@@ -80,12 +76,12 @@
       libsForQt5.ksshaskpass
     ];
 
-    programs = {
-      zsh.enable = true;
-      command-not-found.enable = true;
-    };
+  programs = {
+    zsh.enable = true;
+    command-not-found.enable = true;
+  };
 
-    xdg.mime = {
-      enable = true;
-    };
+  xdg.mime = {
+    enable = true;
+  };
 }

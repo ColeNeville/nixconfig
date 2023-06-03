@@ -22,28 +22,28 @@
       agenix,
       ...
     } @ inputs: {
-      nixosModules = import ./modules { lib = nixpkgs.lib; }
+      nixosModules = import ./modules { lib = nixpkgs.lib; };
       nixosConfigurations = {
         garuda = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = { inherit inputs; };
           modules = [
-            agenix.nixosModules.default
+            # agenix.nixosModules.default
 
-            ./hardware/garuda.nix
-            nixos-hardware.nixosModules.framework-12th-gen-intel
+            # ./hardware/garuda.nix
+            # nixos-hardware.nixosModules.framework-12th-gen-intel
 
-            ./system/shared/common.nix
-            ./system/shared/bluetooth.nix
-            ./system/shared/docker.nix
+            # ./system/shared/common.nix
+            # ./system/shared/bluetooth.nix
+            # ./system/shared/docker.nix
             
-            ./system/garuda/default.nix
-            ./system/garuda/applications.nix
-            ./system/garuda/packages/unstable.nix
+            # ./system/garuda/default.nix
+            # ./system/garuda/applications.nix
+            # ./system/garuda/packages/unstable.nix
 
-            # ./nix/secret/system/shared/zerotier.nix
+            # # ./nix/secret/system/shared/zerotier.nix
 
-            # ./nix/hosts/garuda/configuration.nix
+            ./nix/hosts/garuda/configuration.nix
 
             {
               system = {
