@@ -1,7 +1,7 @@
 {config, pkgs, lib, inputs, ...}:
 
 let
-  inherit (inputs) self;
+  inherit (inputs) self agenix nixos-hardware;
 
   pkgsUnstable = import inputs.nixpkgs-unstable {
     system = pkgs.system;
@@ -20,6 +20,9 @@ in {
   };
 
   imports = [
+    agenix.nixosModules.default
+    nixos-hardware.nixosModules.framework-12th-gen-intel
+
     self.nixosModules.mixins.common
     self.nixosModules.mixins.bluetooth
 

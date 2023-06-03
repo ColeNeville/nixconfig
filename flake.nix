@@ -32,52 +32,8 @@
             inherit inputs;
           };
           modules = [
-            # 
-
-            # ./hardware/garuda.nix
-            # 
-
-            # ./system/shared/common.nix
-            # ./system/shared/bluetooth.nix
-            # ./system/shared/docker.nix
-            
-            # ./system/garuda/default.nix
-            # ./system/garuda/applications.nix
-
-            # # ./nix/secret/system/shared/zerotier.nix
-
-            agenix.nixosModules.default
-            nixos-hardware.nixosModules.framework-12th-gen-intel
-
             ./systems/garuda/configuration.nix
           ];
-          pkgs = import nixpkgs {
-            system = "x86_64-linux";
-
-            config.allowUnfree = true;
-          };
-        };
-      };
-
-      homeConfigurations = {
-        "cole@garuda" = home-manager.lib.homeManagerConfiguration {
-          modules = [
-            ./nix/home/shared/common.nix
-
-            ./nix/home/garuda/cole/default.nix
-            ./nix/home/garuda/cole/brave.nix
-            ./nix/home/garuda/cole/alacritty.nix
-
-            {
-              home = {
-                username = "cole";
-                homeDirectory = "/home/cole";
-
-                stateVersion = "22.11";
-              };
-            }
-          ];
-
           pkgs = import nixpkgs {
             system = "x86_64-linux";
 
