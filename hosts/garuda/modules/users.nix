@@ -7,7 +7,7 @@ in {
     home-manager.nixosModules.home-manager
 
     self.nixosModules.users.cole
-    self.nixosModules.homeManager.cole
+    self.homeManagerModules.cole
   ];
 
   home-manager = {
