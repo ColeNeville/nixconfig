@@ -12,8 +12,7 @@
     agenix.url = "github:ryantm/agenix";
   };
 
-  outputs =
-    {
+  outputs = {
       self,
       nixpkgs,
       nixpkgs-unstable,
@@ -23,18 +22,18 @@
       ...
     } @ inputs: {
       nixosModules = import ./modules { lib = nixpkgs.lib; };
+
       nixosConfigurations = {
         garuda = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = {
-            inherit self;
-            inherit nixpkgs-unstable;
+            inherit inputs;
           };
           modules = [
-            # agenix.nixosModules.default
+            # 
 
             # ./hardware/garuda.nix
-            # nixos-hardware.nixosModules.framework-12th-gen-intel
+            # 
 
             # ./system/shared/common.nix
             # ./system/shared/bluetooth.nix
@@ -46,12 +45,13 @@
 
             # # ./nix/secret/system/shared/zerotier.nix
 
+            agenix.nixosModules.default
+            nixos-hardware.nixosModules.framework-12th-gen-intel
+
             ./hosts/garuda/configuration.nix
 
             {
-              system = {
-                stateVersion = "22.11";
-              };
+              
             }
           ];
         };

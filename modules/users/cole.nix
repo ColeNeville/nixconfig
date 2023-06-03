@@ -4,10 +4,6 @@
 let
   inherit (inputs) self;
 in {
-  imports = with self.nixosModules; [
-    groups.common
-  ];
-
   nix.settings.trusted-users = [ "cole" ];
 
   users.users.cole = {

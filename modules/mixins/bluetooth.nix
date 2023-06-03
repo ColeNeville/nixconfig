@@ -1,0 +1,5 @@
+{ ... }:
+
+{
+  bluetooth.enable = true;
+}
