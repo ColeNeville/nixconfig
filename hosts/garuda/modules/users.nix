@@ -7,12 +7,11 @@ in {
     home-manager.nixosModules.home-manager
 
     self.nixosModules.users.cole
-    self.homeManagerModules.cole
   ];
 
   home-manager = {
     users = {
-      cole = import "${self}/users/cole";
+      cole = import self.homeManagerModules.cole-full;
     };
     extraSpecialArgs = { inherit inputs; };
   };
