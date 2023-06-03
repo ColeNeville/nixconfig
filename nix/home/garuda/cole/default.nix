@@ -11,22 +11,23 @@
       userName = "ColeNeville";
     };
 
-    vscode = {
-      enable = true;
+    # vscode = {
+    #   enable = true;
 
-      userSettings = {
-        "editor.tabSize" = 2;
-        "editor.renderWhitespace" = "all";
-        "extensions.autoUpdate" =  false;
-        "platformio-ide.useBuiltinPIOCore" = false;
-        "platformio-ide.customPATH" = "/run/current-system/sw/bin";
-      };
+    #   userSettings = {
+    #     "editor.tabSize" = 2;
+    #     "editor.renderWhitespace" = "all";
+    #     "extensions.autoUpdate" =  false;
+    #     "platformio-ide.useBuiltinPIOCore" = false;
+    #     "platformio-ide.customPATH" = "/run/current-system/sw/bin";
+    #     "workbench.colorTheme" = "Default Dark+";
+    #   };
 
-      extensions = with pkgs.vscode-extensions; [
-        ms-vscode.cpptools
-        bbenoist.nix
-      ];
-    };
+    #   extensions = with pkgs.vscode-extensions; [
+    #     ms-vscode.cpptools
+    #     bbenoist.nix
+    #   ];
+    # };
 
     gpg = {
       enable = true;

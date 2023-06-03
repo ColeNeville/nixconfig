@@ -13,6 +13,15 @@
 
   networking = {
     hostName = "garuda";
+
+    hosts = {
+      "100.64.59.20" = [ "moogle.tailscale.coleslab.com" ];
+    };
+
+    networkmanager = {
+      enable = true;
+      dns = "unbound";
+    };
   };
 
   ###############################################
@@ -66,6 +75,27 @@
     };
 
     power-profiles-daemon.enable = false;
+
+    tailscale = {
+      enable = true;
+    };
+
+    unbound = {
+      enable = true;
+
+      settings = {
+        forward-zone = [
+          {
+            name = "local.coleslab.com";
+            forward-addr = "100.64.59.20";
+          }
+          {
+            name = "alexander.coleslab.com";
+            forward-addr = "100.64.59.20";
+          }
+        ];
+      };
+    };
   };
 
   ###############################################

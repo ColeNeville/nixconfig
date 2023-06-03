@@ -32,7 +32,7 @@
           ./nix/system/garuda/default.nix
           ./nix/system/garuda/applications.nix
         
-          ./nix/secret/system/shared/zerotier.nix
+          # ./nix/secret/system/shared/zerotier.nix
 
           {
             system = {
