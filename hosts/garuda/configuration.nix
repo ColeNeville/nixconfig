@@ -1,8 +1,12 @@
-{config, pkgs, inputs, ...}:
+{config, pkgs, nixpkgs-unstable, ...}:
 
 {
+  imports = [
+    ./hardware-configuration.nix
+  ];
+
   environment.systemPackages = [
     pkgs.chromium
-    inputs.pkgs-unstable.brave
-  ]
+    nixpkgs-unstable.brave
+  ];
 }

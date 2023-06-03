@@ -26,7 +26,10 @@
       nixosConfigurations = {
         garuda = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
-          specialArgs = { inherit inputs; };
+          specialArgs = {
+            inherit self;
+            inherit nixpkgs-unstable;
+          };
           modules = [
             # agenix.nixosModules.default
 
@@ -43,7 +46,7 @@
 
             # # ./nix/secret/system/shared/zerotier.nix
 
-            ./nix/hosts/garuda/configuration.nix
+            ./hosts/garuda/configuration.nix
 
             {
               system = {
