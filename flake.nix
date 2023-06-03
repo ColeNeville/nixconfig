@@ -43,14 +43,13 @@
             
             # ./system/garuda/default.nix
             # ./system/garuda/applications.nix
-            # ./system/garuda/packages/unstable.nix
 
             # # ./nix/secret/system/shared/zerotier.nix
 
             agenix.nixosModules.default
             nixos-hardware.nixosModules.framework-12th-gen-intel
 
-            ./hosts/garuda/configuration.nix
+            ./systems/garuda/configuration.nix
           ];
           pkgs = import nixpkgs {
             system = "x86_64-linux";

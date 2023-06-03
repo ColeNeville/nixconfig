@@ -2,7 +2,7 @@
 
 {
   mixins = {
-
+    common = import ./mixins/common.nix;
   };
 
   users = {
