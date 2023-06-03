@@ -8,17 +8,6 @@ let
     config.allowUnfree = true;
   };
 in {
-  imports = [
-    self.nixosModules.mixins.common
-    self.nixosModules.mixins.bluetooth
-
-    ./hardware-configuration.nix
-
-    ./modules/programs.nix
-    ./modules/services.nix
-    ./modules/networking.nix
-  ];
-
   boot = {
     loader = {
       systemd-boot.enable = true;
@@ -29,6 +18,18 @@ in {
       };
     };
   };
+
+  imports = [
+    self.nixosModules.mixins.common
+    self.nixosModules.mixins.bluetooth
+
+    ./hardware-configuration.nix
+
+    ./modules/programs.nix
+    ./modules/services.nix
+    ./modules/networking.nix
+    ./modules/users.nix
+  ];
 
   ###############################################
   # Network settings

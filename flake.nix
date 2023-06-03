@@ -23,6 +23,8 @@
     } @ inputs: {
       nixosModules = import ./modules { lib = nixpkgs.lib; };
 
+      homeManagerModules = import ./modules/home { lib = nixpkgs.lib; };
+
       nixosConfigurations = {
         garuda = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
@@ -49,11 +51,12 @@
             nixos-hardware.nixosModules.framework-12th-gen-intel
 
             ./hosts/garuda/configuration.nix
-
-            {
-              
-            }
           ];
+          pkgs = import nixpkgs {
+            system = "x86_64-linux";
+
+            config.allowUnfree = true;
+          };
         };
       };
 
@@ -79,9 +82,7 @@
           pkgs = import nixpkgs {
             system = "x86_64-linux";
 
-            config = {
-              allowUnfree = true;
-            };
+            config.allowUnfree = true;
           };
         };
       };
