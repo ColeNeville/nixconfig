@@ -21,7 +21,6 @@ in {
 
   imports = [
     agenix.nixosModules.default
-    home-manager.nixosModules.home-manager
     nixos-hardware.nixosModules.framework-12th-gen-intel
 
     self.nixosModules.mixins.common
@@ -29,24 +28,11 @@ in {
 
     self.nixosModules.profiles.plasma
 
-    self.nixosModules.users.cole
+    self.nixosModules.users.cole-full
 
     ./hardware-configuration.nix
     ./programs.nix
   ];
-
-  home-manager = {
-    useGlobalPkgs = true;
-    useUserPackages = true;
-    users = {
-      cole = {
-        imports = [
-          self.homeManagerModules.users.cole-full
-        ];
-      };
-    };
-    extraSpecialArgs = { inherit inputs; };
-  };
 
   ###############################################
   # Network settings

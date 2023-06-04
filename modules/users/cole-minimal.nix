@@ -2,8 +2,12 @@
 
 
 let
-  inherit (inputs) self;
+  inherit (inputs) self home-manager;
 in {
+  imports = [
+    home-manager.nixosModules.home-manager
+  ];
+
   nix.settings.trusted-users = [ "cole" ];
 
   programs.zsh.enable = true;
@@ -23,4 +27,18 @@ in {
       "wireshark"
     ];
   };
+
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    users = {
+      cole = {
+        imports = [
+          self.homeManagerModules.users.cole-minimal
+        ];
+      };
+    };
+    extraSpecialArgs = { inherit inputs; };
+  };
+
 }

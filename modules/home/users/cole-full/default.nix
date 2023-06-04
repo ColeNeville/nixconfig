@@ -13,9 +13,9 @@ in {
 
   home.packages = with pkgs; [
     # Web browsers
-    pkgsUnstable.chromium
-    pkgsUnstable.brave
-    pkgsUnstable.firefox
+    chromium
+    brave
+    firefox
 
     # Editors
     arduino

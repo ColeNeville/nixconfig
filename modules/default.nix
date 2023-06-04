@@ -9,7 +9,11 @@
   };
 
   profiles = {
-    plasma = import ./profiles/plasma.nix;
+    plasma = import ./profiles/plasma;
+  };
+
+  systems = {
+    garuda = import ./systems/garuda;
   };
 
   users = {

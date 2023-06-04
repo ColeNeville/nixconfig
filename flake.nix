@@ -22,7 +22,6 @@
       ...
     } @ inputs: {
       nixosModules = import ./modules { lib = nixpkgs.lib; };
-
       homeManagerModules = import ./modules/home { lib = nixpkgs.lib; };
 
       nixosConfigurations = {
@@ -32,7 +31,7 @@
             inherit inputs;
           };
           modules = [
-            ./systems/garuda
+            self.nixosModules.systems.garuda
           ];
           pkgs = import nixpkgs {
             system = "x86_64-linux";
