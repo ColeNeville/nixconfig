@@ -6,7 +6,7 @@ ifndef HOSTNAME
 	$(error Hostname unknown)
 endif
 
-switch:
+install:
 	nixos-rebuild switch --use-remote-sudo --flake .#${HOSTNAME} -L
 
 boot:
@@ -15,11 +15,8 @@ boot:
 test:
 	nixos-rebuild test --use-remote-sudo --flake .#${HOSTNAME} -L
 
-build:
-	nixos-rebuild build --use-remote-sudo --flake .#${HOSTNAME} -L
-
 update:
 	nix flake update
 
 upgrade:
-	make update && make switch
+	make update && make install

@@ -2,41 +2,59 @@
 
 let
   inherit (inputs) self;
+  pkgsUnstable = import inputs.nixpkgs-unstable {
+    system = pkgs.system;
+    config.allowUnfree = pkgs.config.allowUnfree;
+  };
 in {
   imports = [
     self.homeManagerModules.users.cole-minimal
   ];
 
   home.packages = with pkgs; [
-    brave
+    # Web browsers
+    pkgsUnstable.chromium
+    pkgsUnstable.brave
+    pkgsUnstable.firefox
+
+    # Editors
+    arduino
+    vscode
+
+    # Development Dependancies
+    i2c-tools
+    platformio
+
+    # Communication
+    pkgsUnstable.discord
+
+    # CAD
+    fritzing
+    freecad
+    openscad
+    kicad
   ];
 
   programs = {
     alacritty = {
       enable = true;
     };
-    
-    gpg = {
+
+    kitty = {
       enable = true;
+
+      shellIntegration = {
+        enableZshIntegration = true;
+      };
     };
 
-    bash = {
-      enable = true;
+    zsh = {
       sessionVariables = {
         KUBECONFIG = "$HOME/.kube/kubeconfig";
-        SSH_ASKPASS = "/run/current-system/sw/bin/ksshaskpass";
+        SSH_ASKPASS = pkgs.libsForQt5.ksshaskpass + "/bin/ksshaskpass";
       };
     };
   };
-
-  services = {
-    gpg-agent = {
-      enable = true;
-      defaultCacheTtl = 1800;
-      enableSshSupport = true;
-    };
-  };
-
 
   xdg = {
     configFile = {
@@ -48,6 +66,10 @@ in {
         source = ./.config/autostart-scripts/ssh-add.sh;
         executable = true;
       };
+    };
+
+    mime = {
+      enable = true;
     };
 
     mimeApps = {

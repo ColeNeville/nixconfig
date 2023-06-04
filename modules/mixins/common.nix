@@ -1,13 +1,16 @@
-{ config, pkgs, lib, inputs, ... }:
+{ pkgs, ... }:
 
 {
   environment.systemPackages = with pkgs; [
-    curl
+    cifs-utils # SMB mounts
     coreutils
+    curl
     dig
     git
     git-crypt
     gnumake # make command
+    htop
+    nfs-utils
     util-linux
     uucp # cu command
     wget
@@ -17,6 +20,7 @@
     settings = {
       experimental-features = [
         "flakes"
+        "nix-command"
       ];
     };
   };

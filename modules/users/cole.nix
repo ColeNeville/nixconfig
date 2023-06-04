@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ pkgs, inputs, ... }:
 
 
 let
@@ -6,9 +6,12 @@ let
 in {
   nix.settings.trusted-users = [ "cole" ];
 
+  programs.zsh.enable = true;
+
   users.users.cole = {
     isNormalUser = true;
     description = "Cole Neville";
+    shell = pkgs.zsh;
 
     extraGroups = [
       "audio"

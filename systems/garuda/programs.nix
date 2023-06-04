@@ -8,32 +8,12 @@ let
 in {
   environment.systemPackages =
     with pkgs; [
-      # Browsers
-      chromium
-      pkgsUnstable.brave
-      firefox
-
-      # Development
-      arduino
-      emacs
-      i2c-tools
-      vscode
-      platformio
-
-      # platformio
-
       # Media
       spotify
       vlc
 
       # Games
       moonlight-qt
-
-      # CAD
-      fritzing
-      freecad
-      openscad
-      kicad
 
       # Graphics
       krita
@@ -47,7 +27,6 @@ in {
       printrun
 
       # Communications
-      pkgsUnstable.discord
       thunderbird
 
       # Networking
@@ -71,24 +50,10 @@ in {
       rpi-imager
 
       # Random Utils
-      htop
       virtualbox
-      nfs-utils
       ark
       nix-index
       kubectl
       kubernetes-helm
-      cifs-utils
-
-      libsForQt5.ksshaskpass
     ];
-
-  programs = {
-    zsh.enable = true;
-    command-not-found.enable = true;
-  };
-
-  xdg.mime = {
-    enable = true;
-  };
 }

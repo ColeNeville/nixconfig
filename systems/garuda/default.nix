@@ -1,11 +1,11 @@
 {config, pkgs, lib, inputs, ...}:
 
 let
-  inherit (inputs) self agenix nixos-hardware;
+  inherit (inputs) self agenix nixos-hardware home-manager;
 
   pkgsUnstable = import inputs.nixpkgs-unstable {
     system = pkgs.system;
-    config.allowUnfree = true;
+    config.allowUnfree = pkgs.config.allowUnfree;
   };
 in {
   boot = {
@@ -21,6 +21,7 @@ in {
 
   imports = [
     agenix.nixosModules.default
+    home-manager.nixosModules.home-manager
     nixos-hardware.nixosModules.framework-12th-gen-intel
 
     self.nixosModules.mixins.common
@@ -28,14 +29,24 @@ in {
 
     self.nixosModules.profiles.plasma
 
-    ./hardware-configuration.nix
+    self.nixosModules.users.cole
 
-    ./hardware.nix
+    ./hardware-configuration.nix
     ./programs.nix
-    ./services.nix
-    ./networking.nix
-    ./users.nix
   ];
+
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    users = {
+      cole = {
+        imports = [
+          self.homeManagerModules.users.cole-full
+        ];
+      };
+    };
+    extraSpecialArgs = { inherit inputs; };
+  };
 
   ###############################################
   # Network settings
