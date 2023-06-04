@@ -7,7 +7,9 @@
     dig
     git
     git-crypt
+    gnumake # make command
     util-linux
+    uucp # cu command
     wget
   ];
 

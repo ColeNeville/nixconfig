@@ -15,6 +15,9 @@ boot:
 test:
 	nixos-rebuild test --use-remote-sudo --flake .#${HOSTNAME} -L
 
+build:
+	nixos-rebuild build --use-remote-sudo --flake .#${HOSTNAME} -L
+
 update:
 	nix flake update
 

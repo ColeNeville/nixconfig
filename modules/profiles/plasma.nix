@@ -1,4 +1,4 @@
-{ ... }:
+{ inputs, ... }:
 
 let
   inherit (inputs) self;
