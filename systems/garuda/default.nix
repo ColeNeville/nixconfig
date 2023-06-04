@@ -26,12 +26,15 @@ in {
     self.nixosModules.mixins.common
     self.nixosModules.mixins.bluetooth
 
+    self.nixosModules.profiles.plasma
+
     ./hardware-configuration.nix
 
-    ./modules/programs.nix
-    ./modules/services.nix
-    ./modules/networking.nix
-    ./modules/users.nix
+    ./hardware.nix
+    ./programs.nix
+    ./services.nix
+    ./networking.nix
+    ./users.nix
   ];
 
   ###############################################
@@ -57,7 +60,6 @@ in {
 
   services = {
     xserver = {
-      enable = true;
       videoDrivers = [ "modesetting" ];
 
       layout = "us";
@@ -69,14 +71,6 @@ in {
           clickMethod = "buttonareas";
         };
       };
-
-      displayManager = {
-        sddm.enable = true;
-
-        defaultSession = "plasma";
-      };
-
-      desktopManager.plasma5.enable = true;
     };
 
     pipewire = {

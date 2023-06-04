@@ -21,9 +21,9 @@
       agenix,
       ...
     } @ inputs: {
-      nixosModules = import ./modules { lib = nixpkgs.lib; };
+      nixosModules = import ./modules;
 
-      homeManagerModules = import ./modules/home { lib = nixpkgs.lib; };
+      homeManagerModules = import ./modules/home;
 
       nixosConfigurations = {
         garuda = nixpkgs.lib.nixosSystem {
