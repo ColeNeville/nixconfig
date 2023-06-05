@@ -9,7 +9,7 @@
   };
 
   profiles = {
-    plasma = import ./profiles/plasma;
+    plasma = import ./profiles/plasma.nix;
   };
 
   systems = {
@@ -17,6 +17,7 @@
   };
 
   users = {
-    cole = import ./users/cole.nix;
+    cole-full = import ./users/cole-full.nix;
+    cole-minimal = import ./users/cole-minimal.nix;
   };
 }
