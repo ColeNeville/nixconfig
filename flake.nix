@@ -23,22 +23,6 @@
     } @ inputs: {
       nixosModules = import ./nixosModules { lib = nixpkgs.lib; };
       homeManagerModules = import ./homeManagerModules { lib = nixpkgs.lib; };
-
-      nixosConfigurations = {
-        garuda = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = {
-            inherit inputs;
-          };
-          modules = [
-            self.nixosModules.hosts.garuda
-          ];
-          pkgs = import nixpkgs {
-            system = "x86_64-linux";
-
-            config.allowUnfree = true;
-          };
-        };
-      };
+      nixosConfigurations = import ./nixosConfigurations { inherit inputs; lib = nixpkgs.lib; };
     };
 }
