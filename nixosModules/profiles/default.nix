@@ -1,5 +1,0 @@
-{ ... }:
-
-{
-  plasma = import ./plasma;
-}

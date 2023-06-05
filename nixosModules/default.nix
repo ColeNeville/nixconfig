@@ -1,14 +1,24 @@
-{ ... }:
+{ lib, ... }:
 
 {
-  mixins = {
-    common = import ./mixins/common.nix;
-    bluetooth = import ./mixins/bluetooth.nix;
-    sddm = import ./mixins/sddm.nix;
-    xserver = import ./mixins/xserver.nix;
+  hosts = {
+    bismark = import ./hosts/bismark;
+    garuda = import ./hosts/garuda;
   };
 
-  profiles = import ./profiles;
-  systems = import ./systems;
-  users = import ./users;
+  mixins = {
+    bluetooth = import ./mixins/bluetooth;
+    common = import ./mixins/common;
+    sddm = import ./mixins/sddm;
+    xserver = import ./mixins/xserver;
+  };
+
+  profiles = {
+    plasma = import ./profiles/plasma;
+  };
+
+  users = {
+    cole-full = import ./users/cole-full;
+    cole-minimal = import ./users/cole-minimal;
+  };
 }
