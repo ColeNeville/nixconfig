@@ -2,23 +2,23 @@
 
 {
   hosts = {
-    bismark = import ./hosts/bismark;
-    garuda = import ./hosts/garuda;
+    bismark = import ./hosts/bismark.nix;
+    garuda = import ./hosts/garuda.nix;
   };
 
   mixins = {
-    bluetooth = import ./mixins/bluetooth;
-    common = import ./mixins/common;
-    sddm = import ./mixins/sddm;
-    xserver = import ./mixins/xserver;
+    bluetooth = import ./mixins/bluetooth.nix;
+    common = import ./mixins/common.nix;
+    sddm = import ./mixins/sddm.nix;
+    xserver = import ./mixins/xserver.nix;
   };
 
   profiles = {
-    plasma = import ./profiles/plasma;
+    plasma = import ./profiles/plasma.nix;
   };
 
   users = {
-    cole-full = import ./users/cole-full;
-    cole-minimal = import ./users/cole-minimal;
+    cole-full = import ./users/cole-full.nix;
+    cole-minimal = import ./users/cole-minimal.nix;
   };
 }

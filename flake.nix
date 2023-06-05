@@ -13,16 +13,16 @@
   };
 
   outputs = {
-      self,
-      nixpkgs,
-      nixpkgs-unstable,
-      nixos-hardware,
-      home-manager,
-      agenix,
-      ...
-    } @ inputs: {
-      nixosModules = import ./nixosModules { lib = nixpkgs.lib; };
-      homeManagerModules = import ./homeManagerModules { lib = nixpkgs.lib; };
-      nixosConfigurations = import ./nixosConfigurations { inherit inputs; lib = nixpkgs.lib; };
-    };
+    self,
+    nixpkgs,
+    nixpkgs-unstable,
+    nixos-hardware,
+    home-manager,
+    agenix,
+    ...
+  } @ inputs: {
+    nixosModules = import ./nixosModules { lib = nixpkgs.lib; };
+    homeManagerModules = import ./homeManagerModules { lib = nixpkgs.lib; };
+    nixosConfigurations = import ./nixosConfigurations { inherit inputs; lib = nixpkgs.lib; };
+  };
 }
