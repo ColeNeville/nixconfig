@@ -4,7 +4,7 @@ let
   inherit (inputs) self home-manager;
 in {
   imports = [
-    home-manager.nixosModules.home-manager
+    self.nixosModules.mixins.home-manager
     self.nixosModules.users.cole
   ];
 
@@ -12,7 +12,7 @@ in {
     users = {
       cole = {
         imports = [
-          self.homeManagerModules.users.cole-full
+          self.homeManagerModules.users."cole@garuda"
         ];
       };
     };

@@ -12,6 +12,7 @@
   mixins = {
     bluetooth = import ./mixins/bluetooth.nix;
     common = import ./mixins/common.nix;
+    home-manager = import ./mixins/home-manager.nix;
     sddm = import ./mixins/sddm.nix;
     xserver = import ./mixins/xserver.nix;
   };

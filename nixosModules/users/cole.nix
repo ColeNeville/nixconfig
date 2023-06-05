@@ -2,10 +2,10 @@
 
 
 let
-  inherit (inputs) self home-manager;
+  inherit (inputs) self;
 in {
   imports = [
-    home-manager.nixosModules.home-manager
+    self.nixosModules.mixins.home-manager
   ];
 
   nix.settings.trusted-users = [ "cole" ];
@@ -29,8 +29,6 @@ in {
   };
 
   home-manager = {
-    useGlobalPkgs = true;
-    useUserPackages = true;
     users = {
       cole = {
         imports = [
@@ -38,7 +36,5 @@ in {
         ];
       };
     };
-    extraSpecialArgs = { inherit inputs; };
   };
-
 }
