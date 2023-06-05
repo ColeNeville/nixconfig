@@ -12,6 +12,8 @@ in {
     chromium
     brave
     firefox
+    vivaldi
+    vivaldi-ffmpeg-codecs
 
     # Editors
     arduino

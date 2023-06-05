@@ -1,6 +1,8 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
-{
+let
+  inherit (inputs) self;
+in {
   environment.systemPackages = with pkgs; [
     cifs-utils # SMB mounts
     coreutils
@@ -14,6 +16,8 @@
     util-linux
     uucp # cu command
     wget
+
+    self.packages.nix-fetch-config
   ];
 
   nix = {

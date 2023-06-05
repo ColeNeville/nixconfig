@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ ... }:
 
 {
   hardware = {
@@ -22,7 +22,7 @@
   };
 
   users = {
-    # All host user configurations
+    # Any host user configurations
     cole = import ./users/cole.nix;
 
     # Host specific user configurations

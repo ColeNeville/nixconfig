@@ -24,5 +24,6 @@
     nixosModules = import ./nixosModules { lib = nixpkgs.lib; };
     homeManagerModules = import ./homeManagerModules { lib = nixpkgs.lib; };
     nixosConfigurations = import ./nixosConfigurations { inherit inputs; lib = nixpkgs.lib; };
+    packages = import ./packages { inherit inputs; lib = nixpkgs.lib; };
   };
 }
