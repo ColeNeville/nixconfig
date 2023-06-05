@@ -1,8 +1,11 @@
 { lib, ... }:
 
 {
+  hardware = {
+    garuda = import ./hardware/garuda.nix;
+  };
+
   hosts = {
-    bismark = import ./hosts/bismark.nix;
     garuda = import ./hosts/garuda.nix;
   };
 
