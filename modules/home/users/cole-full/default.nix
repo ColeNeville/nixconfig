@@ -72,17 +72,17 @@ in {
       enable = true;
     };
 
-    mimeApps = {
-      enable = true;
+    # mimeApps = {
+    #   enable = true;
 
-      defaultApplications = {
-        "video/mp4" = "vlc.desktop";
-        "application/x-yaml" = "code.desktop";
+    #   defaultApplications = {
+    #     "video/mp4" = "vlc.desktop";
+    #     "application/x-yaml" = "code.desktop";
 
-        "x-scheme-handler/https" = "brave.desktop";
-        "x-scheme-handler/about" = "brave.desktop";
-        "x-scheme-handler/unknown" = "brave.desktop";
-      };
-    };
+    #     "x-scheme-handler/https" = "brave.desktop";
+    #     "x-scheme-handler/about" = "brave.desktop";
+    #     "x-scheme-handler/unknown" = "brave.desktop";
+    #   };
+    # };
   };
 }
