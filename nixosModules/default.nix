@@ -21,7 +21,10 @@
   };
 
   users = {
-    cole-full = import ./users/cole-full.nix;
-    cole-minimal = import ./users/cole-minimal.nix;
+    # All host user configurations
+    cole = import ./users/cole.nix;
+
+    # Host specific user configurations
+    "cole@garuda" = import ./users/cole-garuda.nix;
   };
 }

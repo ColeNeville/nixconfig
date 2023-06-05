@@ -6,7 +6,10 @@
   };
 
   users = {
-    cole-full = import ./users/cole-full;
-    cole-minimal = import ./users/cole-minimal;
+    # Any host user configurations
+    cole = import ./users/cole;
+
+    # Host specific user configurations
+    "cole@garuda" = import ./users/cole-garuda;
   };
 }

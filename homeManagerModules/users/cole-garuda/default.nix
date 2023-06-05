@@ -7,10 +7,6 @@ let
     config.allowUnfree = pkgs.config.allowUnfree;
   };
 in {
-  imports = [
-    self.homeManagerModules.users.cole-minimal
-  ];
-
   home.packages = with pkgs; [
     # Web browsers
     chromium

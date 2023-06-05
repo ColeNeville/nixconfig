@@ -5,7 +5,7 @@ let
 in {
   imports = [
     home-manager.nixosModules.home-manager
-    self.nixosModules.users.cole-minimal
+    self.nixosModules.users.cole
   ];
 
   home-manager = {

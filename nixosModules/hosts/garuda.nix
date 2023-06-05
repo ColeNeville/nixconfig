@@ -28,7 +28,7 @@ in {
 
     self.nixosModules.profiles.plasma
 
-    self.nixosModules.users.cole-full
+    self.nixosModules.users."cole@garuda"
 
     self.nixosModules.hardware.garuda
   ];

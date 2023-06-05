@@ -34,7 +34,7 @@ in {
     users = {
       cole = {
         imports = [
-          self.homeManagerModules.users.cole-minimal
+          self.homeManagerModules.users.cole
         ];
       };
     };
