@@ -5,7 +5,7 @@ let
 
   pkgsUnstable = import inputs.nixpkgs-unstable {
     system = pkgs.system;
-    config.allowUnfree = pkgs.config.allowUnfree;
+    config.allowUnfree = config.allowUnfree;
   };
 in {
   boot = {
