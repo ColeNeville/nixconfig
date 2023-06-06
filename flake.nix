@@ -20,10 +20,13 @@
     home-manager,
     agenix,
     ...
-  } @ inputs: {
+  } @ inputs: let
+    forAllSystems = nixpkgs.lib.genAttrs [ "x86_64-linux" ];
+  in{
     nixosModules = import ./nixosModules { lib = nixpkgs.lib; };
     homeManagerModules = import ./homeManagerModules { lib = nixpkgs.lib; };
     nixosConfigurations = import ./nixosConfigurations { inherit inputs; lib = nixpkgs.lib; };
-    packages = import ./packages { inherit inputs; lib = nixpkgs.lib; };
+    packages = forAllSystems (system: import ./packages { inherit system inputs; });
+    pkgs = { system, ... }: self.packages."${system}";
   };
 }
