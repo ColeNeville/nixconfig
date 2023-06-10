@@ -36,7 +36,7 @@
           inherit inputs;
         };
         modules = [
-          self.nixosModules.hosts.garuda
+          self.nixosModules.host-garuda
         ];
         pkgs = import nixpkgs {
           system = "x86_64-linux";

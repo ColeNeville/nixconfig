@@ -1,15 +1,8 @@
 { ... }:
 
 {
-  mixins = {
-    common = import ./mixins/common.nix;
-  };
+  mixin-common = import ./mixin/common.nix;
 
-  users = {
-    # Any host user configurations
-    cole = import ./users/cole;
-
-    # Host specific user configurations
-    "cole@garuda" = import ./users/cole-garuda;
-  };
+  user-cole = import ./user/cole;
+  user-cole-garuda = import ./user/cole-garuda;
 }

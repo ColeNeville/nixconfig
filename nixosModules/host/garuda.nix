@@ -30,14 +30,14 @@ in {
     agenix.nixosModules.default
     nixos-hardware.nixosModules.framework-12th-gen-intel
 
-    self.nixosModules.mixins.common
-    self.nixosModules.mixins.bluetooth
+    self.nixosModules.mixin-common
+    self.nixosModules.mixin-bluetooth
 
-    self.nixosModules.profiles.plasma
+    self.nixosModules.profile-plasma
 
-    self.nixosModules.users."cole@garuda"
+    self.nixosModules.user-cole-garuda
 
-    self.nixosModules.hardware.garuda
+    self.nixosModules.hardware-garuda
   ];
 
   ###############################################

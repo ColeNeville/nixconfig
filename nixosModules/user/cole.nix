@@ -5,7 +5,7 @@ let
   inherit (inputs) self;
 in {
   imports = [
-    self.nixosModules.mixins.home-manager
+    self.nixosModules.mixin-home-manager
   ];
 
   nix.settings.trusted-users = [ "cole" ];
@@ -32,7 +32,7 @@ in {
     users = {
       cole = {
         imports = [
-          self.homeModules.users.cole
+          self.homeModules.user-cole
         ];
       };
     };
