@@ -12,7 +12,7 @@ in {
     users = {
       cole = {
         imports = [
-          self.homeManagerModules.users."cole@garuda"
+          self.homeModules.users."cole@garuda"
         ];
       };
     };

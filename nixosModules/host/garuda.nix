@@ -1,11 +1,18 @@
-{config, pkgs, lib, inputs, ...}:
+{
+  config,
+  pkgs,
+  lib,
+  pkgs-unstable,
+  inputs,
+  ...
+}:
 
 let
-  inherit (inputs) self agenix nixos-hardware home-manager;
+  inherit (inputs) self agenix nixos-hardware;
 
-  pkgsUnstable = import inputs.nixpkgs-unstable {
+  pkgsUnstable = import pkgs-unstable {
     system = pkgs.system;
-    config.allowUnfree = config.allowUnfree;
+    config.allowUnfree = pkgs.config.allowUnfree;
   };
 in {
   boot = {

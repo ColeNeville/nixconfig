@@ -21,12 +21,31 @@
     agenix,
     ...
   } @ inputs: let
-    forAllSystems = nixpkgs.lib.genAttrs [ "x86_64-linux" ];
+    inherit (nixpkgs) lib;
+
+    validSystems = [ "x86_64-linux" "aarch64-linux" ];
+    forEachSystem = nixpkgs.lib.genAttrs validSystems;
   in{
-    nixosModules = import ./nixosModules { lib = nixpkgs.lib; };
-    homeManagerModules = import ./homeManagerModules { lib = nixpkgs.lib; };
-    nixosConfigurations = import ./nixosConfigurations { inherit inputs; lib = nixpkgs.lib; };
-    packages = forAllSystems (system: import ./packages { inherit system inputs; });
-    pkgs = { system, ... }: self.packages."${system}";
+    homeModules = import ./homeModules { inherit lib; };
+    nixosModules = import ./nixosModules { inherit lib; };
+
+    nixosConfigurations = {
+      garuda = lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = {
+          inherit inputs;
+        };
+        modules = [
+          self.nixosModules.hosts.garuda
+        ];
+        pkgs = import nixpkgs {
+          system = "x86_64-linux";
+
+          config.allowUnfree = true;
+        };
+      };
+    };
+
+    packages = forEachSystem (system: import ./packages { inherit system inputs; });
   };
 }

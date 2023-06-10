@@ -2,7 +2,7 @@
 
 let
   inherit (inputs) self;
-  selfPkgs = self.pkgs { system = pkgs.system; };
+  pkgsSelf = self.packages."${pkgs.system}";
 in {
   environment.systemPackages = with pkgs; [
     cifs-utils # SMB mounts
@@ -18,7 +18,7 @@ in {
     uucp # cu command
     wget
 
-    selfPkgs.nix-fetch-config
+    pkgsSelf.nix-fetch-config
   ];
 
   nix = {
