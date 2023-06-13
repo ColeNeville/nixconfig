@@ -4,5 +4,6 @@ let
   inherit (inputs) nixpkgs self;
   pkgs = import nixpkgs { system = system; };
 in {
-  nix-fetch-config = import ./nix-fetch-config { inherit pkgs; };
+  nixos-fetch-config = import ./nix-fetch-config { inherit pkgs; };
+  nixos-build-config = import ./nix-build-config { inherit pkgs; };
 }

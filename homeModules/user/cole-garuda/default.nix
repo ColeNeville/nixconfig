@@ -31,6 +31,9 @@ in {
     freecad
     openscad
     kicad
+
+    argocd
+    argocd-vault-plugin
   ];
 
   programs = {
@@ -48,7 +51,7 @@ in {
 
     zsh = {
       sessionVariables = {
-        KUBECONFIG = "$HOME/.kube/kubeconfig";
+        KUBECONFIG = "$HOME/.kube/config";
         SSH_ASKPASS = pkgs.libsForQt5.ksshaskpass + "/bin/ksshaskpass";
       };
     };

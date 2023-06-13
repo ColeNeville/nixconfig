@@ -17,8 +17,6 @@ in {
     util-linux
     uucp # cu command
     wget
-
-    pkgsSelf.nix-fetch-config
   ];
 
   nix = {

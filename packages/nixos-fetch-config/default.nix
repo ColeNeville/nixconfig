@@ -1,6 +1,6 @@
 { pkgs, ... }:
 
-pkgs.writeShellScriptBin "nix-fetch-config" ''
+pkgs.writeShellScriptBin "nixos-fetch-config" ''
   #!${pkgs.stdenv.shell}
   cd /etc/nixos
 
