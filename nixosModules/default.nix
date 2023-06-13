@@ -6,10 +6,10 @@
   hardware-garuda = import ./hardware/garuda.nix;
 
   host-garuda = import ./host/garuda.nix;
-  # host-alexander-1 = import ./host/alexander-1.nix;
-  # host-alexander-2 = import ./host/alexander-2.nix;
-  # host-alexander-3 = import ./host/alexander-3.nix;
-  # host-alexander-4 = import ./host/alexander-4.nix;
+  host-alexander-1 = import ./host/alexander-1.nix;
+  host-alexander-2 = import ./host/alexander-2.nix;
+  host-alexander-3 = import ./host/alexander-3.nix;
+  host-alexander-4 = import ./host/alexander-4.nix;
 
   mixin-bluetooth = import ./mixin/bluetooth.nix;
   mixin-common = import ./mixin/common.nix;
