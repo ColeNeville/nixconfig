@@ -44,6 +44,66 @@
           config.allowUnfree = true;
         };
       };
+
+      alexander-1 = lib.nixosSystem {
+        system = "aarch64-linux";
+        specialArgs = {
+          inherit inputs;
+        };
+        modules = [
+          self.nixosModules.host-alexander-1
+        ];
+        pkgs = import nixpkgs {
+          system = "aarch64-linux";
+
+          config.allowUnfree = true;
+        };
+      };
+
+      alexander-2 = lib.nixosSystem {
+        system = "aarch64-linux";
+        specialArgs = {
+          inherit inputs;
+        };
+        modules = [
+          self.nixosModules.host-alexander-2
+        ];
+        pkgs = import nixpkgs {
+          system = "aarch64-linux";
+
+          config.allowUnfree = true;
+        };
+      };
+
+      alexander-3 = lib.nixosSystem {
+        system = "aarch64-linux";
+        specialArgs = {
+          inherit inputs;
+        };
+        modules = [
+          self.nixosModules.host-alexander-3
+        ];
+        pkgs = import nixpkgs {
+          system = "aarch64-linux";
+
+          config.allowUnfree = true;
+        };
+      };
+
+      alexander-4 = lib.nixosSystem {
+        system = "aarch64-linux";
+        specialArgs = {
+          inherit inputs;
+        };
+        modules = [
+          self.nixosModules.host-alexander-4
+        ];
+        pkgs = import nixpkgs {
+          system = "aarch64-linux";
+
+          config.allowUnfree = true;
+        };
+      };
     };
 
     packages = forEachSystem (system: import ./packages { inherit system inputs; });

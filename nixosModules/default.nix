@@ -18,6 +18,7 @@
   mixin-xserver = import ./mixin/xserver.nix;
 
   profile-plasma = import ./profile/plasma.nix;
+  profile-alexander-node = import ./profile/alexander-node.nix;
 
   user-cole = import ./user/cole.nix;
 

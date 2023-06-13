@@ -1,13 +1,9 @@
 { inputs, ... }:
 
 let
-  inherit (inputs) nixos-hardware;
+  inherit (inputs) self;
 in {
   imports = [
-    nixos-hardware.nixosModules.raspberry-pi-4
+    self.nixosModules.profile-alexander-node { hostName = "alexander-1"; }
   ];
-
-  networking = {
-    hostname = "alexander-1";
-  };
 }
