@@ -27,11 +27,11 @@ in {
   };
 
   imports = [
-    agenix.nixosModules.default
     nixos-hardware.nixosModules.framework-12th-gen-intel
 
     self.nixosModules.mixin-common
     self.nixosModules.mixin-bluetooth
+    self.nixosModules.mixin-agenix
 
     self.nixosModules.feature-auto-update
 

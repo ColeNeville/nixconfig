@@ -18,7 +18,7 @@ Heavily inspired by: https://github.com/MatthewCroughan/nixcfg
     - Can also include home manager configs
     - Can also have inheritance to other users (full/minimal) profiles
       - TODO: I would like to have one profile per user that takes an arg
-- `homeModules/` -> nix files mad to be imported into home-manager config
+- `homeManagerModules/` -> nix files mad to be imported into home-manager config
   - `mixins/` -> Smaller config sets
   - `users/` -> Modules that define the userspace
     - Can also include home manager configs

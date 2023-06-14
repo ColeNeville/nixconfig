@@ -12,7 +12,7 @@ in {
     users = {
       cole = {
         imports = [
-          self.homeModules.user-cole-garuda
+          self.homeManagerModules.user-cole-garuda
         ];
       };
     };

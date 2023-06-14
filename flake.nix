@@ -26,7 +26,7 @@
     validSystems = [ "x86_64-linux" "aarch64-linux" ];
     forEachSystem = nixpkgs.lib.genAttrs validSystems;
   in{
-    homeModules = import ./homeModules { inherit lib; };
+    homeManagerModules = import ./homeManagerModules { inherit lib; };
     nixosModules = import ./nixosModules { inherit lib; };
 
     nixosConfigurations = {

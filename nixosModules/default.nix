@@ -11,6 +11,7 @@
   host-alexander-3 = import ./host/alexander-3.nix;
   host-alexander-4 = import ./host/alexander-4.nix;
 
+  mixin-agenix = import ./mixin/agenix.nix;
   mixin-bluetooth = import ./mixin/bluetooth.nix;
   mixin-common = import ./mixin/common.nix;
   mixin-home-manager = import ./mixin/home-manager.nix;

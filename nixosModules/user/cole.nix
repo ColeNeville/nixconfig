@@ -32,7 +32,7 @@ in {
     users = {
       cole = {
         imports = [
-          self.homeModules.user-cole
+          self.homeManagerModules.user-cole
         ];
       };
     };
