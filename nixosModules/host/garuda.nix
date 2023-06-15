@@ -32,6 +32,7 @@ in {
     self.nixosModules.mixin-common
     self.nixosModules.mixin-bluetooth
     self.nixosModules.mixin-agenix
+    self.nixosModules.mixin-ssh-server
 
     self.nixosModules.feature-auto-update
 

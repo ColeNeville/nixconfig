@@ -16,6 +16,7 @@
   mixin-common = import ./mixin/common.nix;
   mixin-home-manager = import ./mixin/home-manager.nix;
   mixin-sddm = import ./mixin/sddm.nix;
+  mixin-ssh-server = import ./mixin/ssh-server.nix;
   mixin-xserver = import ./mixin/xserver.nix;
 
   profile-plasma = import ./profile/plasma.nix;
