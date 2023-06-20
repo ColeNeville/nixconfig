@@ -24,20 +24,9 @@ in {
     };
 
     command-not-found.enable = true;
-    
-    gpg = {
-      enable = true;
-    };
   };
 
-  services = {
-    gpg-agent = {
-      enable = true;
-      defaultCacheTtl = 1800;
-      enableSshSupport = true;
-      enableZshIntegration = true;
-    };
-  };
+  services = {};
 
   home = {
     stateVersion = "22.11";

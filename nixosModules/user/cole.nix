@@ -12,15 +12,6 @@ in {
 
   programs.zsh.enable = true;
 
-  services.openssh = {
-    enable = true;
-
-    settings = {
-      PasswordAuthentication = false;
-      PermitRootLogin = "yes";
-    };
-  };
-
   users.users.cole = {
     isNormalUser = true;
     description = "Cole Neville";

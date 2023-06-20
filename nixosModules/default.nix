@@ -21,6 +21,7 @@
 
   profile-plasma = import ./profile/plasma.nix;
   profile-alexander-node = import ./profile/alexander-node.nix;
+  profile-k3s-cluster-node = import ./profile/k3s-cluster-node.nix;
 
   user-cole = import ./user/cole.nix;
 

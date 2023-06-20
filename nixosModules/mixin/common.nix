@@ -12,9 +12,11 @@ in {
     git
     git-crypt
     gnumake # make command
+    gnupg
     htop
     nfs-utils
     util-linux
+    usbutils # lsusb command
     uucp # cu command
     wget
   ];
