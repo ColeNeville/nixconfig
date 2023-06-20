@@ -17,7 +17,7 @@ in {
 
     # Editors
     arduino
-    vscode
+    pkgsUnstable.vscode
 
     # Development Dependancies
     i2c-tools

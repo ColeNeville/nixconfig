@@ -5,7 +5,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    home-manager.url = "github:nix-community/home-manager";
+    home-manager.url = "github:nix-community/home-manager/release-23.05";
 
     nixos-hardware.url = "github:nixos/nixos-hardware/master";
 
@@ -30,21 +30,6 @@
     nixosModules = import ./nixosModules { inherit lib; };
 
     nixosConfigurations = {
-      garuda = lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = {
-          inherit inputs;
-        };
-        modules = [
-          self.nixosModules.host-garuda
-        ];
-        pkgs = import nixpkgs {
-          system = "x86_64-linux";
-
-          config.allowUnfree = true;
-        };
-      };
-
       alexander-1 = lib.nixosSystem {
         system = "aarch64-linux";
         specialArgs = {
@@ -100,6 +85,21 @@
         ];
         pkgs = import nixpkgs {
           system = "aarch64-linux";
+
+          config.allowUnfree = true;
+        };
+      };
+
+      garuda = lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = {
+          inherit inputs;
+        };
+        modules = [
+          self.nixosModules.host-garuda
+        ];
+        pkgs = import nixpkgs {
+          system = "x86_64-linux";
 
           config.allowUnfree = true;
         };
