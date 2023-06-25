@@ -1,11 +1,8 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 
-let
-  inherit (inputs) self;
-  pkgsSelf = self.packages."${pkgs.system}";
-in {
+{
   environment.systemPackages = [
-    pkgsSelf.nixos-fetch-config
-    pkgsSelf.nixos-build-config
+    pkgs.custom.nixos-fetch-config
+    pkgs.custom.nixos-build-config
   ];
 }

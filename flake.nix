@@ -29,94 +29,19 @@
     homeManagerModules = import ./homeManagerModules { inherit lib; };
     nixosModules = import ./nixosModules { inherit lib; };
     packages = forEachSystem (system: import ./packages { inherit system inputs; });
-    nixpkgsOverlays = {
-      unstable = final: prev: {
-        unstable = import nixpkgs-unstable {  
-          inherit (prev) system;
-          config.allowUnfree = true;
-        };
-      };
+    nixosConfigurations = import ./nixosConfigurations { inherit lib inputs; };
 
-      custom = final: prev: {
-        custom = self.packages.${prev.system};
-      };
-    };
-
-    nixosConfigurations = {
-      alexander-1 = lib.nixosSystem {
-        system = "aarch64-linux";
-        specialArgs = {
-          inherit inputs;
-        };
-        modules = [
-          self.nixosModules.host-alexander-1
-        ];
-        pkgs = import nixpkgs {
-          system = "aarch64-linux";
-
-          config.allowUnfree = true;
-        };
-      };
-
-      alexander-2 = lib.nixosSystem {
-        system = "aarch64-linux";
-        specialArgs = {
-          inherit inputs;
-        };
-        modules = [
-          self.nixosModules.host-alexander-2
-        ];
-        pkgs = import nixpkgs {
-          system = "aarch64-linux";
-
-          config.allowUnfree = true;
-        };
-      };
-
-      alexander-3 = lib.nixosSystem {
-        system = "aarch64-linux";
-        specialArgs = {
-          inherit inputs;
-        };
-        modules = [
-          self.nixosModules.host-alexander-3
-        ];
-        pkgs = import nixpkgs {
-          system = "aarch64-linux";
-
-          config.allowUnfree = true;
-        };
-      };
-
-      alexander-4 = lib.nixosSystem {
-        system = "aarch64-linux";
-        specialArgs = {
-          inherit inputs;
-        };
-        modules = [
-          self.nixosModules.host-alexander-4
-        ];
-        pkgs = import nixpkgs {
-          system = "aarch64-linux";
-
-          config.allowUnfree = true;
-        };
-      };
-
-      garuda = lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = {
-          inherit inputs;
-        };
-        modules = [
-          self.nixosModules.host-garuda
-        ];
-        pkgs = import nixpkgs {
-          system = "x86_64-linux";
-          config.allowUnfree = true;
-          overlays = self.nixpkgsOverlays;
-        };
-      };
-    };
+    nixpkgsOverlays = [
+      (
+        final: prev: {
+          unstable = import nixpkgs-unstable {  
+            inherit (prev) system;
+            config.allowUnfree = true;
+          };
+          custom = self.packages.${prev.system};
+          overridden = {};
+        }
+      )
+    ];
   };
 }

@@ -1,10 +1,10 @@
 { pkgs, ... }:
 
 pkgs.writeShellScriptBin "nixos-build-config" ''
-  #!${pkgs.stdenv.shell}
-  cd /etc/nixos
+  #! ${pkgs.stdenv.shell}
+  cd /nixconfig
 
   if [[ -f "flake.nix" ]]; then
-    nixos-rebuild switch --flake '.#'
+    nixos-rebuild switch --impure --flake '.#'
   fi
 ''

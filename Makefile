@@ -7,13 +7,13 @@ ifndef HOSTNAME
 endif
 
 install:
-	nixos-rebuild switch --use-remote-sudo --flake .#${HOSTNAME} -L
+	nixos-rebuild switch --use-remote-sudo --impure --flake .#${HOSTNAME} -L
 
 boot:
-	nixos-rebuild boot --use-remote-sudo --flake .#${HOSTNAME} -L
+	nixos-rebuild boot --use-remote-sudo --impure --flake .#${HOSTNAME} -L
 
 test:
-	nixos-rebuild test --use-remote-sudo --flake .#${HOSTNAME} -L
+	nixos-rebuild test --use-remote-sudo --impure --flake .#${HOSTNAME} -L
 
 update:
 	nix flake update

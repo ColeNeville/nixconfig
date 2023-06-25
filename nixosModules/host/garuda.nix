@@ -33,8 +33,6 @@ in {
     self.nixosModules.profile-plasma
 
     self.nixosModules.user-cole-garuda
-
-    self.nixosModules.hardware-garuda
   ];
 
   ###############################################

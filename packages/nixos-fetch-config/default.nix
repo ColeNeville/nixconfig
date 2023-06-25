@@ -1,13 +1,13 @@
 { pkgs, ... }:
 
 pkgs.writeShellScriptBin "nixos-fetch-config" ''
-  #!${pkgs.stdenv.shell}
-  cd /etc/nixos
+  #! ${pkgs.stdenv.shell}
+  mkdir -p /nixconfig
+  cd /nixconfig
 
   if [[ -f "flake.nix" ]]; then
     ${pkgs.git}/bin/git pull
   else
-    rm -r *
     ${pkgs.git}/bin/git clone https://github.com/ColeNeville/nixconfig.git .
   fi
 ''
