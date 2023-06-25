@@ -2,8 +2,18 @@
 
 let
   inherit (inputs) self;
-  pkgsSelf = self.packages."${pkgs.system}";
 in {
+  nix = {
+    settings = {
+      experimental-features = [
+        "flakes"
+        "nix-command"
+      ];
+    };
+  };
+
+  # nixpkgs.overlays = [ self.nixpkgsOverlays.unstable ];
+
   environment.systemPackages = with pkgs; [
     cifs-utils # SMB mounts
     coreutils
@@ -20,13 +30,4 @@ in {
     uucp # cu command
     wget
   ];
-
-  nix = {
-    settings = {
-      experimental-features = [
-        "flakes"
-        "nix-command"
-      ];
-    };
-  };
 }

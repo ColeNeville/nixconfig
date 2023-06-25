@@ -28,6 +28,19 @@
   in{
     homeManagerModules = import ./homeManagerModules { inherit lib; };
     nixosModules = import ./nixosModules { inherit lib; };
+    packages = forEachSystem (system: import ./packages { inherit system inputs; });
+    nixpkgsOverlays = {
+      unstable = final: prev: {
+        unstable = import nixpkgs-unstable {  
+          inherit (prev) system;
+          config.allowUnfree = true;
+        };
+      };
+
+      custom = final: prev: {
+        custom = self.packages.${prev.system};
+      };
+    };
 
     nixosConfigurations = {
       alexander-1 = lib.nixosSystem {
@@ -100,12 +113,10 @@
         ];
         pkgs = import nixpkgs {
           system = "x86_64-linux";
-
           config.allowUnfree = true;
+          overlays = self.nixpkgsOverlays;
         };
       };
     };
-
-    packages = forEachSystem (system: import ./packages { inherit system inputs; });
   };
 }

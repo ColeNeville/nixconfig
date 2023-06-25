@@ -7,6 +7,8 @@ in {
     nixos-hardware.nixosModules.raspberry-pi-4
 
     self.nixosModules.mixin-ssh-server
+
+    self.nixosModules.user-cole
   ];
 
   networking = {

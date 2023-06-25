@@ -9,11 +9,6 @@
 
 let
   inherit (inputs) self agenix nixos-hardware;
-
-  pkgsUnstable = import pkgs-unstable {
-    system = pkgs.system;
-    config.allowUnfree = pkgs.config.allowUnfree;
-  };
 in {
   boot = {
     loader = {
@@ -29,12 +24,12 @@ in {
   imports = [
     nixos-hardware.nixosModules.framework-12th-gen-intel
 
-    self.nixosModules.mixin-common
     self.nixosModules.mixin-bluetooth
     self.nixosModules.mixin-agenix
 
     self.nixosModules.feature-auto-update
 
+    self.nixosModules.profile-common
     self.nixosModules.profile-plasma
 
     self.nixosModules.user-cole-garuda
@@ -191,7 +186,7 @@ in {
   environment.systemPackages = with pkgs; [
     # Media
     spotify
-    vlc
+    unstable.vlc
 
     # Games
     moonlight-qt
@@ -241,6 +236,7 @@ in {
     nix-index
     kubectl
     kubernetes-helm
+    gparted
   ];
 
   time.timeZone = "America/Edmonton";

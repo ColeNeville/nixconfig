@@ -2,11 +2,11 @@
 
 let
   inherit (inputs) self;
-  pkgsUnstable = import inputs.nixpkgs-unstable {
-    system = pkgs.system;
-    config.allowUnfree = pkgs.config.allowUnfree;
-  };
 in {
+  imports = [
+    self.homeManagerModules.mixin-common
+  ];
+
   home.packages = with pkgs; [
     # Web browsers
     chromium
@@ -17,14 +17,14 @@ in {
 
     # Editors
     arduino
-    pkgsUnstable.vscode
+    unstable.vscode
 
     # Development Dependancies
     i2c-tools
     platformio
 
     # Communication
-    pkgsUnstable.discord
+    unstable.discord
 
     # CAD
     fritzing
@@ -32,8 +32,11 @@ in {
     openscad
     kicad
 
+    unstable.logseq
+
     argocd
     argocd-vault-plugin
+    yubikey-personalization
   ];
 
   programs = {
@@ -53,6 +56,13 @@ in {
       sessionVariables = {
         KUBECONFIG = "$HOME/.kube/config";
         SSH_ASKPASS = pkgs.libsForQt5.ksshaskpass + "/bin/ksshaskpass";
+      };
+    };
+
+    git = {
+      signing = {
+        signByDefault = true;
+        key = "F3686993701CB915";
       };
     };
   };

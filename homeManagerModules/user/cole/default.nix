@@ -26,7 +26,15 @@ in {
     command-not-found.enable = true;
   };
 
-  services = {};
+  services = {
+    gpg-agent = {
+      enable = true;
+
+      enableSshSupport = true;
+      enableZshIntegration = true;
+      pinentryFlavor = "qt";
+    };
+  };
 
   home = {
     stateVersion = "22.11";
