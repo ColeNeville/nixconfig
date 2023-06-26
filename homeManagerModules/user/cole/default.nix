@@ -4,7 +4,7 @@ let
   inherit (inputs) self;
 in {
   imports = [
-    self.homeManagerModules.mixin-common
+    self.homeManagerModules.profile-common
   ];
 
   programs = {

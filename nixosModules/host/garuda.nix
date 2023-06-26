@@ -24,11 +24,10 @@ in {
   imports = [
     nixos-hardware.nixosModules.framework-12th-gen-intel
 
-    self.nixosModules.mixin-bluetooth
-    self.nixosModules.mixin-agenix
-
     self.nixosModules.feature-auto-update
 
+    self.nixosModules.profile-agenix
+    self.nixosModules.profile-bluetooth
     self.nixosModules.profile-common
     self.nixosModules.profile-plasma
 

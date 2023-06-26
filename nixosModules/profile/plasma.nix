@@ -4,8 +4,8 @@ let
   inherit (inputs) self;
 in {
   imports = [
-    self.nixosModules.mixin-xserver
-    self.nixosModules.mixin-sddm
+    self.nixosModules.profile-xserver
+    self.nixosModules.profile-sddm
   ];
 
   environment.systemPackages = [

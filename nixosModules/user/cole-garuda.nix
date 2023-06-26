@@ -4,7 +4,7 @@ let
   inherit (inputs) self home-manager;
 in {
   imports = [
-    self.nixosModules.mixin-home-manager
+    self.nixosModules.profile-home-manager
     self.nixosModules.user-cole
   ];
 

@@ -6,7 +6,7 @@ in {
   imports = [
     nixos-hardware.nixosModules.raspberry-pi-4
 
-    self.nixosModules.mixin-ssh-server
+    self.nixosModules.profile-ssh-server
 
     self.nixosModules.user-cole
   ];

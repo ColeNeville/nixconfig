@@ -5,7 +5,7 @@ let
   inherit (inputs) self;
 in {
   imports = [
-    self.nixosModules.mixin-home-manager
+    self.nixosModules.profile-home-manager
   ];
 
   nix.settings.trusted-users = [ "cole" ];

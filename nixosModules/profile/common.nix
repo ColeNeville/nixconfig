@@ -12,8 +12,6 @@ in {
     };
   };
 
-  # nixpkgs.overlays = [ self.nixpkgsOverlays.unstable ];
-
   environment.systemPackages = with pkgs; [
     cifs-utils # SMB mounts
     coreutils
