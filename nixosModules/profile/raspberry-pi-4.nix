@@ -1,4 +1,4 @@
-{ pkgs, hostName, inputs, ... }:
+{ pkgs, inputs, ... }:
 
 let
   inherit (inputs) nixos-hardware;
@@ -7,11 +7,7 @@ in {
     nixos-hardware.nixosModules.raspberry-pi-4
 
     self.nixosModules.profile-ssh-server
-
+    
     self.nixosModules.user-cole
   ];
-
-  networking = {
-    hostName = hostName;
-  };
 }

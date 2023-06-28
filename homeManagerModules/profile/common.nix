@@ -3,6 +3,10 @@
 let
   inherit (inputs) self;
 in {
+  nixpkgs = {
+    overlays = self.nixpkgsOverlays;
+  };
+
   home = {
     sessionPath = [
       "${config.home.homeDirectory}/.local/bin"

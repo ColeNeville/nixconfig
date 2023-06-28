@@ -1,17 +1,11 @@
-{ lib, self, nixpkgs, inputs, ... }: 
+{ lib, inputs, self, ... }:
 
 lib.nixosSystem {
   system = "x86_64-linux";
-  specialArgs = {
-    inherit inputs;
-  };
+  specialArgs = { inherit inputs; };
   modules = [
-    "/etc/nixos/hardware-configuration.nix"
-    self.nixosModules.host-garuda
+    /etc/nixos/hardware-configuration.nix
+    ./configuration.nix
   ];
-  pkgs = import nixpkgs {
-    system = "x86_64-linux";
-    config.allowUnfree = true;
-    overlays = self.nixpkgsOverlays;
-  };
+  pkgs = self.nixpkgsOverlayed."x86_64-linux";
 }

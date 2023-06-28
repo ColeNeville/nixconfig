@@ -2,10 +2,41 @@
 
 let
   inherit (inputs) self nixpkgs;
+
+  nixosSystem = { system, modules }: lib.nixosSystem {
+    inherit system;
+    specialArgs = { inherit inputs; };
+    inherit modules;
+    pkgs = self.nixpkgsOverlayed.${system};
+  };
 in {
-  alexander-1 = import ./alexander-1 { inherit lib self nixpkgs inputs; };
-  alexander-2 = import ./alexander-2 { inherit lib self nixpkgs inputs; };
-  alexander-3 = import ./alexander-3 { inherit lib self nixpkgs inputs; };
-  alexander-4 = import ./alexander-4 { inherit lib self nixpkgs inputs; };
-  garuda = import ./garuda { inherit lib self nixpkgs inputs; };
+  alexander-1 = nixosSystem {
+    system = "aarch64-linux";
+    modules = [
+      "/etc/nixos/hardware-configuration.nix"
+      # "./configuration.nix"
+    ];
+  };
+  alexander-2 = nixosSystem {
+    system = "aarch64-linux";
+    modules = [
+      "/etc/nixos/hardware-configuration.nix"
+      # self.nixosModules.host-alexander-2
+    ];
+  };
+  alexander-3 = nixosSystem {
+    system = "aarch64-linux";
+    modules = [
+      "/etc/nixos/hardware-configuration.nix"
+      # self.nixosModules.host-alexander-3
+    ];
+  };
+  alexander-4 = nixosSystem {
+    system = "aarch64-linux";
+    modules = [
+      "/etc/nixos/hardware-configuration.nix"
+      # self.nixosModules.host-alexander-4
+    ];
+  };
+  garuda = import ./garuda {inherit lib inputs self; };
 }

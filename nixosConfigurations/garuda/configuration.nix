@@ -2,13 +2,12 @@
   config,
   pkgs,
   lib,
-  pkgs-unstable,
   inputs,
   ...
 }:
 
 let
-  inherit (inputs) self agenix nixos-hardware;
+  inherit (inputs) self nixos-hardware;
 in {
   boot = {
     loader = {
@@ -21,35 +20,25 @@ in {
     };
   };
 
+  networking = {
+    hostName = "garuda";
+  };
+
   imports = [
     nixos-hardware.nixosModules.framework-12th-gen-intel
 
     self.nixosModules.feature-auto-update
 
+    self.nixosModules.network-tailscale
+
     self.nixosModules.profile-agenix
     self.nixosModules.profile-bluetooth
     self.nixosModules.profile-common
+    self.nixosModules.profile-home-manager
     self.nixosModules.profile-plasma
 
-    self.nixosModules.user-cole-garuda
+    self.nixosModules.user-cole
   ];
-
-  ###############################################
-  # Network settings
-  ###############################################
-
-  networking = {
-    hostName = "garuda";
-
-    hosts = {
-      "100.64.59.20" = [ "moogle.tailscale.coleslab.com" ];
-    };
-
-    networkmanager = {
-      enable = true;
-      dns = "unbound";
-    };
-  };
 
   ###############################################
   # Services settings
@@ -96,23 +85,6 @@ in {
 
     tailscale = {
       enable = true;
-    };
-
-    unbound = {
-      enable = true;
-
-      settings = {
-        forward-zone = [
-          {
-            name = "local.coleslab.com";
-            forward-addr = "100.64.59.20";
-          }
-          {
-            name = "alexander.coleslab.com";
-            forward-addr = "100.64.59.20";
-          }
-        ];
-      };
     };
 
     printing = {
@@ -235,6 +207,16 @@ in {
     kubernetes-helm
     gparted
   ];
+
+  home-manager = {
+    users = {
+      cole = {
+        imports = [
+          self.homeManagerModules.user-garuda-cole
+        ];
+      };
+    };
+  };
 
   time.timeZone = "America/Edmonton";
 

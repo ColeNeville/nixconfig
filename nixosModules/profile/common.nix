@@ -1,8 +1,12 @@
-{ pkgs, inputs, ... }:
+{ config, pkgs, inputs, ... }:
 
 let
   inherit (inputs) self;
 in {
+  imports = [
+    self.nixosModules.profile-unbound-dns
+  ];
+
   nix = {
     settings = {
       experimental-features = [
@@ -10,6 +14,10 @@ in {
         "nix-command"
       ];
     };
+  };
+
+  nixpkgs = {
+    overlays = self.nixpkgsOverlays;
   };
 
   environment.systemPackages = with pkgs; [

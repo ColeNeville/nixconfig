@@ -9,11 +9,11 @@ in {
 
   home.packages = with pkgs; [
     # Web browsers
-    chromium
-    brave
-    firefox
-    vivaldi
-    vivaldi-ffmpeg-codecs
+    unstable.chromium
+    unstable.brave
+    unstable.firefox
+    unstable.vivaldi
+    unstable.vivaldi-ffmpeg-codecs
 
     # Editors
     arduino

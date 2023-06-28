@@ -26,11 +26,6 @@
     validSystems = [ "x86_64-linux" "aarch64-linux" ];
     forEachSystem = nixpkgs.lib.genAttrs validSystems;
   in{
-    homeManagerModules = import ./homeManagerModules { inherit lib; };
-    nixosModules = import ./nixosModules { inherit lib; };
-    packages = forEachSystem (system: import ./packages { inherit system inputs; });
-    nixosConfigurations = import ./nixosConfigurations { inherit lib inputs; };
-
     nixpkgsOverlays = [
       (
         final: prev: {
@@ -43,5 +38,18 @@
         }
       )
     ];
+
+    nixpkgsOverlayed = forEachSystem (
+      system: import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+        overlays = self.nixpkgsOverlays;
+      }
+    );
+    
+    homeManagerModules = import ./homeManagerModules { inherit lib; };
+    nixosModules = import ./nixosModules { inherit lib; };
+    packages = forEachSystem (system: import ./packages { inherit system inputs; });
+    nixosConfigurations = import ./nixosConfigurations { inherit lib inputs; };
   };
 }
