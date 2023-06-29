@@ -1,8 +1,6 @@
-{ inputs, ... }:
+{ inputs, self, ... }:
 
-let
-  inherit (inputs) self;
-in {
+{
   imports = [
     self.homeManagerModules.profile-common
   ];

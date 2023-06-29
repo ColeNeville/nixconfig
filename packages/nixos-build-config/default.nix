@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs }:
 
 pkgs.writeShellScriptBin "nixos-build-config" ''
   #! ${pkgs.stdenv.shell}

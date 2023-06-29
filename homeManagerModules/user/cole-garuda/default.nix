@@ -1,10 +1,9 @@
-{ pkgs, inputs, ... }:
+{ pkgs, self, ... }:
 
-let
-  inherit (inputs) self;
-in {
+{
   imports = [
     self.homeManagerModules.profile-common
+    self.homeManagerModules.user-cole
   ];
 
   home.packages = with pkgs; [

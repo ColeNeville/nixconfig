@@ -1,8 +1,6 @@
-{ config, inputs, ... }: 
+{ config, self, ... }: 
 
-let
-  inherit (inputs) self;
-in {
+{
   nixpkgs = {
     overlays = self.nixpkgsOverlays;
   };

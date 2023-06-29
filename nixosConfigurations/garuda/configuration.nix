@@ -2,13 +2,15 @@
   config,
   pkgs,
   lib,
-  inputs,
+  self,
+  home-manager,
   ...
 }:
 
-let
-  inherit (inputs) self nixos-hardware;
-in {
+
+{
+  imports = [ home-manager.nixosModules.home-manager ];
+
   boot = {
     loader = {
       systemd-boot.enable = true;
@@ -22,23 +24,16 @@ in {
 
   networking = {
     hostName = "garuda";
+
+    hosts = {
+      "100.64.59.20" = [ "moogle.tailscale.coleslab.com" ];
+    };
+
+    networkmanager = {
+      enable = true;
+      dns = "unbound";
+    };
   };
-
-  imports = [
-    nixos-hardware.nixosModules.framework-12th-gen-intel
-
-    self.nixosModules.feature-auto-update
-
-    self.nixosModules.network-tailscale
-
-    self.nixosModules.profile-agenix
-    self.nixosModules.profile-bluetooth
-    self.nixosModules.profile-common
-    self.nixosModules.profile-home-manager
-    self.nixosModules.profile-plasma
-
-    self.nixosModules.user-cole
-  ];
 
   ###############################################
   # Services settings
@@ -46,8 +41,8 @@ in {
 
   services = {
     xserver = {
+      enable = true;
       videoDrivers = [ "modesetting" ];
-
       layout = "us";
 
       libinput = {
@@ -57,6 +52,13 @@ in {
           clickMethod = "buttonareas";
         };
       };
+
+      displayManager = {
+        sddm.enable = true;
+        defaultSession = "plasma";
+      };
+
+      desktopManager.plasma5.enable = true;
     };
 
     pipewire = {
@@ -90,6 +92,23 @@ in {
     printing = {
       enable = true;
     };
+
+    unbound = {
+      enable = true;
+
+      settings = {
+        forward-zone = [
+          {
+            name = "local.coleslab.com";
+            forward-addr = "100.64.59.20";
+          }
+          {
+            name = "alexander.coleslab.com";
+            forward-addr = "100.64.59.20";
+          }
+        ];
+      };
+    };
   };
 
   ###############################################
@@ -112,6 +131,7 @@ in {
     };
 
     pulseaudio.enable = false;
+    bluetooth.enable = true;
   };
 
   ###############################################
@@ -206,17 +226,9 @@ in {
     kubectl
     kubernetes-helm
     gparted
-  ];
 
-  home-manager = {
-    users = {
-      cole = {
-        imports = [
-          self.homeManagerModules.user-garuda-cole
-        ];
-      };
-    };
-  };
+    libsForQt5.ksshaskpass
+  ];
 
   time.timeZone = "America/Edmonton";
 

@@ -1,4 +1,5 @@
 HOSTNAME = $(shell hostname)
+USERNAME = $(shell whoami)
 
 NIX_FILES = $(shell find . -name '*.nix' -type f)
 
