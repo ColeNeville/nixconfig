@@ -2,15 +2,11 @@
   config,
   pkgs,
   lib,
-  self,
-  home-manager,
   ...
 }:
 
 
 {
-  imports = [ home-manager.nixosModules.home-manager ];
-
   boot = {
     loader = {
       systemd-boot.enable = true;

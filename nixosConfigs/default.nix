@@ -1,8 +1,6 @@
-{ lib, inputs }:
+inputs:
 
-let
-  inherit (inputs) self nixpkgs;
-in {
+{
   # alexander-1 = nixosSystem {
   #   system = "aarch64-linux";
   #   modules = [
@@ -31,5 +29,5 @@ in {
   #     # self.nixosModules.host-alexander-4
   #   ];
   # };
-  garuda = import ./garuda {inherit lib inputs; };
+  garuda = import ./garuda inputs;
 }

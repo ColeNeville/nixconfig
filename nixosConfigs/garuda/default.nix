@@ -1,18 +1,23 @@
-{ lib, inputs }:
-
-let
-  inherit (inputs) nixpkgs self nixos-hardware home-manager;
+{
+  nixpkgs,
+  self,
+  nixos-hardware,
+  home-manager,
+  ...
+}: let
   system = "x86_64-linux";
-in lib.nixosSystem {
+in nixpkgs.lib.nixosSystem {
   inherit system;
 
-  specialArgs = { inherit self home-manager; };
+  specialArgs = {};
   modules = [
     /etc/nixos/hardware-configuration.nix
 
     nixos-hardware.nixosModules.framework-12th-gen-intel
 
-    self.nixosModules.profile-common
+    home-manager.nixosModules.home-manager
+
+    self.nixosModules.common
     self.nixosModules.user-cole
 
     ./configuration.nix

@@ -8,7 +8,8 @@ ifndef HOSTNAME
 endif
 
 install:
-	nixos-rebuild switch --use-remote-sudo --impure --flake .#${HOSTNAME} -L
+	nixos-rebuild switch --use-remote-sudo --impure --flake . -L
+	home-manager switch --flake .
 
 boot:
 	nixos-rebuild boot --use-remote-sudo --impure --flake .#${HOSTNAME} -L

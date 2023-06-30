@@ -1,8 +1,6 @@
-{ config, pkgs, inputs, ... }:
+{ pkgs, ... }:
 
-let
-  inherit (inputs) self;
-in {
+{
   nix = {
     settings = {
       experimental-features = [
@@ -10,10 +8,6 @@ in {
         "nix-command"
       ];
     };
-  };
-
-  nixpkgs = {
-    overlays = self.nixpkgsOverlays;
   };
 
   environment.systemPackages = with pkgs; [

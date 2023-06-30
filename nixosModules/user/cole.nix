@@ -1,8 +1,6 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, ... }:
 
-let
-  inherit (inputs) self;
-in {
+{
   nix.settings.trusted-users = [ "cole" ];
 
   programs.zsh.enable = true;
