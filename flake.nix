@@ -41,13 +41,23 @@
     nixosModules = import ./nixosModules;
     nixosConfigurations = import ./nixosConfigs inputs;
     homeConfigurations = import ./homeConfigs inputs;
-  } // flake-utils.lib.eachDefaultSystem (system: {
-    packages = import ./packages { 
+  } // flake-utils.lib.eachDefaultSystem (system: 
+    let
       pkgs = import nixpkgs {
         inherit system;
+        
         config.allowUnfree = true;
         overlays = self.nixpkgsOverlays;
       };
-    };
-  });
+    in {
+      packages = import ./packages { inherit pkgs; };
+      devShells.default = pkgs.mkShell {
+        buildInputs = with pkgs; [
+          git
+          gnumake
+          home-manager
+        ];
+      };
+    }
+  );
 }

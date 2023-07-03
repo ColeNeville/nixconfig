@@ -25,5 +25,8 @@
     usbutils # lsusb command
     uucp # cu command
     wget
+
+    custom.nixos-fetch-config
+    custom.nixos-build-config
   ];
 }
