@@ -1,5 +1,4 @@
-{ pkgs }:
-
+{pkgs}:
 pkgs.writeShellScriptBin "nixos-fetch-config" ''
   #! ${pkgs.stdenv.shell}
   mkdir -p /nixconfig

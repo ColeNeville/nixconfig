@@ -1,13 +1,5 @@
-inputs:
-
-{
-  # alexander-1 = nixosSystem {
-  #   system = "aarch64-linux";
-  #   modules = [
-  #     "/etc/nixos/hardware-configuration.nix"
-  #     # "./configuration.nix"
-  #   ];
-  # };
+inputs: {
+  alexander-4 = import ./alexander-4 inputs;
   # alexander-2 = nixosSystem {
   #   system = "aarch64-linux";
   #   modules = [

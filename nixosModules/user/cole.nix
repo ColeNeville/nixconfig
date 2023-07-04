@@ -1,7 +1,9 @@
-{ config, pkgs, ... }:
-
 {
-  nix.settings.trusted-users = [ "cole" ];
+  config,
+  pkgs,
+  ...
+}: {
+  nix.settings.trusted-users = ["cole"];
 
   programs.zsh.enable = true;
 

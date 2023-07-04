@@ -2,10 +2,9 @@
   nixpkgs,
   self,
   nixos-hardware,
-  home-manager,
   ...
 }: let
-  system = "x86_64-linux";
+  system = "aarch64-linux";
   pkgs = self.pkgs.${system};
 in
   nixpkgs.lib.nixosSystem {
@@ -13,11 +12,9 @@ in
 
     specialArgs = {};
     modules = [
-      /etc/nixos/hardware-configuration.nix
+      "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
 
-      nixos-hardware.nixosModules.framework-12th-gen-intel
-
-      home-manager.nixosModules.home-manager
+      nixos-hardware.nixosModules.raspberry-pi-4
 
       self.nixosModules.common
       self.nixosModules.user-cole

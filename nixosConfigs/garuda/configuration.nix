@@ -3,11 +3,10 @@
   pkgs,
   lib,
   ...
-}:
-
-
-{
+}: {
   boot = {
+    binfmt.emulatedSystems = ["aarch64-linux"];
+
     loader = {
       systemd-boot.enable = true;
 
@@ -22,7 +21,7 @@
     hostName = "garuda";
 
     hosts = {
-      "100.64.59.20" = [ "moogle.tailscale.coleslab.com" ];
+      "100.64.59.20" = ["moogle.tailscale.coleslab.com"];
     };
 
     networkmanager = {
@@ -38,7 +37,7 @@
   services = {
     xserver = {
       enable = true;
-      videoDrivers = [ "modesetting" ];
+      videoDrivers = ["modesetting"];
       layout = "us";
 
       libinput = {
@@ -162,8 +161,8 @@
       };
 
       defaultFonts = {
-        sansSerif = [ "Fira Sans" ];
-        monospace = [ "Fira Code" ];
+        sansSerif = ["Fira Sans"];
+        monospace = ["Fira Code"];
       };
     };
   };
@@ -196,7 +195,7 @@
     putty
 
     # Programming
-    (python311.withPackages(ps: with ps; [ pip virtualenv ]))
+    (python311.withPackages (ps: with ps; [pip virtualenv]))
 
     # Virtual Machines
     virt-viewer
