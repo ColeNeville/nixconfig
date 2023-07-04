@@ -61,14 +61,16 @@
         inherit pkgs;
 
         packages = import ./packages {inherit pkgs;};
-        devShells.default = pkgs.mkShell {
-          buildInputs = with pkgs; [
-            git
-            gnumake
-            home-manager
-          ];
+        devShells = {
+          default = pkgs.mkShell {
+            buildInputs = with pkgs; [
+              git
+              gnumake
+              home-manager
+            ];
+          };
         };
         formatter = pkgs.alejandra;
       }
-    );
+    )
 }
