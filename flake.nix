@@ -17,16 +17,9 @@
     nixpkgs,
     nixpkgs-unstable,
     ...
-  }: let
-    lib = import ./lib;
-
-    validSystems = ["x86_64-linux" "aarch64-linux"];
-    forEachSystem = nixpkgs.lib.genAttrs validSystems;
-  in
+  }: (
     {
-      inherit lib;
-
-      nixpkgsOverlays = {
+      overlays = {
         unstable = (
           final: prev: {
             unstable = import nixpkgs-unstable {
@@ -43,8 +36,8 @@
       };
 
       nixosModules = import ./nixosModules;
-      nixosConfigurations = import ./nixosConfigs inputs;
-      homeConfigurations = import ./homeConfigs inputs;
+      nixosConfigurations = import ./nixosConfigurations inputs;
+      homeConfigurations = import ./homeConfigurations inputs;
     }
     // flake-utils.lib.eachDefaultSystem (
       system: let
@@ -53,24 +46,17 @@
 
           config.allowUnfree = true;
           overlays = [
-            self.nixpkgsOverlays.unstable
-            self.nixpkgsOverlays.custom
+            self.overlays.unstable
+            self.overlays.custom
           ];
         };
       in {
         inherit pkgs;
 
         packages = import ./packages {inherit pkgs;};
-        devShells = {
-          default = pkgs.mkShell {
-            buildInputs = with pkgs; [
-              git
-              gnumake
-              home-manager
-            ];
-          };
-        };
+        devShells = import ./devShells {inherit pkgs;};
         formatter = pkgs.alejandra;
       }
     )
+  );
 }

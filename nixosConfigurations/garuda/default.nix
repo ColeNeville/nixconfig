@@ -13,7 +13,7 @@ in
 
     specialArgs = {};
     modules = [
-      /etc/nixos/hardware-configuration.nix
+      ./hardware-configuration.nix
 
       nixos-hardware.nixosModules.framework-12th-gen-intel
 
