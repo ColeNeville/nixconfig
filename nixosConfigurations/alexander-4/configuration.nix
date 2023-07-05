@@ -40,7 +40,7 @@
 
   nix = {
     settings = {
-      # autoOptimiseStore = true;
+      auto-optimise-store = true;
     };
 
     gc = {

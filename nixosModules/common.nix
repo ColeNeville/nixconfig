@@ -1,30 +1,26 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  defaultPackages,
+  ...
+}: {
   nix = {
     settings = {
-      experimental-features = [
+      experimental-features = lib.mkDefault [
         "flakes"
         "nix-command"
       ];
     };
   };
 
-  environment.systemPackages = with pkgs; [
-    cifs-utils # SMB mounts
-    coreutils
-    curl
-    dig
-    git
-    git-crypt
-    gnumake # make command
-    gnupg
-    htop
-    nfs-utils
-    util-linux
-    usbutils # lsusb command
-    uucp # cu command
-    wget
+  environment = {
+    inherit defaultPackages;
 
-    custom.nixos-fetch-config
-    custom.nixos-build-config
-  ];
+    systemPackages = with pkgs; [
+      cifs-utils # SMB mounts
+      htop
+      nfs-utils
+      uucp # cu command
+    ];
+  };
 }

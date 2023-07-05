@@ -50,11 +50,27 @@
             self.overlays.custom
           ];
         };
+
+        defaultPackages = with pkgs; [
+          coreutils
+          curl
+          dig
+          git
+          git-crypt
+          gnumake # make command
+          gnupg
+          nano
+          util-linux
+          usbutils # lsusb command
+          wget
+        ];
       in {
-        inherit pkgs;
+        inherit pkgs defaultPackages;
 
         packages = import ./packages {inherit pkgs;};
-        devShells = import ./devShells {inherit pkgs;};
+        devShells = import ./devShells.nix {
+          inherit pkgs defaultPackages;
+        };
         formatter = pkgs.alejandra;
       }
     )

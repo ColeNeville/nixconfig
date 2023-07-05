@@ -7,11 +7,12 @@
 }: let
   system = "x86_64-linux";
   pkgs = self.pkgs.${system};
+  defaultPackages = self.defaultPackages.${system};
 in
   nixpkgs.lib.nixosSystem {
     inherit system pkgs;
 
-    specialArgs = {};
+    specialArgs = {inherit defaultPackages;};
     modules = [
       ./hardware-configuration.nix
 
