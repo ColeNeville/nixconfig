@@ -1,4 +1,4 @@
-{self}: let
+{self, nixos-generators}: let
   system = "x86_64-linux";
   pkgs = self.pkgs.${system};
 in (
@@ -7,8 +7,9 @@ in (
 
     specialArgs = {};
     modules = [
-      self.nixosModules.virtualization-qemu-vm
-      self.nixosModules.profile-qemu-guest
+      # self.nixosModules.virtualization-qemu-vm
+      # self.nixosModules.profile-qemu-guest
+      nixos-generators.nixosModules.all-formats
 
       self.nixosModules.common
       self.nixosModules.openssh

@@ -9,6 +9,8 @@
     nixos-hardware.url = "github:nixos/nixos-hardware/master";
     agenix.url = "github:ryantm/agenix";
     flake-utils.url = "github:numtide/flake-utils";
+
+    nixos-generators.url = "github:nix-community/nixos-generators/1.7.0";
   };
 
   outputs = inputs @ {
