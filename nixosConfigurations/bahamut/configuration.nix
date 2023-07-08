@@ -1,4 +1,8 @@
-{pkgs, nixos-generators, ...}: {
+{
+  pkgs,
+  nixos-generators,
+  ...
+}: {
   imports = [
     nixos-generators.nixosModules.all-formats
   ];
