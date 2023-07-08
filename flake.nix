@@ -21,6 +21,25 @@
     ...
   }: (
     {
+      lib = {
+        nixosSystem = {
+          system,
+          name,
+          ...
+        }: let
+          pkgs = self.pkgs.${system};
+          baseModule = "configuration-${name}";
+        in (
+          nixpkgs.lib.nixosSystem {
+            inherit system pkgs;
+
+            modules = [
+              self.nixosModules.${baseModule}
+            ];
+          }
+        );
+      };
+
       overlays = {
         unstable = (
           final: prev: {
@@ -38,7 +57,7 @@
       };
 
       nixosModules = import ./nixosModules inputs;
-      nixosConfigurations = import ./nixosConfigurations inputs;
+      nixosConfigurations = import ./nixosConfigurations.nix inputs;
       homeConfigurations = import ./homeConfigurations inputs;
     }
     // flake-utils.lib.eachDefaultSystem (
