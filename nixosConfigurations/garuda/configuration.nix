@@ -221,6 +221,7 @@
     kubectl
     kubernetes-helm
     gparted
+    ntfs3g
 
     libsForQt5.ksshaskpass
   ];

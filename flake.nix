@@ -35,7 +35,7 @@
         );
       };
 
-      nixosModules = import ./nixosModules;
+      nixosModules = import ./nixosModules inputs;
       nixosConfigurations = import ./nixosConfigurations inputs;
       homeConfigurations = import ./homeConfigurations inputs;
     }
@@ -64,13 +64,13 @@
           usbutils # lsusb command
           wget
         ];
+
+        innerInputs = inputs // {inherit pkgs defaultPackages;};
       in {
         inherit pkgs defaultPackages;
 
-        packages = import ./packages {inherit pkgs;};
-        devShells = import ./devShells.nix {
-          inherit pkgs defaultPackages;
-        };
+        packages = import ./packages innerInputs;
+        devShells = import ./devShells.nix innerInputs;
         formatter = pkgs.alejandra;
       }
     )

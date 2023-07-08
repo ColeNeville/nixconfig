@@ -1,7 +1,6 @@
 {
   pkgs,
   lib,
-  defaultPackages,
   ...
 }: {
   nix = {
@@ -14,7 +13,9 @@
   };
 
   environment = {
-    inherit defaultPackages;
+    defaultPackages = with pkgs; [
+      custom.defaultEnv
+    ];
 
     systemPackages = with pkgs; [
       cifs-utils # SMB mounts

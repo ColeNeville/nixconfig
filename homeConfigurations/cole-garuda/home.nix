@@ -130,5 +130,6 @@
     argocd
     argocd-vault-plugin
     yubikey-personalization
+    ddrescue
   ];
 }

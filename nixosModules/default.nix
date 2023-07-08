@@ -1,7 +1,4 @@
-{
-  nixpkgs,
-  ...
-}: {
+{nixpkgs, ...}: {
   common = import ./common.nix;
   openssh = import ./openssh.nix;
 
