@@ -1,4 +1,4 @@
-{nixpkgs, ...}: {
+inputs @ {nixpkgs, ...}: {
   common = import ./common.nix;
   openssh = import ./openssh.nix;
 
@@ -9,4 +9,7 @@
   profile-qemu-guest = import "${nixpkgs}/nixos/modules/profiles/qemu-guest.nix";
 
   user-cole = import ./user/cole.nix;
+
+  configuration-garuda = import ./configuration/garuda/configuration.nix inputs;
+  # configuration-bahumut = import ./configuration/bahumut/configuration.nix inputs;
 }

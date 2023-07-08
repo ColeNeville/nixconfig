@@ -1,15 +1,14 @@
-{self, nixos-generators}: let
+{self, nixpkgs, nixos-generators, ...}: let
   system = "x86_64-linux";
   pkgs = self.pkgs.${system};
 in (
-  pkgs.lib.nixosSystem {
+  nixpkgs.lib.nixosSystem {
     inherit system pkgs;
 
-    specialArgs = {};
+    specialArgs = { inherit nixos-generators; };
     modules = [
       # self.nixosModules.virtualization-qemu-vm
       # self.nixosModules.profile-qemu-guest
-      nixos-generators.nixosModules.all-formats
 
       self.nixosModules.common
       self.nixosModules.openssh

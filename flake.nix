@@ -10,7 +10,7 @@
     agenix.url = "github:ryantm/agenix";
     flake-utils.url = "github:numtide/flake-utils";
 
-    nixos-generators.url = "github:nix-community/nixos-generators/1.7.0";
+    nixos-generators.url = "github:nix-community/nixos-generators/master";
   };
 
   outputs = inputs @ {

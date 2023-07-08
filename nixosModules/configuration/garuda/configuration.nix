@@ -1,9 +1,25 @@
 {
+  self,
+  nixos-hardware,
+  home-manager,
+  ...
+}: {
   config,
   pkgs,
   lib,
   ...
 }: {
+  imports = [
+    ./hardware-configuration.nix
+
+    nixos-hardware.nixosModules.framework-12th-gen-intel
+
+    home-manager.nixosModules.home-manager
+
+    self.nixosModules.common
+    self.nixosModules.user-cole
+  ];
+
   boot = {
     binfmt.emulatedSystems = ["aarch64-linux"];
 
