@@ -4,13 +4,24 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-
-    home-manager.url = "github:nix-community/home-manager/release-23.05";
     nixos-hardware.url = "github:nixos/nixos-hardware/master";
-    agenix.url = "github:ryantm/agenix";
     flake-utils.url = "github:numtide/flake-utils";
 
-    nixos-generators.url = "github:nix-community/nixos-generators/master";
+    home-manager = {
+      url = "github:nix-community/home-manager/release-23.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
+
+    nixos-generators = {
+      url = "github:nix-community/nixos-generators/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs @ {
@@ -18,9 +29,22 @@
     flake-utils,
     nixpkgs,
     nixpkgs-unstable,
+    nixos-hardware,
+    nixos-generators,
     ...
   }: (
     {
+      defaultModules = {
+        baseModule,
+      }: [
+        self.nixosModules.common
+        self.nixosModules.user-cole
+
+        self.nixosModules.${baseModule}
+
+        nixos-generators.nixosModules.all-formats
+      ];
+
       lib = {
         nixosSystem = {
           system,
@@ -33,9 +57,9 @@
           nixpkgs.lib.nixosSystem {
             inherit system pkgs;
 
-            modules = [
-              self.nixosModules.${baseModule}
-            ];
+            modules = self.defaultModules {
+              inherit baseModule;
+            };
           }
         );
       };
@@ -57,7 +81,6 @@
       };
 
       nixosModules = import ./nixosModules inputs;
-      nixosConfigurations = import ./nixosConfigurations.nix inputs;
       homeConfigurations = import ./homeConfigurations inputs;
     }
     // flake-utils.lib.eachDefaultSystem (
@@ -90,9 +113,92 @@
       in {
         inherit pkgs defaultPackages;
 
-        packages = import ./packages innerInputs;
-        devShells = import ./devShells.nix innerInputs;
         formatter = pkgs.alejandra;
+
+        packages = {
+          defaultEnv = pkgs.buildEnv {
+            name = "default";
+            paths = with pkgs; [
+              coreutils
+              curl
+              dig
+              git
+              git-crypt
+              gnumake # make command
+              gnupg
+              nano
+              util-linux
+              usbutils # lsusb command
+              wget
+              which
+            ];
+          };
+
+          nixos-build-config = (
+            pkgs.writeShellScriptBin "nixos-build-config" ''
+              #! ${pkgs.stdenv.shell}
+              cd /nixconfig
+
+              if [[ -f "flake.nix" ]]; then
+                nixos-rebuild switch --impure --flake '.#'
+              fi
+            ''
+          );
+
+          nixos-fetch-config = (
+            pkgs.writeShellScriptBin "nixos-fetch-config" ''
+              #! ${pkgs.stdenv.shell}
+              mkdir -p /nixconfig
+              cd /nixconfig
+
+              if [[ -f "flake.nix" ]]; then
+                ${pkgs.git}/bin/git pull
+              else
+                ${pkgs.git}/bin/git clone https://github.com/ColeNeville/nixconfig.git .
+              fi
+            ''
+          );
+
+          nixosConfigurations = {
+            garuda = nixpkgs.lib.nixosSystem {
+              inherit pkgs;
+
+              system = pkgs.system;
+              modules = [
+                nixos-hardware.nixosModules.framework-12th-gen-intel
+
+                self.nixosModules.hardware-garuda
+                self.nixosModules.configuration-garuda
+              ];
+            };
+          };
+
+          nixosImages = {
+            bahamut-proxmox = nixos-generators.nixosGenerate {
+              inherit pkgs;
+
+              system = pkgs.system;
+              modules = [
+                self.nixosModules.configuration-bahamut
+              ];
+
+              format = "proxmox";
+            };
+
+            bahamut-vm = nixos-generators.nixosGenerate {
+              inherit pkgs;
+
+              system = pkgs.system;
+              modules = [
+                self.nixosModules.configuration-bahamut
+              ];
+
+              format = "vm";
+            };
+          };
+        };
+
+        devShells = import ./devShells.nix innerInputs;
       }
     )
   );

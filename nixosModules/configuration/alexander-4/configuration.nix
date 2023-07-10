@@ -1,4 +1,7 @@
 {
+  nixos-generators,
+  ...
+}: {
   pkgs,
   config,
   ...

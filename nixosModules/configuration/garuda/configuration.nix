@@ -10,18 +10,15 @@
   ...
 }: {
   imports = [
-    ./hardware-configuration.nix
-
-    nixos-hardware.nixosModules.framework-12th-gen-intel
-
     home-manager.nixosModules.home-manager
-
+  
     self.nixosModules.common
     self.nixosModules.user-cole
   ];
 
   boot = {
-    binfmt.emulatedSystems = ["aarch64-linux"];
+    # binfmt.emulatedSystems = ["aarch64-linux"];
+    # extraModulePackages = with config.boot.kernelPackages; [ vboxdrv ];
 
     loader = {
       systemd-boot.enable = true;
@@ -182,6 +179,14 @@
       };
     };
   };
+  
+  programs = {
+    dconf.enable = true;
+  };
+
+  virtualisation = {
+    libvirtd.enable = true;
+  };
 
   environment.systemPackages = with pkgs; [
     # Media
@@ -230,14 +235,16 @@
     yubikey-personalization-gui
     yubioath-flutter
 
+    # Filesystems
+    ntfs3g
+    exfat
+
     # Random Utils
-    virtualbox
     ark
     nix-index
     kubectl
     kubernetes-helm
     gparted
-    ntfs3g
 
     libsForQt5.ksshaskpass
   ];

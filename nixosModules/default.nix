@@ -10,6 +10,9 @@ inputs @ {nixpkgs, ...}: {
 
   user-cole = import ./user/cole.nix;
 
-  configuration-bahumut = import ./configuration/bahumut/configuration.nix inputs;
+  configuration-alexander-4 = import ./configuration/alexander-4/configuration.nix inputs;
+  configuration-bahamut = import ./configuration/bahamut/configuration.nix inputs;
   configuration-garuda = import ./configuration/garuda/configuration.nix inputs;
+
+  hardware-garuda = import ./hardware/garuda/hardware-configuration.nix;
 }

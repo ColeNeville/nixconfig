@@ -1,12 +1,12 @@
 install:
-	nix develop . -c nixos-rebuild switch --use-remote-sudo --flake . -L
+	nix develop --extra-experimental-features "nix-command flakes" . -c nixos-rebuild switch --use-remote-sudo --flake . -L
 	nix develop . -c home-manager switch --flake .
 
 boot:
 	nixos-rebuild boot --use-remote-sudo --impure . -L
 
 test:
-	nixos-rebuild test --use-remote-sudo --impure . -L
+	nix develop --extra-experimental-features "nix-command flakes" . nixos-rebuild test --use-remote-sudo --flake . -L
 
 update:
 	nix flake update
