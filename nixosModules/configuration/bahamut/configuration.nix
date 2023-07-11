@@ -2,17 +2,14 @@
   self,
   nixos-generators,
   ...
-}: {
-  pkgs,
-  ...
-}: {
+}: {pkgs, ...}: {
   imports = [
     self.nixosModules.common
     self.nixosModules.user-cole
   ];
 
   boot = {
-    binfmt.emulatedSystems = [ "aarch64-linux" ];
+    binfmt.emulatedSystems = ["aarch64-linux"];
   };
 
   networking = {

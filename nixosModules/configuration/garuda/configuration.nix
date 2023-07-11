@@ -11,7 +11,7 @@
 }: {
   imports = [
     home-manager.nixosModules.home-manager
-  
+
     self.nixosModules.common
     self.nixosModules.user-cole
   ];
@@ -179,7 +179,7 @@
       };
     };
   };
-  
+
   programs = {
     dconf.enable = true;
   };
