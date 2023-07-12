@@ -25,9 +25,24 @@
     '';
   };
 
+  system.autoUpgrade = {
+    enable = true;
+    flake = "github:coleneville/nixconfig";
+    persistent = true;
+
+    dates = "daily";
+    randomizedDelaySec = "1h";
+
+    allowReboot = true;
+    rebootWindow = {
+      lower = "01:00";
+      upper = "05:00";
+    };
+  };
+
   environment = {
     defaultPackages = with pkgs; [
-      custom.defaultEnv
+      custom.default
     ];
 
     systemPackages = with pkgs; [

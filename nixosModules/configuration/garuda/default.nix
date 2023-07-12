@@ -1,24 +1,14 @@
 {
-  self,
-  nixos-hardware,
-  home-manager,
-  ...
-}: {
+  inputs,
   config,
   pkgs,
   lib,
   ...
-}: {
-  imports = [
-    home-manager.nixosModules.home-manager
-
-    self.nixosModules.common
-    self.nixosModules.user-cole
-  ];
-
+}: let
+  inherit (inputs) self nixos-hardware home-manager;
+in {
   boot = {
-    # binfmt.emulatedSystems = ["aarch64-linux"];
-    # extraModulePackages = with config.boot.kernelPackages; [ vboxdrv ];
+    binfmt.emulatedSystems = ["aarch64-linux"];
 
     loader = {
       systemd-boot.enable = true;

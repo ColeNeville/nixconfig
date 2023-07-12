@@ -1,18 +1,16 @@
-inputs @ {nixpkgs, ...}: {
-  common = import ./common.nix;
+inputs: {
+  default = import ./default;
   openssh = import ./openssh.nix;
+  home-manager = import ./home-manager.nix;
 
-  installer-sd-image-aarch64 = import "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix";
+  user-cole = import ./user/cole;
+  user-cole-garuda = import ./user/cole-garuda;
 
-  virtualization-qemu-vm = import "${nixpkgs}/nixos/modules/virtualization/qemu-vm.nix";
+  configuration-alexander-4 = import ./configuration/alexander-4;
+  configuration-bahamut = import ./configuration/bahamut;
+  configuration-garuda = import ./configuration/garuda;
 
-  profile-qemu-guest = import "${nixpkgs}/nixos/modules/profiles/qemu-guest.nix";
+  hardware-garuda = import ./hardware/garuda;
 
-  user-cole = import ./user/cole.nix;
-
-  configuration-alexander-4 = import ./configuration/alexander-4/configuration.nix inputs;
-  configuration-bahamut = import ./configuration/bahamut/configuration.nix inputs;
-  configuration-garuda = import ./configuration/garuda/configuration.nix inputs;
-
-  hardware-garuda = import ./hardware/garuda/hardware-configuration.nix;
+  home-cole-garuda = import ./home/cole-garuda;
 }

@@ -1,4 +1,4 @@
-{nixos-generators, ...}: {
+{
   pkgs,
   config,
   ...
@@ -17,16 +17,16 @@
   networking = {
     hostName = "alexander-4";
 
-    networkmanager = {
-      enable = true;
-      dns = "unbound";
-    };
+    # networkmanager = {
+    #   enable = true;
+    #   dns = "unbound";
+    # };
   };
 
   services = {
-    unbound = {
-      enable = true;
-    };
+    # unbound = {
+    #   enable = true;
+    # };
 
     openssh = {
       enable = true;

@@ -1,13 +1,10 @@
 {
-  self,
-  nixos-generators,
+  inputs,
+  pkgs,
   ...
-}: {pkgs, ...}: {
-  imports = [
-    self.nixosModules.common
-    self.nixosModules.user-cole
-  ];
-
+}: let
+  inherit (inputs) self;
+in {
   boot = {
     binfmt.emulatedSystems = ["aarch64-linux"];
   };
