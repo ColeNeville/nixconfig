@@ -20,9 +20,15 @@ jobs:
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@v4
         
-      - name: Flake update
-        run: nix flake update
+      - name: Flake update nixpkgs
+        run: nix flake update github:nixos/nixpkgs/nixos-23.05
+
+      - name: Flake update nixpkgs-unstable
+        run: nix flake update github:nixos/nixpkgs/nixos-unstable
         
+      - name: Flake update nixpkgs-master
+        run: nix flake update github:nixos/nixpkgs/master
+      
       - name: Add & Commit
         uses: EndBug/add-and-commit@v9.1.3
         with:
