@@ -7,6 +7,13 @@
 }: let
   inherit (inputs) self nixos-hardware home-manager;
 in {
+  custom = {
+    home-manager = {
+      enable = true;
+      home = ./home.nix;
+    };
+  };
+
   boot = {
     binfmt.emulatedSystems = ["aarch64-linux"];
 

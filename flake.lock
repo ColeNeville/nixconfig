@@ -21,6 +21,7 @@
       "original": {
         "owner": "ryantm",
         "repo": "agenix",
+        "rev": "db5637d10f797bb251b94ef9040b237f4702cde3",
         "type": "github"
       }
     },
@@ -117,8 +118,8 @@
       },
       "original": {
         "owner": "nix-community",
-        "ref": "master",
         "repo": "nixos-generators",
+        "rev": "9191c85aab6b1a7ad395c13d340f2aa0e3ddf552",
         "type": "github"
       }
     },

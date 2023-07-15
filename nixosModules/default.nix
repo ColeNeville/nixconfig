@@ -1,7 +1,5 @@
 inputs: {
   default = import ./default;
-  openssh = import ./openssh.nix;
-  home-manager = import ./home-manager.nix;
 
   user-cole = import ./user/cole;
   user-cole-garuda = import ./user/cole-garuda;

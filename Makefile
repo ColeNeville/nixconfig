@@ -5,7 +5,7 @@ boot:
 	nixos-rebuild boot --use-remote-sudo --impure . -L
 
 test:
-	nix develop --extra-experimental-features "nix-command flakes" . nixos-rebuild test --use-remote-sudo --flake . -L
+	nix develop --extra-experimental-features "nix-command flakes" . -c nixos-rebuild test --use-remote-sudo --flake . -L
 
 update:
 	nix flake update

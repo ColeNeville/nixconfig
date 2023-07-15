@@ -15,13 +15,13 @@
     };
 
     agenix = {
-      url = "github:ryantm/agenix";
+      url = "github:ryantm/agenix/db5637d10f797bb251b94ef9040b237f4702cde3";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
 
     nixos-generators = {
-      url = "github:nix-community/nixos-generators/master";
+      url = "github:nix-community/nixos-generators/9191c85aab6b1a7ad395c13d340f2aa0e3ddf552";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -61,7 +61,6 @@
       };
 
       nixosModules = import ./nixosModules inputs;
-      homeModules = import ./homeModules inputs;
     }
     // flake-utils.lib.eachDefaultSystem (
       system: let
@@ -87,8 +86,9 @@
         ];
 
         defaultModules = [
+          home-manager.nixosModules.home-manager
+          agenix.nixosModules.default
           self.nixosModules.default
-          self.nixosModules.user-cole
         ];
 
         innerInputs = inputs // {inherit pkgs defaultPackages;};
@@ -131,6 +131,7 @@
             garuda = nixpkgs.lib.nixosSystem {
               inherit system pkgs;
 
+              specialArgs = {inherit inputs;};
               modules =
                 [
                   self.nixosModules.hardware-garuda
@@ -138,10 +139,6 @@
                   nixos-hardware.nixosModules.framework-12th-gen-intel
 
                   self.nixosModules.configuration-garuda
-
-                  home-manager.nixosModules.home-manager
-                  self.nixosModules.home-manager
-                  self.nixosModules.home-cole-garuda
                 ]
                 ++ defaultModules;
             };
@@ -198,16 +195,6 @@
                 ++ defaultModules;
 
               format = "sd-aarch64";
-            };
-          };
-
-          homeConfigurations = {
-            "cole@garuda" = home-manager.lib.homeManagerConfiguration {
-              inherit pkgs;
-
-              modules = [
-                self.homeModules.configuration-cole-garuda
-              ];
             };
           };
         };
