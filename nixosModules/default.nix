@@ -9,6 +9,4 @@ inputs: {
   configuration-garuda = import ./configuration/garuda;
 
   hardware-garuda = import ./hardware/garuda;
-
-  home-cole-garuda = import ./home/cole-garuda;
 }

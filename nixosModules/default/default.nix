@@ -9,6 +9,7 @@
 in {
   imports = [
     ./user.nix
+    ./plasma.nix
   ];
 
   config = {
@@ -82,5 +83,9 @@ in {
         zsh
       ];
     };
+
+    programs.dconf.enable = true;
+
+    security.rtkit.enable = true;
   };
 }

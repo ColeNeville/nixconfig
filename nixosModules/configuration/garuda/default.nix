@@ -8,6 +8,9 @@
   inherit (inputs) self nixos-hardware home-manager;
 in {
   custom = {
+    plasma = {
+      enable = true;
+    };
     home-manager = {
       enable = true;
       home = ./home.nix;
@@ -46,9 +49,7 @@ in {
 
   services = {
     xserver = {
-      enable = true;
       videoDrivers = ["modesetting"];
-      layout = "us";
 
       libinput = {
         enable = true;
@@ -57,13 +58,6 @@ in {
           clickMethod = "buttonareas";
         };
       };
-
-      displayManager = {
-        sddm.enable = true;
-        defaultSession = "plasma";
-      };
-
-      desktopManager.plasma5.enable = true;
     };
 
     pipewire = {
@@ -146,14 +140,6 @@ in {
   sound.enable = true;
 
   ###############################################
-  # Security settings
-  ###############################################
-
-  security = {
-    rtkit.enable = true;
-  };
-
-  ###############################################
   # Application settings
   ###############################################
 
@@ -175,10 +161,6 @@ in {
         monospace = ["Fira Code"];
       };
     };
-  };
-
-  programs = {
-    dconf.enable = true;
   };
 
   virtualisation = {
