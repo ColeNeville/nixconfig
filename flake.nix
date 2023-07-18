@@ -135,10 +135,20 @@
               modules =
                 [
                   self.nixosModules.hardware-garuda
-
                   nixos-hardware.nixosModules.framework-12th-gen-intel
-
                   self.nixosModules.configuration-garuda
+                ]
+                ++ defaultModules;
+            };
+
+            alexander-4 = nixpkgs.lib.nixosSystem {
+              inherit system pkgs;
+
+              specialArgs = {inherit inputs;};
+              modules =
+                [
+                  nixos-hardware.nixosModules.raspberry-pi-4
+                  self.nixosModules.configuration-alexander-4
                 ]
                 ++ defaultModules;
             };
@@ -156,6 +166,20 @@
                 ++ defaultModules;
 
               format = "vm";
+            };
+
+            alexander-4-sd-aarch64 = nixos-generators.nixosGenerate {
+              inherit system pkgs;
+
+              specialArgs = {inherit inputs;};
+              modules =
+                [
+                  nixos-hardware.nixosModules.raspberry-pi-4
+                  self.nixosModules.configuration-alexander-4
+                ]
+                ++ defaultModules;
+
+              format = "sd-aarch64";
             };
           };
         };
