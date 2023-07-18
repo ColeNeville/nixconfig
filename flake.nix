@@ -145,32 +145,6 @@
           };
 
           nixosImages = {
-            bahamut-proxmox = nixos-generators.nixosGenerate {
-              inherit system pkgs;
-
-              specialArgs = {inherit inputs;};
-              modules =
-                [
-                  self.nixosModules.configuration-bahamut
-                ]
-                ++ defaultModules;
-
-              format = "proxmox";
-            };
-
-            bahamut-proxmox-lxc = nixos-generators.nixosGenerate {
-              inherit system pkgs;
-
-              specialArgs = {inherit inputs;};
-              modules =
-                [
-                  self.nixosModules.configuration-bahamut
-                ]
-                ++ defaultModules;
-
-              format = "proxmox-lxc";
-            };
-
             bahamut-vm = nixos-generators.nixosGenerate {
               inherit system pkgs;
 
@@ -182,19 +156,6 @@
                 ++ defaultModules;
 
               format = "vm";
-            };
-
-            alexander-4-rpi = nixos-generators.nixosGenerate {
-              inherit system pkgs;
-
-              specialArgs = {inherit inputs;};
-              modules =
-                [
-                  self.nixosModules.configuration-alexander-4
-                ]
-                ++ defaultModules;
-
-              format = "sd-aarch64";
             };
           };
         };

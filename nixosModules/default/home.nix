@@ -20,7 +20,13 @@
 
         signing = {
           signByDefault = lib.mkDefault true;
-          key = lib.mkDefault "F3686993701CB915";
+          key = lib.mkDefault "F3686993701CB915"; # Yubikey GPG signing key
+        };
+
+        extraConfig = {
+          pull = {
+            rebase = lib.mkDefault true;
+          };
         };
       };
 

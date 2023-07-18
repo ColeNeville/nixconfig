@@ -15,6 +15,7 @@
         sessionVariables = {
           KUBECONFIG = "$HOME/.kube/config";
           SSH_ASKPASS = pkgs.libsForQt5.ksshaskpass + "/bin/ksshaskpass";
+          TERM = "xterm-256color";
         };
       };
 
