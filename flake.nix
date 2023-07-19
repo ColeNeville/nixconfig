@@ -44,161 +44,167 @@
         agenix.nixosModules.default
         self.nixosModules.default
       ];
-    in {
-      lib = {};
 
-      overlays = {
-        default = (
-          final: prev: {
-            custom = self.packages.${prev.system};
-          }
-        );
+      raspberryPiDefaultModules =
+        [
+          "${nixpkgs}/nixos/modules/profiles/minimal.nix"
+          nixos-hardware.nixosModules.raspberry-pi-4
+        ]
+        ++ defaultModules;
+    in
+      {
+        lib = {};
 
-        unstable = (
-          final: prev: {
-            unstable = import nixpkgs-unstable {
-              inherit (prev) system config;
-            };
-            master = import nixpkgs-master {
-              inherit (prev) system config;
-            };
-            # Fixes an issue with building the kernel for rpi: https://github.com/NixOS/nixpkgs/issues/126755#issuecomment-869149243
-            makeModulesClosure = x:
-              prev.makeModulesClosure (x // { allowMissing = true; });
-          }
-        );
-      };
+        overlays = {
+          default = (
+            final: prev: {
+              custom = self.packages.${prev.system};
+            }
+          );
 
-      nixosModules = import ./nixosModules inputs;
-
-      nixosConfigurations = {
-        garuda = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          pkgs = self.pkgs.x86_64-linux;
-
-          specialArgs = {inherit inputs;};
-          modules =
-            [
-              self.nixosModules.hardware-garuda
-              nixos-hardware.nixosModules.framework-12th-gen-intel
-              self.nixosModules.configuration-garuda
-            ]
-            ++ defaultModules;
+          unstable = (
+            final: prev: {
+              unstable = import nixpkgs-unstable {
+                inherit (prev) system config;
+              };
+              master = import nixpkgs-master {
+                inherit (prev) system config;
+              };
+              # Fixes an issue with building the kernel for rpi: https://github.com/NixOS/nixpkgs/issues/126755#issuecomment-869149243
+              makeModulesClosure = x:
+                prev.makeModulesClosure (x // {allowMissing = true;});
+            }
+          );
         };
 
-        alexander-4 = nixpkgs.lib.nixosSystem {
-          system = "aarch64-linux";
-          pkgs = self.pkgs.aarch64-linux;
+        nixosModules = import ./nixosModules inputs;
 
-          specialArgs = {inherit inputs;};
-          modules =
-            [
-              nixos-hardware.nixosModules.raspberry-pi-4
-              self.nixosModules.configuration-alexander-4
-            ]
-            ++ defaultModules;
-        };
-      };
+        nixosConfigurations = {
+          garuda = nixpkgs.lib.nixosSystem {
+            system = "x86_64-linux";
+            pkgs = self.pkgs.x86_64-linux;
 
-      nixosImages = {
-        bahamut-vm = nixos-generators.nixosGenerate {
-          system = "x86_64-linux";
-          pkgs = self.pkgs.x86_64-linux;
-
-          specialArgs = {inherit inputs;};
-          modules =
-            [
-              self.nixosModules.configuration-bahamut
-            ]
-            ++ defaultModules;
-
-          format = "vm";
-        };
-
-        alexander-4-sd-aarch64 = nixos-generators.nixosGenerate {
-          system = "aarch64-linux";
-          pkgs = self.pkgs.aarch64-linux;
-
-          specialArgs = {inherit inputs;};
-          modules =
-            [
-              nixos-hardware.nixosModules.raspberry-pi-4
-              self.nixosModules.configuration-alexander-4
-            ]
-            ++ defaultModules;
-
-          format = "sd-aarch64";
-        };
-      };
-    }
-    // flake-utils.lib.eachDefaultSystem (
-      system: let
-        pkgs = import nixpkgs {
-          inherit system;
-
-          config.allowUnfree = true;
-          overlays = builtins.attrValues self.overlays;
-        };
-
-        defaultPackages = with pkgs; [
-          coreutils
-          curl
-          dig
-          git
-          git-crypt
-          gnumake # make command
-          gnupg
-          nano
-          util-linux
-          usbutils # lsusb command
-          wget
-        ];
-
-        innerInputs = inputs // {inherit pkgs defaultPackages;};
-      in {
-        inherit pkgs defaultPackages;
-
-        packages = {
-          # Packages to be installed on all systems and shells
-          default = pkgs.buildEnv {
-            name = "default";
-            paths = defaultPackages;
+            specialArgs = {inherit inputs;};
+            modules =
+              [
+                self.nixosModules.hardware-garuda
+                nixos-hardware.nixosModules.framework-12th-gen-intel
+                self.nixosModules.configuration-garuda
+              ]
+              ++ defaultModules;
           };
 
-          nixos-build-config = (
-            pkgs.writeShellScriptBin "nixos-build-config" ''
-              #! ${pkgs.stdenv.shell}
-              cd /nixconfig
+          alexander-4 = nixpkgs.lib.nixosSystem {
+            system = "aarch64-linux";
+            pkgs = self.pkgs.aarch64-linux;
 
-              if [[ -f "flake.nix" ]]; then
-                nixos-rebuild switch --impure --flake '.#'
-              fi
-            ''
-          );
-
-          nixos-fetch-config = (
-            pkgs.writeShellScriptBin "nixos-fetch-config" ''
-              #! ${pkgs.stdenv.shell}
-              mkdir -p /nixconfig
-              cd /nixconfig
-
-              if [[ -f "flake.nix" ]]; then
-                ${pkgs.git}/bin/git pull
-              else
-                ${pkgs.git}/bin/git clone https://github.com/ColeNeville/nixconfig.git .
-              fi
-            ''
-          );
+            specialArgs = {inherit inputs;};
+            modules =
+              [
+                self.nixosModules.configuration-alexander-4
+              ]
+              ++ raspberryPiDefaultModules;
+          };
         };
 
-        formatter = pkgs.alejandra;
+        nixosImages = {
+          bahamut-vm = nixos-generators.nixosGenerate {
+            system = "x86_64-linux";
+            pkgs = self.pkgs.x86_64-linux;
 
-        devShells = {
-          default = pkgs.mkShell {
-            buildInputs = defaultPackages;
+            specialArgs = {inherit inputs;};
+            modules =
+              [
+                self.nixosModules.configuration-bahamut
+              ]
+              ++ defaultModules;
+
+            format = "vm";
+          };
+
+          alexander-4-sd-aarch64 = nixos-generators.nixosGenerate {
+            system = "aarch64-linux";
+            pkgs = self.pkgs.aarch64-linux;
+
+            specialArgs = {inherit inputs;};
+            modules =
+              [
+                self.nixosModules.configuration-alexander-4
+              ]
+              ++ raspberryPiDefaultModules;
+
+            format = "sd-aarch64";
           };
         };
       }
-    )
+      // flake-utils.lib.eachDefaultSystem (
+        system: let
+          pkgs = import nixpkgs {
+            inherit system;
+
+            config.allowUnfree = true;
+            overlays = builtins.attrValues self.overlays;
+          };
+
+          defaultPackages = with pkgs; [
+            coreutils
+            curl
+            dig
+            git
+            git-crypt
+            gnumake # make command
+            gnupg
+            nano
+            util-linux
+            usbutils # lsusb command
+            wget
+          ];
+
+          innerInputs = inputs // {inherit pkgs defaultPackages;};
+        in {
+          inherit pkgs defaultPackages;
+
+          packages = {
+            # Packages to be installed on all systems and shells
+            default = pkgs.buildEnv {
+              name = "default";
+              paths = defaultPackages;
+            };
+
+            nixos-build-config = (
+              pkgs.writeShellScriptBin "nixos-build-config" ''
+                #! ${pkgs.stdenv.shell}
+                cd /nixconfig
+
+                if [[ -f "flake.nix" ]]; then
+                  nixos-rebuild switch --impure --flake '.#'
+                fi
+              ''
+            );
+
+            nixos-fetch-config = (
+              pkgs.writeShellScriptBin "nixos-fetch-config" ''
+                #! ${pkgs.stdenv.shell}
+                mkdir -p /nixconfig
+                cd /nixconfig
+
+                if [[ -f "flake.nix" ]]; then
+                  ${pkgs.git}/bin/git pull
+                else
+                  ${pkgs.git}/bin/git clone https://github.com/ColeNeville/nixconfig.git .
+                fi
+              ''
+            );
+          };
+
+          formatter = pkgs.alejandra;
+
+          devShells = {
+            default = pkgs.mkShell {
+              buildInputs = defaultPackages;
+            };
+          };
+        }
+      )
   );
 }

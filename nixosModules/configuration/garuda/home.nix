@@ -3,7 +3,7 @@
   config,
   ...
 }: {
-  imports = [ ../../default/home.nix ];
+  imports = [../../default/home.nix];
 
   config = {
     programs = {
