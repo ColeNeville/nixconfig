@@ -62,9 +62,9 @@
             master = import nixpkgs-master {
               inherit (prev) system config;
             };
-            # Fixes an issue with building the kernel for rpi https://github.com/NixOS/nixpkgs/issues/126755#issuecomment-869149243
+            # Fixes an issue with building the kernel for rpi: https://github.com/NixOS/nixpkgs/issues/126755#issuecomment-869149243
             makeModulesClosure = x:
-              super.makeModulesClosure (x // { allowMissing = true; });
+              prev.makeModulesClosure (x // { allowMissing = true; });
           }
         );
       };
