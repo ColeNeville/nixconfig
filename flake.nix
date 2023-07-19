@@ -61,6 +61,66 @@
       };
 
       nixosModules = import ./nixosModules inputs;
+
+      nixosConfigurations = {
+        garuda = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          pkgs = self.pkgs.x86_64-linux;
+
+          specialArgs = {inherit inputs;};
+          modules =
+            [
+              self.nixosModules.hardware-garuda
+              nixos-hardware.nixosModules.framework-12th-gen-intel
+              self.nixosModules.configuration-garuda
+            ]
+            ++ self.defaultModules.x86_64-linux;
+        };
+
+        alexander-4 = nixpkgs.lib.nixosSystem {
+          system = "aarch64-linux";
+          pkgs = self.pkgs.aarch64-linux;
+
+          specialArgs = {inherit inputs;};
+          modules =
+            [
+              nixos-hardware.nixosModules.raspberry-pi-4
+              self.nixosModules.configuration-alexander-4
+            ]
+            ++ self.defaultModules.aarch64-linux;
+        };
+      };
+
+      nixosImages = {
+        bahamut-vm = nixos-generators.nixosGenerate {
+          system = "x86_64-linux";
+          pkgs = self.pkgs.x86_64-linux;
+
+          specialArgs = {inherit inputs;};
+          modules =
+            [
+              self.nixosModules.configuration-bahamut
+            ]
+            ++ self.defaultModules.x86_64-linux;
+
+          format = "vm";
+        };
+
+        alexander-4-sd-aarch64 = nixos-generators.nixosGenerate {
+          system = "aarch64-linux";
+          pkgs = self.pkgs.aarch64-linux;
+
+          specialArgs = {inherit inputs;};
+          modules =
+            [
+              nixos-hardware.nixosModules.raspberry-pi-4
+              self.nixosModules.configuration-alexander-4
+            ]
+            ++ self.defaultModules.aarch64-linux;
+
+          format = "sd-aarch64";
+        };
+      };
     }
     // flake-utils.lib.eachDefaultSystem (
       system: let
@@ -95,7 +155,7 @@
       in {
         inherit pkgs defaultPackages;
 
-        legacyPackages = {
+        packages = {
           # Packages to be installed on all systems and shells
           default = pkgs.buildEnv {
             name = "default";
@@ -126,76 +186,13 @@
               fi
             ''
           );
-
-          nixosConfigurations = {
-            garuda = nixpkgs.lib.nixosSystem {
-              inherit system pkgs;
-
-              specialArgs = {inherit inputs;};
-              modules =
-                [
-                  self.nixosModules.hardware-garuda
-                  nixos-hardware.nixosModules.framework-12th-gen-intel
-                  self.nixosModules.configuration-garuda
-                ]
-                ++ defaultModules;
-            };
-
-            alexander-4 = nixpkgs.lib.nixosSystem {
-              inherit system pkgs;
-
-              specialArgs = {inherit inputs;};
-              modules =
-                [
-                  nixos-hardware.nixosModules.raspberry-pi-4
-                  self.nixosModules.configuration-alexander-4
-                ]
-                ++ defaultModules;
-            };
-          };
-
-          nixosImages = {
-            bahamut-vm = nixos-generators.nixosGenerate {
-              inherit system pkgs;
-
-              specialArgs = {inherit inputs;};
-              modules =
-                [
-                  self.nixosModules.configuration-bahamut
-                ]
-                ++ defaultModules;
-
-              format = "vm";
-            };
-
-            alexander-4-sd-aarch64 = nixos-generators.nixosGenerate {
-              inherit system pkgs;
-
-              specialArgs = {inherit inputs;};
-              modules =
-                [
-                  nixos-hardware.nixosModules.raspberry-pi-4
-                  self.nixosModules.configuration-alexander-4
-                ]
-                ++ defaultModules;
-
-              format = "sd-aarch64";
-            };
-          };
         };
 
         formatter = pkgs.alejandra;
 
         devShells = {
           default = pkgs.mkShell {
-            buildInputs =
-              (
-                with pkgs; [
-                  git
-                  gnumake
-                ]
-              )
-              ++ defaultPackages;
+            buildInputs = defaultPackages;
           };
         };
       }
