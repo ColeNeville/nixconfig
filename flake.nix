@@ -38,7 +38,13 @@
     agenix,
     ...
   }: (
-    {
+    let
+      defaultModules = [
+        home-manager.nixosModules.home-manager
+        agenix.nixosModules.default
+        self.nixosModules.default
+      ];
+    in {
       lib = {};
 
       overlays = {
@@ -74,7 +80,7 @@
               nixos-hardware.nixosModules.framework-12th-gen-intel
               self.nixosModules.configuration-garuda
             ]
-            ++ self.defaultModules.x86_64-linux;
+            ++ defaultModules;
         };
 
         alexander-4 = nixpkgs.lib.nixosSystem {
@@ -87,7 +93,7 @@
               nixos-hardware.nixosModules.raspberry-pi-4
               self.nixosModules.configuration-alexander-4
             ]
-            ++ self.defaultModules.aarch64-linux;
+            ++ defaultModules;
         };
       };
 
@@ -101,7 +107,7 @@
             [
               self.nixosModules.configuration-bahamut
             ]
-            ++ self.defaultModules.x86_64-linux;
+            ++ defaultModules;
 
           format = "vm";
         };
@@ -116,7 +122,7 @@
               nixos-hardware.nixosModules.raspberry-pi-4
               self.nixosModules.configuration-alexander-4
             ]
-            ++ self.defaultModules.aarch64-linux;
+            ++ defaultModules;
 
           format = "sd-aarch64";
         };
@@ -143,12 +149,6 @@
           util-linux
           usbutils # lsusb command
           wget
-        ];
-
-        defaultModules = [
-          home-manager.nixosModules.home-manager
-          agenix.nixosModules.default
-          self.nixosModules.default
         ];
 
         innerInputs = inputs // {inherit pkgs defaultPackages;};
