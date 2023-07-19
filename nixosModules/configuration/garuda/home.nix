@@ -69,8 +69,8 @@
       unstable.chromium
       unstable.brave
       unstable.firefox
-      unstable.vivaldi
-      unstable.vivaldi-ffmpeg-codecs
+      vivaldi
+      vivaldi-ffmpeg-codecs
 
       # Editors
       arduino
