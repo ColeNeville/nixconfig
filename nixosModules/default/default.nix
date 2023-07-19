@@ -47,7 +47,7 @@ in {
 
     system.autoUpgrade = {
       enable = true;
-      flake = "github:coleneville/nixconfig";
+      flake = "github:coleneville/nixconfig/main";
       persistent = true;
 
       dates = "daily";
