@@ -50,7 +50,7 @@
       overlays = {
         default = (
           final: prev: {
-            custom = self.legacyPackages.${prev.system};
+            custom = self.packages.${prev.system};
           }
         );
 
