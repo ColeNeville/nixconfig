@@ -50,6 +50,19 @@
         };
       };
 
+      desktopEntries = {
+        # Workaround for a bug that prevents proper rendering without --disable-gpu-driver-bug-workarounds
+        logseq = {
+          name = "Logseq";
+          genericName = "Note taking and knowledge base";
+          comment = "Logseq is a local-first, non-linear, outliner notebook for organizing and sharing your personal knowledge base.";
+          icon = "logseq";
+          exec = "${pkgs.logseq}/bin/logseq --disable-gpu-driver-bug-workarounds";
+          terminal = false;
+          categories = [ "Office" "TextEditor" "Utility" ];
+        };
+      };
+
       # mimeApps = {
       #   enable = true;
 

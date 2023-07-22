@@ -11,6 +11,7 @@ in {
   imports = [
     ./user.nix
     ./plasma.nix
+    ./openssh.nix
   ];
 
   config = {
@@ -59,15 +60,6 @@ in {
         lower = "01:00";
         upper = "05:00";
       };
-    };
-
-    services.openssh = {
-      settings = {
-        PasswordAuthentication = lib.mkDefault false;
-        PermitRootLogin = lib.mkDefault "no";
-      };
-
-      knownHosts = ssh-keys.knownHosts;
     };
 
     environment = {
