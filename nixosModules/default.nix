@@ -1,5 +1,6 @@
 inputs: {
   default = import ./default;
+  telegraf = import ./telegraf.nix;
 
   user-cole = import ./user/cole;
   user-cole-garuda = import ./user/cole-garuda;

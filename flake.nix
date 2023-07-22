@@ -43,6 +43,7 @@
         home-manager.nixosModules.home-manager
         agenix.nixosModules.default
         self.nixosModules.default
+        self.nixosModules.telegraf
       ];
 
       raspberryPiDefaultModules =
