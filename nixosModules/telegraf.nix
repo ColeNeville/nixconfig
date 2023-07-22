@@ -12,7 +12,7 @@ in {
 
   config = lib.mkIf config.services.telegraf.enable {
     systemd.services.telegraf.serviceConfig = {
-      ExecStart = "${cfg.package}/bin/telegraf -config ${finalConfigFile} ${cfg.extraArg}";
+      ExecStart = config.systemd.services.telegraf.serviceConfig.ExecStart + " ${cfg.extraArg}";
     };
   };
 }
