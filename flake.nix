@@ -148,7 +148,6 @@
           };
 
           defaultPackages = with pkgs; [
-            custom.agenix
             coreutils
             curl
             dig
@@ -160,6 +159,9 @@
             util-linux
             usbutils # lsusb command
             wget
+
+            custom.agenix
+            custom.nixos-upgrade
           ];
 
           innerInputs = inputs // {inherit pkgs defaultPackages;};
@@ -173,28 +175,35 @@
               paths = defaultPackages;
             };
 
-            nixos-build-config = (
-              pkgs.writeShellScriptBin "nixos-build-config" ''
+            # nixos-build-config = (
+            #   pkgs.writeShellScriptBin "nixos-build-config" ''
+            #     #! ${pkgs.stdenv.shell}
+            #     cd /nixconfig
+
+            #     if [[ -f "flake.nix" ]]; then
+            #       nixos-rebuild switch --impure --flake '.#'
+            #     fi
+            #   ''
+            # );
+
+            # nixos-fetch-config = (
+            #   pkgs.writeShellScriptBin "nixos-fetch-config" ''
+            #     #! ${pkgs.stdenv.shell}
+            #     mkdir -p /nixconfig
+            #     cd /nixconfig
+
+            #     if [[ -f "flake.nix" ]]; then
+            #       ${pkgs.git}/bin/git pull
+            #     else
+            #       ${pkgs.git}/bin/git clone https://github.com/ColeNeville/nixconfig.git .
+            #     fi
+            #   ''
+            # );
+
+            nixos-upgrade = (
+              pkgs.writeShellScriptBin "nixos-upgrade" ''
                 #! ${pkgs.stdenv.shell}
-                cd /nixconfig
-
-                if [[ -f "flake.nix" ]]; then
-                  nixos-rebuild switch --impure --flake '.#'
-                fi
-              ''
-            );
-
-            nixos-fetch-config = (
-              pkgs.writeShellScriptBin "nixos-fetch-config" ''
-                #! ${pkgs.stdenv.shell}
-                mkdir -p /nixconfig
-                cd /nixconfig
-
-                if [[ -f "flake.nix" ]]; then
-                  ${pkgs.git}/bin/git pull
-                else
-                  ${pkgs.git}/bin/git clone https://github.com/ColeNeville/nixconfig.git .
-                fi
+                sudo nixos-rebuild switch --flake 'github:coleneville/nixconfig/main'
               ''
             );
 
