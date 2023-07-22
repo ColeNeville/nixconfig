@@ -1,5 +1,4 @@
 let
-  
 in {
   users = {
     "cole@garuda" = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIIps44FXy2zI1F4nU8zYFP/Sv04L3+ZnoSAk/PoWSIr";

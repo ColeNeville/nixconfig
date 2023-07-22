@@ -64,7 +64,7 @@
           icon = "logseq";
           exec = "${pkgs.logseq}/bin/logseq --disable-gpu-driver-bug-workarounds";
           terminal = false;
-          categories = [ "Office" "TextEditor" "Utility" ];
+          categories = ["Office" "TextEditor" "Utility"];
         };
       };
 

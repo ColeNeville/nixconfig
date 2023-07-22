@@ -1,4 +1,4 @@
-{ lib, ... }: let
+{lib, ...}: let
   ssh-keys = import ../../ssh-keys.nix;
   inherit (ssh-keys) hosts;
 in {
