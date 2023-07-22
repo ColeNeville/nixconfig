@@ -161,6 +161,7 @@
             wget
 
             custom.agenix
+            custom.flake-shell
             custom.nixos-upgrade
           ];
 
@@ -204,6 +205,13 @@
               pkgs.writeShellScriptBin "nixos-upgrade" ''
                 #! ${pkgs.stdenv.shell}
                 sudo nixos-rebuild switch --flake 'github:coleneville/nixconfig/main'
+              ''
+            );
+
+            flake-shell = (
+              pkgs.writeShellScriptBin "nixos-upgrade" ''
+                #! ${pkgs.stdenv.shell}
+                sudo nix develop 'github:coleneville/nixconfig/main'
               ''
             );
 
