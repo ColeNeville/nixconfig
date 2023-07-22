@@ -1,5 +1,5 @@
 { config, lib, ... }: let
-  cfg = config.service.telegraf;
+  cfg = config.services.telegraf;
 in {
   config = lib.mkIf cfg.enable {
     # Default telegraf configuration if telegraf service is enabled
