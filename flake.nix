@@ -60,7 +60,6 @@
           default = (
             final: prev: {
               custom = self.packages.${prev.system};
-              agenix = agenix.packages.${prev.system}.default;
             }
           );
 
@@ -149,6 +148,7 @@
           };
 
           defaultPackages = with pkgs; [
+            custom.agenix
             coreutils
             curl
             dig
@@ -197,6 +197,8 @@
                 fi
               ''
             );
+
+            agenix = agenix.packages.${system}.default;
           };
 
           formatter = pkgs.alejandra;

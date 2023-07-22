@@ -23,6 +23,12 @@
     };
   };
 
+  age.secrets = {
+    secret = {
+      file = ../../../secrets/secret.age;
+    };
+  };
+
   system = {
     stateVersion = "23.05";
   };
