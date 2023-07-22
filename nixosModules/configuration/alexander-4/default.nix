@@ -21,11 +21,21 @@
     openssh = {
       enable = true;
     };
+
+    telegraf = {
+      enable = true;
+
+      environmentFiles = {
+        config.age.secrets."telegraf.env".path
+      };
+    };
   };
 
   age.secrets = {
-    secret = {
-      file = ../../../secrets/secret.age;
+    "telegraf.env" = {
+      file = ../../../secrets/telegraf-alexander-4.env.age;
+      owner = "telegraf";
+      group = "telegraf";
     };
   };
 
