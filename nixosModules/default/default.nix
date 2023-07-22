@@ -6,6 +6,7 @@
   ...
 }: let
   inherit (inputs) self;
+  ssh-keys = import ../../ssh-keys.nix;
 in {
   imports = [
     ./user.nix
@@ -65,6 +66,8 @@ in {
         PasswordAuthentication = lib.mkDefault false;
         PermitRootLogin = lib.mkDefault "no";
       };
+
+      knownHosts = ssh-keys.knownHosts;
     };
 
     environment = {

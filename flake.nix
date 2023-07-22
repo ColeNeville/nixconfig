@@ -60,6 +60,7 @@
           default = (
             final: prev: {
               custom = self.packages.${prev.system};
+              agenix = agenix.packages.${prev.system}.default;
             }
           );
 

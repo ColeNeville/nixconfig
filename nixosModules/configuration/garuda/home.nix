@@ -89,7 +89,7 @@
       openscad
       kicad
 
-      unstable.logseq
+      logseq
 
       argocd
       argocd-vault-plugin
