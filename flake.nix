@@ -161,8 +161,8 @@
             wget
 
             custom.agenix
-            custom.flake-shell
-            custom.nixos-upgrade
+            # custom.flake-shell
+            # custom.nixos-upgrade
           ];
 
           innerInputs = inputs // {inherit pkgs defaultPackages;};
@@ -176,31 +176,6 @@
               paths = defaultPackages;
             };
 
-            # nixos-build-config = (
-            #   pkgs.writeShellScriptBin "nixos-build-config" ''
-            #     #! ${pkgs.stdenv.shell}
-            #     cd /nixconfig
-
-            #     if [[ -f "flake.nix" ]]; then
-            #       nixos-rebuild switch --impure --flake '.#'
-            #     fi
-            #   ''
-            # );
-
-            # nixos-fetch-config = (
-            #   pkgs.writeShellScriptBin "nixos-fetch-config" ''
-            #     #! ${pkgs.stdenv.shell}
-            #     mkdir -p /nixconfig
-            #     cd /nixconfig
-
-            #     if [[ -f "flake.nix" ]]; then
-            #       ${pkgs.git}/bin/git pull
-            #     else
-            #       ${pkgs.git}/bin/git clone https://github.com/ColeNeville/nixconfig.git .
-            #     fi
-            #   ''
-            # );
-
             nixos-upgrade = (
               pkgs.writeShellScriptBin "nixos-upgrade" ''
                 #! ${pkgs.stdenv.shell}
@@ -211,7 +186,7 @@
             flake-shell = (
               pkgs.writeShellScriptBin "nixos-upgrade" ''
                 #! ${pkgs.stdenv.shell}
-                sudo nix develop 'github:coleneville/nixconfig/main'
+                nix develop 'github:coleneville/nixconfig/main'
               ''
             );
 
