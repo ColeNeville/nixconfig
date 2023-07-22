@@ -21,7 +21,7 @@ in {
         };
 
         outputs.influxdb_v2 = {
-          urls = lib.mkDefault ["http://influxdb.coleslab.com"];
+          urls = lib.mkDefault ["https://influxdb.coleslab.com"];
           token = lib.mkDefault "$INFLUX_TOKEN";
           organization = lib.mkDefault "Cole's Lab";
           bucket = lib.mkDefault "System Metrics";
