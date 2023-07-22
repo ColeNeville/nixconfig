@@ -17,6 +17,11 @@
           SSH_ASKPASS = pkgs.libsForQt5.ksshaskpass + "/bin/ksshaskpass";
           TERM = "xterm-256color";
         };
+
+        shellAliases = {
+          # Get kitty to work properly with ssh
+          ssh = "kitty +kitten ssh";
+        };
       };
 
       kitty = {

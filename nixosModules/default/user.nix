@@ -44,8 +44,8 @@ in {
         ];
 
         openssh.authorizedKeys.keys = lib.mkDefault [
-          ssh-keys."cole@garuda"
-          ssh-keys."cardno:24_733_178"
+          ssh-keys.users."cole@garuda"
+          ssh-keys.users."cardno:24_733_178"
         ];
       };
     };
