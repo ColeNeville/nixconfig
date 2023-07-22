@@ -1,5 +1,4 @@
 {
-  pkgs,
   config,
   ...
 }: {
@@ -25,9 +24,9 @@
     telegraf = {
       enable = true;
 
-      environmentFiles = {
+      environmentFiles = [
         config.age.secrets."telegraf.env".path
-      };
+      ];
     };
   };
 
