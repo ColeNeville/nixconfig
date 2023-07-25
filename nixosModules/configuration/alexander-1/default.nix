@@ -8,7 +8,7 @@
       initrd.includeDefaultModules = true;
 
       loader = {
-        generic-extlinux-compatible.enable = false;
+        generic-extlinux-compatible.enable = lib.mkForce false;
         raspberryPi = {
           enable = true;
           version = 4;
