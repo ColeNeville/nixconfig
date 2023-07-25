@@ -1,5 +1,6 @@
 inputs: {
   default = import ./default;
+  # Doesn't do anything on its own only adds things if telegraf is enabled
   telegraf = import ./telegraf.nix;
 
   user-cole = import ./user/cole;

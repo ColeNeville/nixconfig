@@ -5,7 +5,15 @@
 }: {
   config = {
     boot = {
-      initrd.includeDefaultModules = false;
+      initrd.includeDefaultModules = true;
+
+      loader = {
+        generic-extlinux-compatible.enable = false;
+        raspberryPi = {
+          enable = true;
+          version = 4;
+        };
+      };
     };
 
     security = {
