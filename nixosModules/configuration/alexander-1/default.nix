@@ -8,13 +8,13 @@
     boot = {
       initrd.includeDefaultModules = true;
 
-      loader = {
-        generic-extlinux-compatible.enable = lib.mkForce false;
-        raspberryPi = {
-          enable = true;
-          version = 4;
-        };
-      };
+      # loader = {
+      #   generic-extlinux-compatible.enable = lib.mkForce false;
+      #   raspberryPi = {
+      #     enable = true;
+      #     version = 4;
+      #   };
+      # };
     };
 
     security = {
