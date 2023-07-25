@@ -20,7 +20,7 @@
 
         shellAliases = {
           # Get kitty to work properly with ssh
-          ssh = "kitty +kitten ssh";
+          ssh = "TERM='xterm-256color' ssh";
         };
       };
 
@@ -113,6 +113,8 @@
       argocd-vault-plugin
       yubikey-personalization
       ddrescue
+      parsec-bin # Parsec is a game streaming service
+      moonlight-qt # Moonlight is a game streaming service
     ];
   };
 }
