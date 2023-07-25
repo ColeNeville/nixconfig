@@ -96,6 +96,42 @@
               ++ defaultModules;
           };
 
+          alexander-1 = nixpkgs.lib.nixosSystem {
+            system = "aarch64-linux";
+            pkgs = self.pkgs.aarch64-linux;
+
+            specialArgs = {inherit inputs;};
+            modules =
+              [
+                self.nixosModules.configuration-alexander-1
+              ]
+              ++ raspberryPiDefaultModules;
+          };
+
+          alexander-2 = nixpkgs.lib.nixosSystem {
+            system = "aarch64-linux";
+            pkgs = self.pkgs.aarch64-linux;
+
+            specialArgs = {inherit inputs;};
+            modules =
+              [
+                self.nixosModules.configuration-alexander-2
+              ]
+              ++ raspberryPiDefaultModules;
+          };
+
+          alexander-3 = nixpkgs.lib.nixosSystem {
+            system = "aarch64-linux";
+            pkgs = self.pkgs.aarch64-linux;
+
+            specialArgs = {inherit inputs;};
+            modules =
+              [
+                self.nixosModules.configuration-alexander-3
+              ]
+              ++ raspberryPiDefaultModules;
+          };
+
           alexander-4 = nixpkgs.lib.nixosSystem {
             system = "aarch64-linux";
             pkgs = self.pkgs.aarch64-linux;
@@ -122,6 +158,48 @@
               ++ defaultModules;
 
             format = "vm";
+          };
+
+          alexander-1-sd-aarch64 = nixos-generators.nixosGenerate {
+            system = "aarch64-linux";
+            pkgs = self.pkgs.aarch64-linux;
+
+            specialArgs = {inherit inputs;};
+            modules =
+              [
+                self.nixosModules.configuration-alexander-1
+              ]
+              ++ raspberryPiDefaultModules;
+
+            format = "sd-aarch64";
+          };
+
+          alexander-2-sd-aarch64 = nixos-generators.nixosGenerate {
+            system = "aarch64-linux";
+            pkgs = self.pkgs.aarch64-linux;
+
+            specialArgs = {inherit inputs;};
+            modules =
+              [
+                self.nixosModules.configuration-alexander-2
+              ]
+              ++ raspberryPiDefaultModules;
+
+            format = "sd-aarch64";
+          };
+
+          alexander-3-sd-aarch64 = nixos-generators.nixosGenerate {
+            system = "aarch64-linux";
+            pkgs = self.pkgs.aarch64-linux;
+
+            specialArgs = {inherit inputs;};
+            modules =
+              [
+                self.nixosModules.configuration-alexander-3
+              ]
+              ++ raspberryPiDefaultModules;
+
+            format = "sd-aarch64";
           };
 
           alexander-4-sd-aarch64 = nixos-generators.nixosGenerate {
