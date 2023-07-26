@@ -52,13 +52,13 @@ in {
       flake = "github:coleneville/nixconfig/main";
       persistent = true;
 
-      dates = "daily";
-      randomizedDelaySec = "1h";
+      dates = "23:00";
+      randomizedDelaySec = "5h";
 
       allowReboot = true;
       rebootWindow = {
-        lower = "01:00";
-        upper = "05:00";
+        lower = "23:00";
+        upper = "06:00";
       };
     };
 
