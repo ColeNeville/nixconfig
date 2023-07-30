@@ -83,38 +83,79 @@
     };
 
     home.packages = with pkgs; [
-      # Web browsers
-      unstable.chromium
-      unstable.brave
-      unstable.firefox
-      vivaldi
-      vivaldi-ffmpeg-codecs
+      # Media
+      spotify # Spotify
+      unstable.vlc # VLC media player
 
-      # Editors
-      arduino
-      unstable.vscode
+      # Graphics
+      krita # Krita
+      gimp # GNU Image Manipulation Program
+      inkscape # Inkscape
+      fontforge # Font editor
+
+      # 3D Printing
+      cura # Ultimaker Cura
+      prusa-slicer # Prusa Slicer
+      printrun # Printrun
+
+      # Web browsers
+      unstable.chromium # Chromium browser
+      unstable.brave # Brave browser
+      unstable.firefox # Firefox browser
+      vivaldi # Vivaldi browser
+      vivaldi-ffmpeg-codecs # Vivaldi media codecs
+
+      # IDEs
+      arduino # Arduino IDE
+      unstable.vscode # Visual Studio Code
 
       # Development Dependancies
-      i2c-tools
-      platformio
+      i2c-tools # I2C tools
+      platformio # Arduino development tools
 
       # Communication
-      unstable.discord
+      unstable.discord # Chat
+      thunderbird # Email
 
       # CAD
-      fritzing
-      freecad
-      openscad
-      kicad
+      fritzing # PCB design
+      freecad # 3D CAD
+      openscad # 3D CAD
+      kicad # PCB design
 
-      logseq
-
-      argocd
-      argocd-vault-plugin
-      yubikey-personalization
-      ddrescue
+      # Remote desktop
       parsec-bin # Parsec is a game streaming service
       moonlight-qt # Moonlight is a game streaming service
+      remmina # Remote desktop client
+
+      # Yubikey
+      yubikey-manager-qt # Yubikey configuration tool
+      yubikey-personalization-gui # Yubikey configuration tool
+      yubikey-personalization # Yubikey configuration tool
+      yubioath-flutter # Yubikey OTP tool
+
+      # Networking
+      nmap # Network scanner
+      wireshark # Network packet analyzer
+      putty # SSH client
+
+      # Misc Applications
+      neofetch # System information tool
+      autokey # Keyboard macro utility
+      bitwarden # Password manager
+      archiver # Archive manager
+      avidemux # Video editor
+      rpi-imager  # Raspberry Pi OS image writer
+      logseq # Note taking and knowledge base
+      argocd # Kubernetes GitOps tool
+      argocd-vault-plugin # Argocd plugin for vault integration
+      ddrescue # Data recovery tool
+
+      ark # Archive manager
+      nix-index # Nix package search tool
+      kubectl # Kubernetes command line tool
+      kubernetes-helm # Kubernetes package manager
+      gparted # Partition manager
     ];
   };
 }

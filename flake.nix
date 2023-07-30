@@ -46,6 +46,10 @@
         self.nixosModules.telegraf
       ];
 
+      proxmoxLXCDefaultModules = [] ++ defaultModules;
+      proxmoxVMDefaultModules = [] ++ defaultModules;
+      qemuVMDefaultModules = [] ++ defaultModules;
+
       raspberryPiDefaultModules =
         [
           "${nixpkgs}/nixos/modules/profiles/minimal.nix"
@@ -225,34 +229,26 @@
             config.allowUnfree = true;
             overlays = builtins.attrValues self.overlays;
           };
-
-          defaultPackages = with pkgs; [
-            coreutils
-            curl
-            dig
-            git
-            git-crypt
-            gnumake # make command
-            gnupg
-            nano
-            util-linux
-            usbutils # lsusb command
-            wget
-
-            custom.agenix
-            # custom.flake-shell
-            # custom.nixos-upgrade
-          ];
-
-          innerInputs = inputs // {inherit pkgs defaultPackages;};
         in {
-          inherit pkgs defaultPackages;
+          inherit pkgs;
 
           packages = {
             # Packages to be installed on all systems and shells
             default = pkgs.buildEnv {
               name = "default";
-              paths = defaultPackages;
+              paths = with pkgs; [
+                coreutils
+                curl
+                dig
+                git
+                git-crypt
+                gnumake # make command
+                gnupg
+                nano
+                util-linux
+                usbutils # lsusb command
+                wget
+              ];
             };
 
             nixos-upgrade = (
@@ -268,15 +264,16 @@
                 nix develop 'github:coleneville/nixconfig/main'
               ''
             );
-
-            agenix = agenix.packages.${system}.default;
           };
 
           formatter = pkgs.alejandra;
 
           devShells = {
             default = pkgs.mkShell {
-              buildInputs = defaultPackages;
+              buildInputs = with pkgs; [
+                agenix.packages.${system}.default
+                self.packages.${system}.default
+              ];
             };
           };
         }

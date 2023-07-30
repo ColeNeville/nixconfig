@@ -168,32 +168,6 @@ in {
   };
 
   environment.systemPackages = with pkgs; [
-    # Media
-    spotify
-    unstable.vlc
-
-    # Games
-    moonlight-qt
-
-    # Graphics
-    krita
-    gimp
-    inkscape
-    fontforge
-
-    # 3D Printing
-    cura
-    prusa-slicer
-    printrun
-
-    # Communications
-    thunderbird
-
-    # Networking
-    nmap
-    wireshark
-    putty
-
     # Programming
     (python311.withPackages (ps: with ps; [pip virtualenv]))
 
@@ -201,29 +175,9 @@ in {
     virt-viewer
     virt-manager
 
-    # Misc Applications
-    neofetch
-    autokey
-    bitwarden
-    archiver
-    avidemux
-    rpi-imager
-
-    # Yubikey
-    yubikey-manager-qt
-    yubikey-personalization-gui
-    yubioath-flutter
-
     # Filesystems
     ntfs3g
     exfat
-
-    # Random Utils
-    ark
-    nix-index
-    kubectl
-    kubernetes-helm
-    gparted
 
     libsForQt5.ksshaskpass
   ];
