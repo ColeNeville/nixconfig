@@ -33,7 +33,7 @@ in {
       gc = {
         automatic = true;
         dates = "daily";
-        options = "--delete-older-than 14d";
+        options = "--delete-older-than 7d";
       };
 
       extraOptions = ''
@@ -75,14 +75,13 @@ in {
       ];
 
       shells = with pkgs; [
+        bash
         zsh
       ];
     };
 
-    programs.dconf.enable = true;
-
-    security.rtkit.enable = true;
-
+    programs.dconf.enable = lib.mkDefault true;
+    security.rtkit.enable = lib.mkDefault true;
     time.timeZone = lib.mkDefault "America/Edmonton";
   };
 }
