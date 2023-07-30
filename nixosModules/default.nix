@@ -12,6 +12,7 @@ inputs: {
   configuration-alexander-4 = import ./configuration/alexander-4;
   configuration-bahamut = import ./configuration/bahamut;
   configuration-garuda = import ./configuration/garuda;
+  configuration-ozma = import ./configuration/ozma;
 
   hardware-garuda = import ./hardware/garuda;
 }

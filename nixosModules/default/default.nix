@@ -82,5 +82,7 @@ in {
     programs.dconf.enable = true;
 
     security.rtkit.enable = true;
+
+    time.timeZone = lib.mkDefault "America/Edmonton";
   };
 }

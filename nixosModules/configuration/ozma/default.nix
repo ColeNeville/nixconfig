@@ -1,15 +1,7 @@
-{
-  inputs,
-  pkgs,
-  ...
-}: {
+{...}: {
   config = {
-    boot = {
-      binfmt.emulatedSystems = ["aarch64-linux"];
-    };
-
     networking = {
-      hostName = "bahamut";
+      hostName = "ozma";
 
       networkmanager = {
         enable = true;
@@ -22,8 +14,6 @@
         enable = true;
       };
     };
-
-    time.timeZone = "America/Edmonton";
 
     system = {
       stateVersion = "23.05";

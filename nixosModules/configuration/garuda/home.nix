@@ -145,7 +145,7 @@
       bitwarden # Password manager
       archiver # Archive manager
       avidemux # Video editor
-      rpi-imager  # Raspberry Pi OS image writer
+      rpi-imager # Raspberry Pi OS image writer
       logseq # Note taking and knowledge base
       argocd # Kubernetes GitOps tool
       argocd-vault-plugin # Argocd plugin for vault integration

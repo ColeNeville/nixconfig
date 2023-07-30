@@ -1,4 +1,8 @@
-{ config, lib, ... }: let
+{
+  config,
+  lib,
+  ...
+}: let
   cfg = config.services.telegraf;
 in {
   config = lib.mkIf cfg.enable {

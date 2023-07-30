@@ -46,9 +46,26 @@
         self.nixosModules.telegraf
       ];
 
-      proxmoxLXCDefaultModules = [] ++ defaultModules;
-      proxmoxVMDefaultModules = [] ++ defaultModules;
-      qemuVMDefaultModules = [] ++ defaultModules;
+      proxmoxLXCDefaultModules =
+        [
+          "${nixpkgs}/nixos/modules/profiles/minimal.nix"
+          "${nixpkgs}/nixos/modules/virtualisation/proxmox-lxc.nix"
+        ]
+        ++ defaultModules;
+
+      proxmoxVMDefaultModules =
+        [
+          "${nixpkgs}/nixos/modules/profiles/minimal.nix"
+          "${nixpkgs}/nixos/modules/virtualisation/proxmox-image.nix"
+        ]
+        ++ defaultModules;
+
+      qemuVMDefaultModules =
+        [
+          "${nixpkgs}/nixos/modules/profiles/minimal.nix"
+          "${nixpkgs}/nixos/modules/virtualisation/qemu-vm.nix"
+        ]
+        ++ defaultModules;
 
       raspberryPiDefaultModules =
         [
@@ -150,20 +167,6 @@
         };
 
         nixosImages = {
-          bahamut-vm = nixos-generators.nixosGenerate {
-            system = "x86_64-linux";
-            pkgs = self.pkgs.x86_64-linux;
-
-            specialArgs = {inherit inputs;};
-            modules =
-              [
-                self.nixosModules.configuration-bahamut
-              ]
-              ++ defaultModules;
-
-            format = "vm";
-          };
-
           alexander-1-sd-aarch64 = nixos-generators.nixosGenerate {
             system = "aarch64-linux";
             pkgs = self.pkgs.aarch64-linux;
@@ -219,6 +222,34 @@
 
             format = "sd-aarch64";
           };
+
+          bahamut-proxmox = nixos-generators.nixosGenerate {
+            system = "x86_64-linux";
+            pkgs = self.pkgs.x86_64-linux;
+
+            specialArgs = {inherit inputs;};
+            modules =
+              [
+                self.nixosModules.configuration-bahamut
+              ]
+              ++ proxmoxVMDefaultModules;
+
+            format = "proxmox";
+          };
+
+          ozma-proxmox-lxc = nixos-generators.nixosSystem {
+            system = "x86_64-linux";
+            pkgs = self.pkgs.x86_64-linux;
+
+            specialArgs = {inherit inputs;};
+            modules =
+              [
+                self.nixosModules.configuration-ozma
+              ]
+              ++ proxmoxLXCDefaultModules;
+
+            format = "proxmox-lxc";
+          };
         };
       }
       // flake-utils.lib.eachDefaultSystem (
@@ -250,20 +281,6 @@
                 wget
               ];
             };
-
-            nixos-upgrade = (
-              pkgs.writeShellScriptBin "nixos-upgrade" ''
-                #! ${pkgs.stdenv.shell}
-                sudo nixos-rebuild switch --flake 'github:coleneville/nixconfig/main'
-              ''
-            );
-
-            flake-shell = (
-              pkgs.writeShellScriptBin "nixos-upgrade" ''
-                #! ${pkgs.stdenv.shell}
-                nix develop 'github:coleneville/nixconfig/main'
-              ''
-            );
           };
 
           formatter = pkgs.alejandra;
@@ -273,6 +290,18 @@
               buildInputs = with pkgs; [
                 agenix.packages.${system}.default
                 self.packages.${system}.default
+              ];
+            };
+
+            python = pkgs.mkShell {
+              buildInputs = with pkgs; [
+                python37
+                python38
+                python39
+                python310
+                python311
+
+                pipenv
               ];
             };
           };
