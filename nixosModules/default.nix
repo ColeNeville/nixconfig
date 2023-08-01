@@ -1,4 +1,5 @@
 inputs: {
+  build = import ./build.nix;
   default = import ./default;
   # Doesn't do anything on its own only adds things if telegraf is enabled
   telegraf = import ./telegraf.nix;

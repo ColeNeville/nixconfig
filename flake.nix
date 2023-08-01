@@ -42,6 +42,7 @@
       defaultModules = [
         home-manager.nixosModules.home-manager
         agenix.nixosModules.default
+        self.nixosModules.build
         self.nixosModules.default
         self.nixosModules.telegraf
       ];
@@ -57,6 +58,10 @@
         [
           "${nixpkgs}/nixos/modules/profiles/minimal.nix"
           "${nixpkgs}/nixos/modules/virtualisation/proxmox-image.nix"
+
+          {
+            custom.imageAttribute = "system.build.VMA";
+          }
         ]
         ++ defaultModules;
 
@@ -72,11 +77,32 @@
           "${nixpkgs}/nixos/modules/profiles/minimal.nix"
           "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
           nixos-hardware.nixosModules.raspberry-pi-4
+
+          {
+            custom.imageAttribute = "system.build.sdImage";
+          }
         ]
         ++ defaultModules;
+
+      lib = {
+        inherit (nixpkgs.lib) mapAttrs nixosSystem;
+        inherit (nixpkgs.lib.attrsets) attrByPath;
+        inherit (flake-utils.lib) eachDefaultSystem;
+
+        nixosImage = systemConfig: let
+          attrPath = builtins.filter (element: ! builtins.isList element) (
+            builtins.split "[\.]" systemConfig.custom.imageAttribute
+          );
+        in (
+          lib.attrByPath attrPath null systemConfig
+        );
+      };
     in
       {
-        lib = {};
+        # Exported lib functions
+        lib = {
+          inherit (lib) nixosImage;
+        };
 
         overlays = {
           default = (
@@ -103,7 +129,8 @@
         nixosModules = import ./nixosModules inputs;
 
         nixosConfigurations = {
-          garuda = nixpkgs.lib.nixosSystem {
+          # Normal systems
+          garuda = lib.nixosSystem {
             system = "x86_64-linux";
             pkgs = self.pkgs.x86_64-linux;
 
@@ -117,7 +144,8 @@
               ++ defaultModules;
           };
 
-          alexander-1 = nixpkgs.lib.nixosSystem {
+          # Raspberry Pis
+          alexander-1 = lib.nixosSystem {
             system = "aarch64-linux";
             pkgs = self.pkgs.aarch64-linux;
 
@@ -129,7 +157,7 @@
               ++ raspberryPiDefaultModules;
           };
 
-          alexander-2 = nixpkgs.lib.nixosSystem {
+          alexander-2 = lib.nixosSystem {
             system = "aarch64-linux";
             pkgs = self.pkgs.aarch64-linux;
 
@@ -141,7 +169,7 @@
               ++ raspberryPiDefaultModules;
           };
 
-          alexander-3 = nixpkgs.lib.nixosSystem {
+          alexander-3 = lib.nixosSystem {
             system = "aarch64-linux";
             pkgs = self.pkgs.aarch64-linux;
 
@@ -153,7 +181,7 @@
               ++ raspberryPiDefaultModules;
           };
 
-          alexander-4 = nixpkgs.lib.nixosSystem {
+          alexander-4 = lib.nixosSystem {
             system = "aarch64-linux";
             pkgs = self.pkgs.aarch64-linux;
 
@@ -164,66 +192,9 @@
               ]
               ++ raspberryPiDefaultModules;
           };
-        };
 
-        nixosImages = {
-          alexander-1-sd-aarch64 = nixos-generators.nixosGenerate {
-            system = "aarch64-linux";
-            pkgs = self.pkgs.aarch64-linux;
-
-            specialArgs = {inherit inputs;};
-            modules =
-              [
-                self.nixosModules.configuration-alexander-1
-              ]
-              ++ raspberryPiDefaultModules;
-
-            format = "sd-aarch64";
-          };
-
-          alexander-2-sd-aarch64 = nixos-generators.nixosGenerate {
-            system = "aarch64-linux";
-            pkgs = self.pkgs.aarch64-linux;
-
-            specialArgs = {inherit inputs;};
-            modules =
-              [
-                self.nixosModules.configuration-alexander-2
-              ]
-              ++ raspberryPiDefaultModules;
-
-            format = "sd-aarch64";
-          };
-
-          alexander-3-sd-aarch64 = nixos-generators.nixosGenerate {
-            system = "aarch64-linux";
-            pkgs = self.pkgs.aarch64-linux;
-
-            specialArgs = {inherit inputs;};
-            modules =
-              [
-                self.nixosModules.configuration-alexander-3
-              ]
-              ++ raspberryPiDefaultModules;
-
-            format = "sd-aarch64";
-          };
-
-          alexander-4-sd-aarch64 = nixos-generators.nixosGenerate {
-            system = "aarch64-linux";
-            pkgs = self.pkgs.aarch64-linux;
-
-            specialArgs = {inherit inputs;};
-            modules =
-              [
-                self.nixosModules.configuration-alexander-4
-              ]
-              ++ raspberryPiDefaultModules;
-
-            format = "sd-aarch64";
-          };
-
-          bahamut-proxmox = nixos-generators.nixosGenerate {
+          # Proxmox Virtual Machines
+          bahamut = lib.nixosSystem {
             system = "x86_64-linux";
             pkgs = self.pkgs.x86_64-linux;
 
@@ -233,11 +204,10 @@
                 self.nixosModules.configuration-bahamut
               ]
               ++ proxmoxVMDefaultModules;
-
-            format = "proxmox";
           };
 
-          ozma-proxmox-lxc = nixos-generators.nixosSystem {
+          # Proxmox LXC Containers
+          ozma = lib.nixosSystem {
             system = "x86_64-linux";
             pkgs = self.pkgs.x86_64-linux;
 
@@ -247,8 +217,6 @@
                 self.nixosModules.configuration-ozma
               ]
               ++ proxmoxLXCDefaultModules;
-
-            format = "proxmox-lxc";
           };
         };
       }
@@ -281,6 +249,14 @@
                 wget
               ];
             };
+
+            nixosImages = lib.mapAttrs (
+              key: value: value.config.system.build
+            ) self.nixosConfigurations;
+
+            # nixosImages = lib.mapAttrs (
+            #   key: value: lib.nixosImage value.config
+            # ) self.nixosConfigurations;
           };
 
           formatter = pkgs.alejandra;
