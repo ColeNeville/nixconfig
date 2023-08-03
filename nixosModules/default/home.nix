@@ -34,10 +34,12 @@
         };
       };
 
-      command-not-found.enable = true;
-
       zsh = {
         enable = lib.mkDefault true;
+
+        oh-my-zsh = {
+          enable = lib.mkDefault true;
+        };
       };
     };
 

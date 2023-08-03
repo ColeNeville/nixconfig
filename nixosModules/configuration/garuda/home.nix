@@ -8,14 +8,9 @@
   config = {
     programs = {
       zsh = {
-        oh-my-zsh = {
-          enable = true;
-        };
-
         sessionVariables = {
           KUBECONFIG = "$HOME/.kube/config";
           SSH_ASKPASS = pkgs.libsForQt5.ksshaskpass + "/bin/ksshaskpass";
-          TERM = "xterm-256color";
         };
 
         shellAliases = {
@@ -32,9 +27,7 @@
         };
       };
 
-      alacritty = {
-        enable = true;
-      };
+      command-not-found.enable = true;
     };
 
     services = {
@@ -44,11 +37,6 @@
     };
 
     xdg = {
-      configFile = {
-        "alacritty.yml" = {
-          source = ./config/alacritty.yml;
-        };
-
         "autostart-scripts/ssh-add.sh" = {
           source = ./config/autostart-scripts/ssh-add.sh;
           executable = true;
@@ -67,19 +55,6 @@
         #   categories = ["Office" "TextEditor" "Utility"];
         # };
       };
-
-      # mimeApps = {
-      #   enable = true;
-
-      #   defaultApplications = {
-      #     "video/mp4" = "vlc.desktop";
-      #     "application/x-yaml" = "code.desktop";
-
-      #     "x-scheme-handler/https" = "brave.desktop";
-      #     "x-scheme-handler/about" = "brave.desktop";
-      #     "x-scheme-handler/unknown" = "brave.desktop";
-      #   };
-      # };
     };
 
     home.packages = with pkgs; [

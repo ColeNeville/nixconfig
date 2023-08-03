@@ -16,4 +16,6 @@ inputs: {
   configuration-ozma = import ./configuration/ozma;
 
   hardware-garuda = import ./hardware/garuda;
+
+  virtualisation-proxmox-vm = import ./virtualisation/proxmox-vm.nix;
 }

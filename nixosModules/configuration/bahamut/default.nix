@@ -25,6 +25,11 @@
 
     time.timeZone = "America/Edmonton";
 
+    proxmox.qemuConf = {
+      cores = 4;
+      memory = 8192;
+    };
+
     system = {
       stateVersion = "23.05";
     };

@@ -57,18 +57,7 @@
       proxmoxVMDefaultModules =
         [
           "${nixpkgs}/nixos/modules/profiles/minimal.nix"
-          "${nixpkgs}/nixos/modules/virtualisation/proxmox-image.nix"
-
-          {
-            custom.imageAttribute = "system.build.VMA";
-          }
-        ]
-        ++ defaultModules;
-
-      qemuVMDefaultModules =
-        [
-          "${nixpkgs}/nixos/modules/profiles/minimal.nix"
-          "${nixpkgs}/nixos/modules/virtualisation/qemu-vm.nix"
+          self.nixosModules.virtualisation-proxmox-vm
         ]
         ++ defaultModules;
 
@@ -77,10 +66,6 @@
           "${nixpkgs}/nixos/modules/profiles/minimal.nix"
           "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
           nixos-hardware.nixosModules.raspberry-pi-4
-
-          {
-            custom.imageAttribute = "system.build.sdImage";
-          }
         ]
         ++ defaultModules;
 
@@ -253,10 +238,6 @@
             nixosImages = lib.mapAttrs (
               key: value: value.config.system.build
             ) self.nixosConfigurations;
-
-            # nixosImages = lib.mapAttrs (
-            #   key: value: lib.nixosImage value.config
-            # ) self.nixosConfigurations;
           };
 
           formatter = pkgs.alejandra;
