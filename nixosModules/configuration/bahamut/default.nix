@@ -18,6 +18,10 @@
     };
 
     services = {
+      openssh = {
+        enable = true;
+      };
+
       unbound = {
         enable = true;
       };
@@ -28,6 +32,7 @@
     proxmox.qemuConf = {
       cores = 4;
       memory = 8192;
+      net0 = 
     };
 
     system = {
