@@ -32,7 +32,6 @@
     proxmox.qemuConf = {
       cores = 4;
       memory = 8192;
-      net0 = 
     };
 
     system = {
