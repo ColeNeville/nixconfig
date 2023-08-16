@@ -37,6 +37,7 @@
     };
 
     xdg = {
+      configFile = {
         "autostart-scripts/ssh-add.sh" = {
           source = ./config/autostart-scripts/ssh-add.sh;
           executable = true;
