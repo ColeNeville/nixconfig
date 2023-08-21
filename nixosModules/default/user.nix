@@ -41,6 +41,7 @@ in {
           "video"
           "dialout"
           "tty"
+          "uucp"
         ];
 
         openssh.authorizedKeys.keys = lib.mkDefault [

@@ -114,6 +114,12 @@
       nmap # Network scanner
       wireshark # Network packet analyzer
       putty # SSH client
+      bettercap
+      hashcat
+      hashcat-utils
+      hcxtools
+      hcxdumptool
+      wirelesstools
 
       # Misc Applications
       neofetch # System information tool
