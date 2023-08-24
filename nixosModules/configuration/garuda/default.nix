@@ -41,6 +41,31 @@ in {
       enable = true;
       dns = "unbound";
     };
+
+    interfaces = {
+      enp0s20f0u3i1 = {
+        ipv4 = {
+          addresses = [
+            {
+              address = "192.168.200.1";
+              prefixLength = 24;
+            }
+          ];
+        };
+      };
+    };
+
+    firewall = {
+      enable = true;
+      extraCommands = ''
+        iptables -A FORWARD -o wlp166s0 -i enp0s20f0u3i1 -s 192.168.200.0/24 -m conntrack --ctstate NEW -j ACCEPT
+        iptables -A FORWARD -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+        iptables -t nat -F POSTROUTING
+        iptables -t nat -A POSTROUTING -o wlp166s0 -j MASQUERADE
+      '';
+    };
+
+    nat.enable = true;
   };
 
   ###############################################
