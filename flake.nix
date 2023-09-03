@@ -232,6 +232,7 @@
                 util-linux
                 usbutils # lsusb command
                 wget
+                unzip
               ];
             };
 
