@@ -224,15 +224,16 @@
                 coreutils
                 curl
                 dig
+                gcc
                 git
                 git-crypt
                 gnumake # make command
                 gnupg
                 nano
+                unzip
                 util-linux
                 usbutils # lsusb command
                 wget
-                unzip
               ];
             };
 
