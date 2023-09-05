@@ -42,6 +42,7 @@ in {
           "dialout"
           "tty"
           "uucp"
+          "docker"
         ];
 
         openssh.authorizedKeys.keys = lib.mkDefault [

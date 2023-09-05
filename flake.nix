@@ -224,7 +224,7 @@
                 coreutils
                 curl
                 dig
-                gcc
+                # gcc
                 git
                 git-crypt
                 gnumake # make command

@@ -83,6 +83,9 @@ in {
           clickMethod = "buttonareas";
         };
       };
+
+      digimend.enable = true;
+      wacom.enable = true;
     };
 
     pipewire = {
@@ -190,6 +193,7 @@ in {
 
   virtualisation = {
     libvirtd.enable = true;
+    docker.enable = true;
   };
 
   environment.systemPackages = with pkgs; [
