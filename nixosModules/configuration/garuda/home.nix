@@ -138,6 +138,9 @@
       kubectl # Kubernetes command line tool
       kubernetes-helm # Kubernetes package manager
       gparted # Partition manager
+
+      gcc
+      gcc-arm-embedded
     ];
   };
 }
