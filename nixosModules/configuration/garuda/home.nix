@@ -124,7 +124,7 @@
       # Misc Applications
       neofetch # System information tool
       autokey # Keyboard macro utility
-      bitwarden # Password manager
+      unstable.bitwarden # Password manager
       archiver # Archive manager
       avidemux # Video editor
       rpi-imager # Raspberry Pi OS image writer
