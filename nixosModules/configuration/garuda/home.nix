@@ -46,15 +46,15 @@
 
       desktopEntries = {
         # Workaround for a bug that prevents proper rendering without --disable-gpu-driver-bug-workarounds
-        # logseq = {
-        #   name = "Logseq";
-        #   genericName = "Note taking and knowledge base";
-        #   comment = "Logseq is a local-first, non-linear, outliner notebook for organizing and sharing your personal knowledge base.";
-        #   icon = "logseq";
-        #   exec = "${pkgs.logseq}/bin/logseq --disable-gpu-driver-bug-workarounds";
-        #   terminal = false;
-        #   categories = ["Office" "TextEditor" "Utility"];
-        # };
+        logseq = {
+          name = "Logseq";
+          genericName = "Note taking and knowledge base";
+          comment = "Logseq is a local-first, non-linear, outliner notebook for organizing and sharing your personal knowledge base.";
+          icon = "logseq";
+          exec = "flatpak run com.logseq.Logseq --disable-gpu-driver-bug-workarounds";
+          terminal = false;
+          categories = ["Office" "TextEditor" "Utility"];
+        };
       };
     };
 
@@ -128,7 +128,7 @@
       archiver # Archive manager
       avidemux # Video editor
       rpi-imager # Raspberry Pi OS image writer
-      logseq # Note taking and knowledge base
+      # unstable.logseq # Note taking and knowledge base
       argocd # Kubernetes GitOps tool
       argocd-vault-plugin # Argocd plugin for vault integration
       ddrescue # Data recovery tool
