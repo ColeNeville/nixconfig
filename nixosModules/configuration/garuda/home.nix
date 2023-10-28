@@ -83,7 +83,7 @@
 
       # IDEs
       arduino # Arduino IDE
-      unstable.vscode # Visual Studio Code
+      vscode # Visual Studio Code
 
       # Development Dependancies
       i2c-tools # I2C tools
