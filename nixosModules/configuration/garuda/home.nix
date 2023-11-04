@@ -138,6 +138,7 @@
       kubectl # Kubernetes command line tool
       kubernetes-helm # Kubernetes package manager
       gparted # Partition manager
+      postman # API testing tool
 
       gcc
       gcc-arm-embedded
