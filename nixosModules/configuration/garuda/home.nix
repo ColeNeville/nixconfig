@@ -140,6 +140,11 @@
       gparted # Partition manager
       postman # API testing tool
 
+      python312
+      pipenv
+
+      nodejs
+
       gcc
       gcc-arm-embedded
     ];
