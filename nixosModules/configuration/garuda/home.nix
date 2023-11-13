@@ -83,7 +83,7 @@
 
       # IDEs
       arduino # Arduino IDE
-      unstable.vscode # Visual Studio Code
+      vscode # Visual Studio Code
 
       # Development Dependancies
       i2c-tools # I2C tools
@@ -124,7 +124,7 @@
       # Misc Applications
       neofetch # System information tool
       autokey # Keyboard macro utility
-      unstable.bitwarden # Password manager
+      bitwarden # Password manager
       archiver # Archive manager
       avidemux # Video editor
       rpi-imager # Raspberry Pi OS image writer
