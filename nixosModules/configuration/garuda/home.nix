@@ -51,9 +51,20 @@
           genericName = "Note taking and knowledge base";
           comment = "Logseq is a local-first, non-linear, outliner notebook for organizing and sharing your personal knowledge base.";
           icon = "logseq";
-          exec = "flatpak run com.logseq.Logseq --disable-gpu-driver-bug-workarounds";
+          exec = "${pkgs.unstable.logseq}/bin/logseq --disable-gpu-driver-bug-workarounds";
           terminal = false;
           categories = ["Office" "TextEditor" "Utility"];
+        };
+
+        # Workaround for a bug that prevents proper rendering without --disable-gpu
+        vscode-no-gpu = {
+          name = "VSCode (No GPU Rendering)";
+          genericName = "Text Editor";
+          comment = "Visual Studio Code is a source-code editor made by Microsoft for Windows, Linux and macOS.";
+          icon = "code";
+          exec = "${pkgs.unstable.vscode}/bin/code --disable-gpu";
+          terminal = false;
+          categories = ["Development" "Utility"];
         };
       };
     };
@@ -83,7 +94,8 @@
 
       # IDEs
       arduino # Arduino IDE
-      vscode # Visual Studio Code
+      unstable.vscode # Visual Studio Code
+      unstable.logseq # Note taking and knowledge base
 
       # Development Dependancies
       i2c-tools # I2C tools
