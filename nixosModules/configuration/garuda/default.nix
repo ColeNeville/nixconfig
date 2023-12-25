@@ -138,6 +138,7 @@ in {
     };
 
     flatpak.enable = true;
+    packagekit.enable = true;
   };
 
   ###############################################
@@ -210,6 +211,7 @@ in {
     ntfs3g
     exfat
 
+    libsForQt5.discover
     libsForQt5.ksshaskpass
   ];
 
