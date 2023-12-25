@@ -10,7 +10,7 @@
       zsh = {
         sessionVariables = {
           KUBECONFIG = "$HOME/.kube/config";
-          SSH_ASKPASS = pkgs.libsForQt5.ksshaskpass + "/bin/ksshaskpass";
+          SSH_ASKPASS = "${pkgs.libsForQt5.ksshaskpass}/bin/ksshaskpass";
         };
 
         shellAliases = {
@@ -81,7 +81,7 @@
       # fontforge # Font editor
 
       # 3D Printing
-      cura # Ultimaker Cura
+      # cura # Ultimaker Cura
       # prusa-slicer # Prusa Slicer
       printrun # Printrun
 
