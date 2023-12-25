@@ -10,18 +10,18 @@
     flake-utils.url = "github:numtide/flake-utils";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-23.05";
+      url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     agenix = {
-      url = "github:ryantm/agenix/db5637d10f797bb251b94ef9040b237f4702cde3";
+      url = "github:ryantm/agenix/13ac9ac6d68b9a0896e3d43a082947233189e247";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
 
     nixos-generators = {
-      url = "github:nix-community/nixos-generators/9191c85aab6b1a7ad395c13d340f2aa0e3ddf552";
+      url = "github:nix-community/nixos-generators/246219bc21b943c6f6812bb7744218ba0df08600";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

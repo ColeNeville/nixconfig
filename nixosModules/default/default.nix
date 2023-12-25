@@ -42,11 +42,6 @@ in {
       '';
     };
 
-    nixpkgs = {
-      overlays = builtins.attrValues self.overlays;
-      config.allowUnfree = pkgs.config.allowUnfree;
-    };
-
     system.autoUpgrade = {
       enable = true;
       flake = "github:coleneville/nixconfig/main";

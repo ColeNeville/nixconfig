@@ -175,7 +175,7 @@ in {
   ###############################################
 
   fonts = {
-    fonts = with pkgs; [
+    packages = with pkgs; [
       fira
       fira-code
     ];
