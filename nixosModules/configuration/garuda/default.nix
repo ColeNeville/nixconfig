@@ -201,7 +201,7 @@ in {
 
   environment.systemPackages = with pkgs; [
     # Programming
-    (python311.withPackages (ps: with ps; [pip virtualenv]))
+    # (python311.withPackages (ps: with ps; [pip virtualenv]))
 
     # Virtual Machines
     virt-viewer

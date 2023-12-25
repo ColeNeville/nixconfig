@@ -152,8 +152,8 @@
       gparted # Partition manager
       # postman # API testing tool
 
-      python312
-      pipenv
+      # python312
+      # pipenv
 
       nodejs
 
