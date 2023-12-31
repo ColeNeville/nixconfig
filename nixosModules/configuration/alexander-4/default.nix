@@ -4,7 +4,7 @@
       initrd.includeDefaultModules = false;
 
       kernelParams = [
-        "console=serial0,115200n8"
+        "console=serial1,115200n8"
       ];
     };
 
