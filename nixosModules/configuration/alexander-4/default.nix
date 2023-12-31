@@ -4,7 +4,7 @@
       initrd.includeDefaultModules = false;
 
       kernelParams = [
-        "console=ttyS1,115200n8"
+        "console=serial0,115200n8"
       ];
     };
 
