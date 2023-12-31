@@ -48,6 +48,38 @@ in {
           "alexander-4.local.coleslab.com"
         ];
       };
+
+      moogle-ed25519 = {
+        publicKey = hosts.moogle.ed25519;
+        hostNames = [
+          "moogle"
+          "moogle.local.coleslab.com"
+        ];
+      };
+
+      zodiark-ecdsa = {
+        publicKey = hosts.zodiark.ecdsa;
+        hostNames = [
+          "zodiark"
+          "zodiark.local.coleslab.com"
+        ];
+      };
+
+      zodiark-ed25519 = {
+        publicKey = hosts.zodiark.ed25519;
+        hostNames = [
+          "zodiark"
+          "zodiark.local.coleslab.com"
+        ];
+      };
+
+      zodiark-rsa = {
+        publicKey = hosts.zodiark.rsa;
+        hostNames = [
+          "zodiark"
+          "zodiark.local.coleslab.com"
+        ];
+      };
     };
   };
 }

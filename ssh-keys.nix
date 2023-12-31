@@ -27,23 +27,36 @@ in {
       ed25519 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINAH+9iIQGZJA4C9xJeh3gZvGGy5vsAkvB5m4Fk01lT6";
       rsa = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCY/9Pvp1hwhWd9JJX6HiZmhDgHknEYKJv6NxoB2LmhG38oVa8pzzg3dBSGXSe0FVqRe0PJ0cqd7eMV7IjRDXgCpWKsAbL+zC+d9g7syINJiCAXu+EKu8PZWsSTtgocqkBWj53C6UW55W5EG9vuFP2QdW2Og+4WWjOu8V754m3icRnKCrVAupC8Ocr8pNEVchFZ2NXpqx90EdYtt8TUS4tVl+X0YlyzEs4TwlIQyJzLKcLKx8k7daqY9PlKAdgwBoXiDg4rBfozfETAL0elJmVgDOX7FRQVp2GkS0jjvLQivMu7rzrEp3q42X3HdE6Q76t5jhTrjNEQYqqjDGL8nu9HdGRpctvj9R2/KahdD8z3Iu9u0EmDdJxgzMtG0W7aZp8ViRa1lo3eTtwkV6H35iAFxjWb3h3ieF2208ojXtMh8U30EnxkZx4jKKwxIVWZWU61TmsN50NTB5bb4iHQoctbwA1pLVJKQhJ23vtUCsR4b04RkEOrwDW9C2aW0HaXgrRJhg/HXreWxl0rY+fkgWRjTjbEA20ByeZ2/qjEoe8eYgALsDoJnPqtRS/BWOt/jf/YRRxfetGkwsT+2nUxLT8Bnw/kF7L5hy3vG4SdkyyQCncJ3BuPljaYdbSxsY+xMawbwpAFLwgHaeZYvzYkAWBdXL4eO2HfiCOxA7Pe7YTQLw==";
     };
+    alpha = {
+      # TODO: Populate
+    };
     bahamut = {};
     bismark = {};
-    carbuncle = {}; #TODO: Populate with keys from carbuncle
+    carbuncle = {
+      #TODO: Populate
+    };
     chocobo = {};
     cid = {};
     diabolos = {};
     gaia = {};
     garuda = {
-      ed25519 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB2SqSWiQIob0PwHBajmodY9k9O1SsrQHVGO1bSL9igs";
-      rsa = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCWBgtugGwEEX8XcueIKWKjqc4OfVgJohmieVnjn82NwWQZDIp0uQUcpg1WK8++Pj280pC8fNQC+c9E9VFSjEVANJriw7hw25zAOrLcg132cvKEIrwebJeXt1I2i6fZzGHKSOaiiZ45sCkTllLNcHRBFtfPRN6gB0No8rZxqPqw4UQFOnCCVFGzQ6/Emow4n+qIRM7IfbjgJtcF1Mq9kYvicCvFQDo1HE3qrWgdUd/txlclJ+geuxpYVMjYLS6bAUeCKqPZIWotxsogGoztmVj2YfXK/A0QWKt5phdcF8k3WAvjZg1UtskWTSfG1MWLGc3eL+CUf8VYT7XwvKNbZioNXuYIjGbciAS60glW60sKYiUhTjah46Jju3Dx9ShljcmIBGlHX/35WSYl90sxV+Zety03CeOgezukT0ruWNXP7ZmgPJLAaLJHDEy8J+Sgv3h0pRlcNhznF/h5ptx2pJf7TBcY9BD5USsJkDw8m86qzaoDfqrsSzSa8f+U2NaQQfwcgvr5GZsv151hLs7WF7e8zo3txFEm1kJvVKgtuK404Gvc7pqvKR6WHvhI23kCv9TFyiPR2O9Fn9stgVBroIkcly7Rdq+o7f3aRkeM7DfZxciepURAS9ECs7sgHIU54rxY1/rmzMHgQQW3LrUq4AaewxpqauKHAP/qHTZaWMQ8MQ==";
+      # TODO: Populate
     };
-    hydaelyn = {};
+    hydaelyn = {
+      # TODO: Populate
+    };
     kefka = {};
     ifrit = {};
-    lakshmi = {};
+    lakshmi = {
+      # TODO: Populate
+    };
     leviathan = {};
-    meteion = {};
+    menphina = {
+      # TODO: Populate
+    };
+    meteion = {
+      # TODO: Populate
+    };
     moogle = {
       ed25519 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHS4IvdFUykitxeSNaCLEzdlpw8n8Cj07cfjC3/P29kA";
     };
@@ -54,7 +67,9 @@ in {
     phoenix = {};
     ramuh = {};
     ravana = {};
-    shiva = {};
+    shiva = {
+      # TODO: Populate
+    };
     sophia = {};
     susano = {};
     titan = {};
