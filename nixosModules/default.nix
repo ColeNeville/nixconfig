@@ -4,9 +4,6 @@ inputs: {
   # Doesn't do anything on its own only adds things if telegraf is enabled
   telegraf = import ./telegraf.nix;
 
-  user-cole = import ./user/cole;
-  user-cole-garuda = import ./user/cole-garuda;
-
   configuration-alexander-1 = import ./configuration/alexander-1;
   configuration-alexander-2 = import ./configuration/alexander-2;
   configuration-alexander-3 = import ./configuration/alexander-3;

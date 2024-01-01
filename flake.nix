@@ -64,7 +64,9 @@
       raspberryPiDefaultModules =
         [
           "${nixpkgs}/nixos/modules/profiles/minimal.nix"
-          "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
+          # "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
+
+          nixos-generators.nixosModules.sd-aarch64
           nixos-hardware.nixosModules.raspberry-pi-4
         ]
         ++ defaultModules;
@@ -237,9 +239,9 @@
               ];
             };
 
-            nixosImages = lib.mapAttrs (
-              key: value: value.config.system.build
-            ) self.nixosConfigurations;
+            # nixosImages = lib.mapAttrs (
+            #   key: value: value.config.system.build
+            # ) self.nixosConfigurations;
           };
 
           formatter = pkgs.alejandra;
