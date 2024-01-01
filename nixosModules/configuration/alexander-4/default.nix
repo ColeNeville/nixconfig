@@ -4,8 +4,18 @@
       initrd.includeDefaultModules = false;
 
       kernelParams = [
-        "console=ttyAMA0,115200n8"
+        "console=serial0,115200n8"
       ];
+    };
+
+    hardware = {
+      raspberry-pi = {
+        "4" = {
+          # This options is from the hardware module:
+          # https://github.com/NixOS/nixos-hardware/blob/c2bbfcfc3d12351919f8df7c7d6528f41751d0a3/raspberry-pi/4/pkgs-overlays.nix
+          apply-overlays-dtmerge = true;
+        };
+      };
     };
 
     security = {
