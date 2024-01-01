@@ -3,6 +3,10 @@
     boot = {
       initrd.includeDefaultModules = false;
 
+      # Reverting to the mainline kernel over the rpi specific kernel specified
+      # in the nixos-hardware module
+      kernelPackages = pkgs.linuxPackages;
+
       kernelParams = [
         "console=serial0,115200n8"
       ];
