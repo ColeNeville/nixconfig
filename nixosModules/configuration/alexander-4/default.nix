@@ -1,4 +1,4 @@
-{config, ...}: {
+{pkgs, config, ...}: {
   config = {
     boot = {
       initrd.includeDefaultModules = false;
