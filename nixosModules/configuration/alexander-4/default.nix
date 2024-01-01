@@ -8,7 +8,7 @@
       kernelPackages = pkgs.linuxPackages;
 
       kernelParams = [
-        "console=serial0,115200n8"
+        "console=ttyS1,115200n8"
       ];
     };
 
