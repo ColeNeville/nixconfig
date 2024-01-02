@@ -40,16 +40,9 @@
   }: (
     let
       defaultModules = [
-        # nix build .#nixosConfigurations.alexander-1.config.formats.sd-aarch64
-        # nix build .#nixosConfigurations.alexander-2.config.formats.sd-aarch64
-        # nix build .#nixosConfigurations.alexander-3.config.formats.sd-aarch64
-        # nix build .#nixosConfigurations.alexander-4.config.formats.sd-aarch64
-        nixos-generators.nixosModules.all-formats
-
         home-manager.nixosModules.home-manager
 
         agenix.nixosModules.default
-        
         
         self.nixosModules.build
         self.nixosModules.default
@@ -66,6 +59,8 @@
       proxmoxVMDefaultModules =
         [
           "${nixpkgs}/nixos/modules/profiles/minimal.nix"
+          "${nixpkgs}/nixos/modules/virtualisation/proxmox-image.nix"
+
           self.nixosModules.virtualisation-proxmox-vm
         ]
         ++ defaultModules;
