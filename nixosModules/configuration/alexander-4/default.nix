@@ -30,6 +30,8 @@
 
     networking = {
       hostName = "alexander-4";
+
+      firewall.enable = false;
     };
 
     services = {
