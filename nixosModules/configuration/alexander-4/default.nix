@@ -44,6 +44,16 @@
           config.age.secrets."telegraf.env".path
         ];
       };
+
+      k3s = {
+        enable = true;
+
+        role = "server";
+        disableAgent = true;
+
+        clusterInit = true;
+        tokenFile = config.age.secrets."k3s-token".path;
+      };
     };
 
     age.secrets = {
@@ -51,6 +61,12 @@
         file = ../../../secrets/telegraf-alexander-4.env.age;
         owner = "telegraf";
         group = "telegraf";
+      };
+
+      "k3s-token" = {
+        file = ../../../secrets/k3s-token.age;
+        owner = "root";
+        group = "root";
       };
     };
 

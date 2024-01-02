@@ -6,7 +6,7 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-master.url = "github:NixOS/nixpkgs/master";
 
-    nixos-hardware.url = "github:nixos/nixos-hardware/master";
+    nixos-hardware.url = "github:nixos/nixos-hardware/316bc98323fe3a7e7f72dbbbe68dce0cce3d4984";
     flake-utils.url = "github:numtide/flake-utils";
 
     home-manager = {
@@ -40,8 +40,17 @@
   }: (
     let
       defaultModules = [
+        # nix build .#nixosConfigurations.alexander-1.config.formats.sd-aarch64
+        # nix build .#nixosConfigurations.alexander-2.config.formats.sd-aarch64
+        # nix build .#nixosConfigurations.alexander-3.config.formats.sd-aarch64
+        # nix build .#nixosConfigurations.alexander-4.config.formats.sd-aarch64
+        nixos-generators.nixosModules.all-formats
+
         home-manager.nixosModules.home-manager
+
         agenix.nixosModules.default
+        
+        
         self.nixosModules.build
         self.nixosModules.default
         self.nixosModules.telegraf
@@ -64,9 +73,9 @@
       raspberryPiDefaultModules =
         [
           "${nixpkgs}/nixos/modules/profiles/minimal.nix"
-          # "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
+          "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
 
-          nixos-generators.nixosModules.sd-aarch64
+          # https://github.com/NixOS/nixos-hardware/blob/master/raspberry-pi/4/default.nix
           nixos-hardware.nixosModules.raspberry-pi-4
         ]
         ++ defaultModules;
@@ -206,6 +215,11 @@
               ++ proxmoxLXCDefaultModules;
           };
         };
+
+        nixosImages = lib.mapAttrs (
+          # Create a map of all the configuration build types
+          key: value: value.config.system.build
+        ) self.nixosConfigurations;
       }
       // flake-utils.lib.eachDefaultSystem (
         system: let
@@ -238,10 +252,6 @@
                 wget
               ];
             };
-
-            # nixosImages = lib.mapAttrs (
-            #   key: value: value.config.system.build
-            # ) self.nixosConfigurations;
           };
 
           formatter = pkgs.alejandra;

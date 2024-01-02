@@ -17,6 +17,16 @@
       ];
     };
 
+    hardware = {
+      raspberry-pi = {
+        "4" = {
+          # This options is from the hardware module:
+          # https://github.com/NixOS/nixos-hardware/blob/c2bbfcfc3d12351919f8df7c7d6528f41751d0a3/raspberry-pi/4/pkgs-overlays.nix
+          apply-overlays-dtmerge.enable = true;
+        };
+      };
+    };
+
     security = {
       sudo = {
         execWheelOnly = true;
@@ -39,6 +49,10 @@
           config.age.secrets."telegraf.env".path
         ];
       };
+
+      k3s = {
+        enable = true;
+      };
     };
 
     age.secrets = {
@@ -46,6 +60,12 @@
         file = ../../../secrets/telegraf-alexander-1.env.age;
         owner = "telegraf";
         group = "telegraf";
+      };
+
+      "k3s-token" = {
+        file = ../../../secrets/k3s-token.age;
+        owner = "root";
+        group = "root";
       };
     };
 
