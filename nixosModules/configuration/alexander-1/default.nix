@@ -57,7 +57,7 @@
 
         role = "agent";
 
-        serverAddr = "https://alexander-4.local.coleslab.com:6443";
+        serverAddr = "https://192.168.73.53:6443";
         tokenFile = config.age.secrets."k3s-token".path;
       };
     };
