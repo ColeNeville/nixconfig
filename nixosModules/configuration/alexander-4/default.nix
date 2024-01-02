@@ -49,7 +49,7 @@
         enable = true;
 
         role = "server";
-        disableAgent = true;
+        # disableAgent = true;
 
         clusterInit = true;
         tokenFile = config.age.secrets."k3s-token".path;
