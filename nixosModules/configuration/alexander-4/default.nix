@@ -54,7 +54,10 @@
         disableAgent = true;
 
         clusterInit = true;
-        tokenFile = config.age.secrets."k3s-token".path;
+
+        environmentFiles = [
+          config.age.secrets."k3s.env".path
+        ];
       };
     };
 
@@ -65,8 +68,8 @@
         group = "telegraf";
       };
 
-      "k3s-token" = {
-        file = ../../../secrets/k3s-token.age;
+      "k3s.env" = {
+        file = ../../../secrets/k3s.env.age;
         owner = "root";
         group = "root";
       };

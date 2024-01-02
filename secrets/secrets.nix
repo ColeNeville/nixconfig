@@ -33,7 +33,7 @@ in {
   #   hosts.garuda.ed25519
   # ];
 
-  "k3s-token.age".publicKeys = [
+  "k3s.env.age".publicKeys = [
     users."cole@garuda"
     hosts.alexander-1.ed25519
     hosts.alexander-1.rsa
