@@ -56,10 +56,8 @@
         enable = true;
 
         role = "agent";
-
         serverAddr = "https://192.168.73.53:6443";
-
-        environmentFile = config.age.secrets."k3s.env".path;
+        tokenFile = config.age.secrets."k3s-token".path;
       };
     };
 
@@ -70,8 +68,8 @@
         group = "telegraf";
       };
 
-      "k3s.env" = {
-        file = ../../../secrets/k3s.env.age;
+      "k3s-token" = {
+        file = ../../../secrets/k3s-token.age;
         owner = "root";
         group = "root";
       };

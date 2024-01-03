@@ -40,4 +40,12 @@ in {
     hosts.alexander-4.ed25519
     hosts.alexander-4.rsa
   ];
+
+  "k3s-token.age".publicKeys = [
+    users."cole@garuda"
+    hosts.alexander-1.ed25519
+    hosts.alexander-1.rsa
+    hosts.alexander-4.ed25519
+    hosts.alexander-4.rsa
+  ];
 }
