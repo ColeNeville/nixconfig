@@ -59,9 +59,7 @@
 
         serverAddr = "https://192.168.73.53:6443";
 
-        environmentFiles = [
-          config.age.secrets."k3s.env".path
-        ];
+        environmentFile = config.age.secrets."k3s.env".path;
       };
     };
 
