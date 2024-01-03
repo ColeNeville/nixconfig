@@ -55,9 +55,7 @@
 
         clusterInit = true;
 
-        environmentFiles = [
-          config.age.secrets."k3s.env".path
-        ];
+        environmentFile = config.age.secrets."k3s.env".path;
       };
     };
 
