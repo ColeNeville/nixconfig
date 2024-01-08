@@ -63,7 +63,7 @@
 
     age.secrets = {
       "telegraf.env" = {
-        file = ../../../secrets/telegraf-alexander-1.env.age;
+        file = ../../../secrets/telegraf.env.age;
         owner = "telegraf";
         group = "telegraf";
       };

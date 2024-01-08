@@ -9,6 +9,7 @@ inputs: {
   configuration-alexander-3 = import ./configuration/alexander-3;
   configuration-alexander-4 = import ./configuration/alexander-4;
   configuration-bahamut = import ./configuration/bahamut;
+  configuration-chocobo = import ./configuration/chocobo;
   configuration-garuda = import ./configuration/garuda;
   configuration-ozma = import ./configuration/ozma;
 

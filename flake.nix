@@ -65,6 +65,7 @@
         ]
         ++ defaultModules;
 
+      # nix build .#nixosConfigurations.<value>.config.system.build.sdImage -o <output>
       raspberryPiDefaultModules =
         [
           "${nixpkgs}/nixos/modules/profiles/minimal.nix"
@@ -197,6 +198,18 @@
               ++ proxmoxVMDefaultModules;
           };
 
+          chocobo = lib.nixosSystem {
+            system = "x86_64-linux";
+            pkgs = self.pkgs.x86_64-linux;
+
+            specialArgs = {inherit inputs;};
+            modules =
+              [
+                self.nixosModules.configuration-chocobo
+              ]
+              ++ proxmoxVMDefaultModules;
+          };
+
           # Proxmox LXC Containers
           ozma = lib.nixosSystem {
             system = "x86_64-linux";
@@ -210,11 +223,6 @@
               ++ proxmoxLXCDefaultModules;
           };
         };
-
-        nixosImages = lib.mapAttrs (
-          # Create a map of all the configuration build types
-          key: value: value.config.system.build
-        ) self.nixosConfigurations;
       }
       // flake-utils.lib.eachDefaultSystem (
         system: let

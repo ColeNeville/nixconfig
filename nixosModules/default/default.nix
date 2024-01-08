@@ -76,7 +76,17 @@ in {
     };
 
     programs.dconf.enable = lib.mkDefault true;
-    security.rtkit.enable = lib.mkDefault true;
+    
+    security = {
+      rtkit.enable = lib.mkDefault true;
+
+      security = {
+        sudo = {
+          execWheelOnly = true;
+        };
+      };
+    };
+
     time.timeZone = lib.mkDefault "America/Edmonton";
   };
 }
