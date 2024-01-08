@@ -80,10 +80,8 @@ in {
     security = {
       rtkit.enable = lib.mkDefault true;
 
-      security = {
-        sudo = {
-          execWheelOnly = true;
-        };
+      sudo = {
+        execWheelOnly = true;
       };
     };
 

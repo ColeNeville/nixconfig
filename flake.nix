@@ -56,6 +56,7 @@
         ]
         ++ defaultModules;
 
+      # nix build .#nixosConfigurations.<value>.config.system.build.VMA -o <output>
       proxmoxVMDefaultModules =
         [
           "${nixpkgs}/nixos/modules/profiles/minimal.nix"
