@@ -43,6 +43,7 @@ in {
           "tty"
           "uucp"
           "docker"
+          "vboxusers"
         ];
 
         openssh.authorizedKeys.keys = lib.mkDefault [
