@@ -56,16 +56,16 @@
         #   categories = ["Office" "TextEditor" "Utility"];
         # };
 
-        # # Workaround for a bug that prevents proper rendering without --disable-gpu
-        # vscode-no-gpu = {
-        #   name = "VSCode (No GPU Rendering)";
-        #   genericName = "Text Editor";
-        #   comment = "Visual Studio Code is a source-code editor made by Microsoft for Windows, Linux and macOS.";
-        #   icon = "code";
-        #   exec = "${pkgs.unstable.vscode}/bin/code --disable-gpu";
-        #   terminal = false;
-        #   categories = ["Development" "Utility"];
-        # };
+        # Workaround for a bug that prevents proper rendering without --disable-gpu
+        vscode-no-gpu = {
+          name = "VSCode (No GPU Rendering)";
+          genericName = "Text Editor";
+          comment = "Visual Studio Code is a source-code editor made by Microsoft for Windows, Linux and macOS.";
+          icon = "code";
+          exec = "${pkgs.vscode}/bin/code --disable-gpu";
+          terminal = false;
+          categories = ["Development" "Utility"];
+        };
       };
     };
 
