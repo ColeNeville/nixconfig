@@ -17,14 +17,14 @@ in {
     };
   };
 
-  virtualisation = {
-    virtualbox = {
-      host = {
-        enable = true;
-        enableExtensionPack = true;
-      };
-    };
-  };
+  #virtualisation = {
+  #  virtualbox = {
+  #    host = {
+  #      enable = true;
+  #      enableExtensionPack = true;
+  #    };
+  #  };
+  #};
 
   boot = {
     binfmt.emulatedSystems = ["aarch64-linux"];

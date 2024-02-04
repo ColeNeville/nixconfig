@@ -41,6 +41,7 @@ in {
           "video"
           "dialout"
           "tty"
+          "disk"
           "uucp"
           "docker"
           "vboxusers"
