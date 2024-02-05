@@ -45,6 +45,7 @@ in {
           "uucp"
           "docker"
           "vboxusers"
+          "libvirtd"
         ];
 
         openssh.authorizedKeys.keys = lib.mkDefault [

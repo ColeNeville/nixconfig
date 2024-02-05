@@ -5,6 +5,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-master.url = "github:NixOS/nixpkgs/master";
+    nixpkgs-vbox-pin.url = "github:nixos/nixpkgs/25e3d4c0d3591c99929b1ec07883177f6ea70c9d";
 
     nixos-hardware.url = "github:nixos/nixos-hardware/316bc98323fe3a7e7f72dbbbe68dce0cce3d4984";
     flake-utils.url = "github:numtide/flake-utils";
@@ -32,6 +33,7 @@
     nixpkgs,
     nixpkgs-unstable,
     nixpkgs-master,
+    nixpkgs-vbox-pin,
     nixos-hardware,
     nixos-generators,
     home-manager,
@@ -110,6 +112,9 @@
                 inherit (prev) system config;
               };
               master = import nixpkgs-master {
+                inherit (prev) system config;
+              };
+              vbox = import nixpkgs-vbox-pin {
                 inherit (prev) system config;
               };
               # Fixes an issue with building the kernel for rpi: https://github.com/NixOS/nixpkgs/issues/126755#issuecomment-869149243

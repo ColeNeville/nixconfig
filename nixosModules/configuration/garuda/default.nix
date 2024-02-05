@@ -205,16 +205,31 @@ in {
 
   virtualisation = {
     libvirtd.enable = true;
+
+    virtualbox = {
+      host = {
+        enable = true;
+        package = pkgs.vbox.virtualbox;
+        enableExtensionPack = true;
+      };
+    };
+
     docker.enable = true;
+    spiceUSBRedirection.enable = true;
+  };
+
+  programs = {
+    virt-manager.enable = true;
   };
 
   environment.systemPackages = with pkgs; [
     # Programming
     # (python311.withPackages (ps: with ps; [pip virtualenv]))
+    unstable.ugs
 
     # Virtual Machines
     virt-viewer
-    virt-manager
+    #virt-manager
 
     # Filesystems
     ntfs3g
