@@ -225,7 +225,6 @@ in {
   environment.systemPackages = with pkgs; [
     # Programming
     # (python311.withPackages (ps: with ps; [pip virtualenv]))
-    unstable.ugs
 
     # Virtual Machines
     virt-viewer
