@@ -117,10 +117,10 @@
       # remmina # Remote desktop client
 
       # Yubikey
-      yubikey-manager-qt # Yubikey configuration tool
-      yubikey-personalization-gui # Yubikey configuration tool
-      yubikey-personalization # Yubikey configuration tool
-      yubioath-flutter # Yubikey OTP tool
+      # yubikey-manager-qt # Yubikey configuration tool
+      # yubikey-personalization-gui # Yubikey configuration tool
+      # yubikey-personalization # Yubikey configuration tool
+      # yubioath-flutter # Yubikey OTP tool
 
       # Networking
       nmap # Network scanner
@@ -134,8 +134,8 @@
       wirelesstools
 
       # Misc Applications
-      neofetch # System information tool
-      autokey # Keyboard macro utility
+      # neofetch # System information tool
+      # autokey # Keyboard macro utility
       # bitwarden # Password manager
       archiver # Archive manager
       # avidemux # Video editor
