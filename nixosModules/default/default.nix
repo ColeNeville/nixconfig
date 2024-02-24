@@ -6,7 +6,9 @@
   ...
 }: let
   inherit (inputs) self;
+
   ssh-keys = import ../../ssh-keys.nix;
+  autoUpgradeConfig = config.nixconfig.autoUpgrade;
 in {
   imports = [
     ./user.nix
@@ -14,7 +16,19 @@ in {
     ./openssh.nix
   ];
 
+  options.nixconfig = {
+    autoUpgrade = {
+      enable = lib.mkEnableOption "system.autoUpgrade";
+    };
+  };
+
   config = {
+    nixconfig = {
+      autoUpgrade = {
+        enable = lib.mkDefault true;
+      };
+    };
+
     nix = {
       settings = {
         auto-optimise-store = true;
@@ -43,7 +57,7 @@ in {
     };
 
     system.autoUpgrade = {
-      enable = true;
+      enable = config.nixconfig.autoUpgrade.enable;
       flake = "github:coleneville/nixconfig/main";
       persistent = true;
 
