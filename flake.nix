@@ -152,7 +152,7 @@
               [
                 self.nixosModules.hardware-goblin
                 nixos-hardware.nixosModules.common-cpu-intel
-                nixos-hardware.nixosModules.common-gpu-nvidia
+                nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
                 self.nixosModules.configuration-goblin
               ]
               ++ defaultModules;
@@ -271,6 +271,7 @@
                 gnumake # make command
                 gnupg
                 nano
+                pciutils # lspci command
                 unzip
                 util-linux
                 usbutils # lsusb command
