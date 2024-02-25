@@ -89,10 +89,6 @@ in {
           upper = lib.mkDefault "06:00";
         };
       };
-
-      stateVersion = "22.11";
     };
   };
-
-  
 }

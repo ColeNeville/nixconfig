@@ -192,6 +192,10 @@ in {
     ];
 
     time.timeZone = "America/Edmonton";
-    system.autoUpgrade.enable = false;
+
+    system = {
+      autoUpgrade.enable = false;
+      stateVersion = "22.11";
+    };
   };
 }
