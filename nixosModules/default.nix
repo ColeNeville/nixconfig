@@ -11,6 +11,7 @@ inputs: {
   configuration-bahamut = import ./configuration/bahamut;
   configuration-chocobo = import ./configuration/chocobo;
   configuration-garuda = import ./configuration/garuda;
+  configuration-goblin = import ./configuration/goblin;
   configuration-ozma = import ./configuration/ozma;
 
   hardware-garuda = import ./hardware/garuda;
