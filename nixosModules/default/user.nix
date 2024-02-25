@@ -46,6 +46,7 @@ in {
           "docker"
           "vboxusers"
           "libvirtd"
+          "scanner"
         ];
 
         openssh.authorizedKeys.keys = lib.mkDefault [

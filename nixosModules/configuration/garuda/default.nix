@@ -140,6 +140,7 @@ in {
 
       pulseaudio.enable = false;
       bluetooth.enable = true;
+      sane.enable = true;
     };
 
     sound.enable = true;
@@ -193,6 +194,7 @@ in {
 
       libsForQt5.discover
       libsForQt5.ksshaskpass
+      libsForQt5.skanlite
     ];
 
     time.timeZone = "America/Edmonton";
