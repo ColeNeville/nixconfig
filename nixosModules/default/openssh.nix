@@ -9,72 +9,56 @@ in {
     };
 
     knownHosts = {
-      alexander-ecdsa = {
-        publicKey = hosts.alexander.ecdsa;
+      alexander = {
+        publicKey = hosts.alexander;
         hostNames = [
           "alexander"
           "alexander.local.coleslab.com"
         ];
       };
 
-      alexander-ed25519 = {
-        publicKey = hosts.alexander.ed25519;
+      alexander-1 = {
+        publicKey = hosts.alexander-1;
         hostNames = [
-          "alexander"
-          "alexander.local.coleslab.com"
+          "alexander-1"
+          "alexander-1.local.coleslab.com"
         ];
       };
 
-      alexander-rsa = {
-        publicKey = hosts.alexander.rsa;
+      alexander-2 = {
+        publicKey = hosts.alexander-2;
         hostNames = [
-          "alexander"
-          "alexander.local.coleslab.com"
+          "alexander-2"
+          "alexander-2.local.coleslab.com"
         ];
       };
 
-      alexander-4-ed25519 = {
-        publicKey = hosts.alexander-4.ed25519;
+      alexander-3 = {
+        publicKey = hosts.alexander-3;
+        hostNames = [
+          "alexander-3"
+          "alexander-3.local.coleslab.com"
+        ];
+      };
+
+      alexander-4 = {
+        publicKey = hosts.alexander-4;
         hostNames = [
           "alexander-4"
           "alexander-4.local.coleslab.com"
         ];
       };
 
-      alexander-4-rsa = {
-        publicKey = hosts.alexander-4.rsa;
-        hostNames = [
-          "alexander-4"
-          "alexander-4.local.coleslab.com"
-        ];
-      };
-
-      moogle-ed25519 = {
-        publicKey = hosts.moogle.ed25519;
+      moogle = {
+        publicKey = hosts.moogle;
         hostNames = [
           "moogle"
           "moogle.local.coleslab.com"
         ];
       };
 
-      zodiark-ecdsa = {
-        publicKey = hosts.zodiark.ecdsa;
-        hostNames = [
-          "zodiark"
-          "zodiark.local.coleslab.com"
-        ];
-      };
-
-      zodiark-ed25519 = {
-        publicKey = hosts.zodiark.ed25519;
-        hostNames = [
-          "zodiark"
-          "zodiark.local.coleslab.com"
-        ];
-      };
-
-      zodiark-rsa = {
-        publicKey = hosts.zodiark.rsa;
+      zodiark = {
+        publicKey = hosts.zodiark;
         hostNames = [
           "zodiark"
           "zodiark.local.coleslab.com"

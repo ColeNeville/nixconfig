@@ -9,18 +9,8 @@
 in {
   config = {
     nixconfig = {
-      autoUpgrade = {
-        enable = false;
-      };
-    };
-
-    custom = {
       plasma = {
         enable = true;
-      };
-      home-manager = {
-        enable = true;
-        home = ./home.nix;
       };
     };
 
@@ -168,13 +158,13 @@ in {
     virtualisation = {
       libvirtd.enable = true;
 
-      virtualbox = {
-        host = {
-          enable = true;
-          package = pkgs.vbox.virtualbox;
-          enableExtensionPack = true;
-        };
-      };
+      # virtualbox = {
+      #   host = {
+      #     enable = true;
+      #     package = pkgs.vbox.virtualbox;
+      #     enableExtensionPack = true;
+      #   };
+      # };
 
       docker.enable = true;
       spiceUSBRedirection.enable = true;
@@ -182,6 +172,10 @@ in {
 
     programs = {
       virt-manager.enable = true;
+    };
+
+    home-manager = {
+      users.cole = import ./home.nix;
     };
 
     environment.systemPackages = with pkgs; [
@@ -198,9 +192,6 @@ in {
     ];
 
     time.timeZone = "America/Edmonton";
-
-    system = {
-      stateVersion = "22.11";
-    };
+    system.autoUpgrade.enable = false;
   };
 }

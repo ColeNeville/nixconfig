@@ -4,9 +4,9 @@
   pkgs,
   ...
 }: let
-  cfg = config.custom.plasma;
+  cfg = config.nixconfig.plasma;
 in {
-  options.custom = {
+  options.nixconfig = {
     plasma = {
       enable = lib.mkEnableOption "plasma";
     };

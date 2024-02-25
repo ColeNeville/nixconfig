@@ -16,19 +16,7 @@ in {
     ./openssh.nix
   ];
 
-  options.nixconfig = {
-    autoUpgrade = {
-      enable = lib.mkEnableOption "system.autoUpgrade";
-    };
-  };
-
   config = {
-    nixconfig = {
-      autoUpgrade = {
-        enable = lib.mkDefault true;
-      };
-    };
-
     nix = {
       settings = {
         auto-optimise-store = true;
@@ -54,21 +42,6 @@ in {
         min-free = ${toString (100 * 1024 * 1024)}
         max-free = ${toString (1024 * 1024 * 1024)}
       '';
-    };
-
-    system.autoUpgrade = {
-      enable = config.nixconfig.autoUpgrade.enable;
-      flake = "github:coleneville/nixconfig/main";
-      persistent = true;
-
-      dates = "23:00";
-      randomizedDelaySec = "5h";
-
-      allowReboot = true;
-      rebootWindow = {
-        lower = "23:00";
-        upper = "06:00";
-      };
     };
 
     environment = {
@@ -100,5 +73,26 @@ in {
     };
 
     time.timeZone = lib.mkDefault "America/Edmonton";
+
+    system = {
+      autoUpgrade = {
+        enable = lib.mkDefault true;
+        flake = "github:coleneville/nixconfig/main";
+        persistent = lib.mkDefault true;
+
+        dates = lib.mkDefault "23:00";
+        randomizedDelaySec = lib.mkDefault "5h";
+
+        allowReboot = lib.mkDefault true;
+        rebootWindow = {
+          lower = lib.mkDefault "23:00";
+          upper = lib.mkDefault "06:00";
+        };
+      };
+
+      stateVersion = "22.11";
+    };
   };
+
+  
 }
