@@ -49,6 +49,14 @@ in {
         ];
       };
 
+      goblin = {
+        publicKey = hosts.goblin;
+        hostNames = [
+          "goblin"
+          "goblin.local.coleslab.com"
+        ];
+      };
+
       moogle = {
         publicKey = hosts.moogle;
         hostNames = [
