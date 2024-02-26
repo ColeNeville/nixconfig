@@ -37,7 +37,7 @@
       };
 
       telegraf = {
-        enable = false;
+        enable = true;
 
         environmentFiles = [
           config.age.secrets."telegraf.env".path
@@ -45,11 +45,25 @@
       };
 
       k3s = {
-        enable = false;
+        enable = true;
 
-        role = "agent";
+        role = "server";
         serverAddr = "https://192.168.73.53:6443";
         tokenFile = config.age.secrets."k3s-token".path;
+      };
+    };
+
+    age.secrets = {
+      "telegraf.env" = {
+        file = ../../../secrets/telegraf.env.age;
+        owner = "telegraf";
+        group = "telegraf";
+      };
+
+      "k3s-token" = {
+        file = ../../../secrets/k3s-token.age;
+        owner = "root";
+        group = "root";
       };
     };
 

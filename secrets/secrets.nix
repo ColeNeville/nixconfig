@@ -9,6 +9,7 @@ in {
     hosts.alexander-2
     hosts.alexander-3
     hosts.alexander-4
+    hosts.goblin
   ];
 
   "k3s-token.age".publicKeys = [
@@ -17,5 +18,6 @@ in {
     hosts.alexander-2
     hosts.alexander-3
     hosts.alexander-4
+    hosts.goblin
   ];
 }
