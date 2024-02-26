@@ -15,6 +15,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    home-manager-master = {
+      url = "github:nix-community/home-manager/master";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+
     agenix = {
       url = "github:ryantm/agenix/13ac9ac6d68b9a0896e3d43a082947233189e247";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -37,6 +42,7 @@
     nixos-hardware,
     nixos-generators,
     home-manager,
+    home-manager-master,
     agenix,
     ...
   }: (
@@ -45,8 +51,7 @@
         home-manager.nixosModules.home-manager
 
         agenix.nixosModules.default
-        
-        self.nixosModules.build
+
         self.nixosModules.default
         self.nixosModules.telegraf
       ];
@@ -83,27 +88,13 @@
         inherit (nixpkgs.lib) mapAttrs nixosSystem;
         inherit (nixpkgs.lib.attrsets) attrByPath;
         inherit (flake-utils.lib) eachDefaultSystem;
-
-        nixosImage = systemConfig: let
-          attrPath = builtins.filter (element: ! builtins.isList element) (
-            builtins.split "[\.]" systemConfig.custom.imageAttribute
-          );
-        in (
-          lib.attrByPath attrPath null systemConfig
-        );
       };
     in
       {
-        # Exported lib functions
-        lib = {
-          inherit (lib) nixosImage;
-        };
-
         overlays = {
           default = (
             final: prev: {
               nixconfig = self.packages.${prev.system};
-              custom = self.packages.${prev.system};
             }
           );
 
@@ -143,7 +134,7 @@
               ++ defaultModules;
           };
 
-          goblin = lib.nixosSystem {
+          goblin = nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
             pkgs = self.pkgs.x86_64-linux;
 

@@ -46,7 +46,7 @@ in {
 
     environment = {
       defaultPackages = with pkgs; [
-        custom.default
+        nixconfig.default
       ];
 
       systemPackages = with pkgs; [
