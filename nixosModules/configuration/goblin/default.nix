@@ -52,6 +52,9 @@
 
       logind = {
         lidSwitch = "ignore";
+        rebootKey = "ignore";
+        suspendKey = "ignore";
+        hibernateKey = "ignore";
       };
     };
 
