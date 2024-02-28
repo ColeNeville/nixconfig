@@ -136,17 +136,25 @@
 
           goblin = nixpkgs-unstable.lib.nixosSystem {
             system = "x86_64-linux";
-            pkgs = self.pkgs.x86_64-linux;
+            pkgs = import nixpkgs-unstable {
+              inherit system;
+
+              config.allowUnfree = true;
+            };
 
             specialArgs = {inherit inputs;};
             modules =
               [
+                agenix.nixosModules.default
+
+                self.nixosModules.default
+                self.nixosModules.telegraf
+
                 self.nixosModules.hardware-goblin
                 nixos-hardware.nixosModules.common-cpu-intel
                 nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
                 self.nixosModules.configuration-goblin
-              ]
-              ++ defaultModules;
+              ];
           };
 
           # Raspberry Pis
