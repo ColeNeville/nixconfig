@@ -137,8 +137,7 @@
           goblin = nixpkgs-unstable.lib.nixosSystem {
             system = "x86_64-linux";
             pkgs = import nixpkgs-unstable {
-              inherit system;
-
+              system = "x86_64-linux";
               config.allowUnfree = true;
             };
 
