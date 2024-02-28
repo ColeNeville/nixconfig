@@ -130,30 +130,21 @@
                 self.nixosModules.hardware-garuda
                 nixos-hardware.nixosModules.framework-12th-gen-intel
                 self.nixosModules.configuration-garuda
-              ]
-              ++ defaultModules;
+              ] ++ defaultModules;
           };
 
-          goblin = nixpkgs-unstable.lib.nixosSystem {
+          goblin = nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
-            pkgs = import nixpkgs-unstable {
-              system = "x86_64-linux";
-              config.allowUnfree = true;
-            };
+            pkgs = self.pkgs.x86_64-linux;
 
             specialArgs = {inherit inputs;};
             modules =
               [
-                agenix.nixosModules.default
-
-                self.nixosModules.default
-                self.nixosModules.telegraf
-
                 self.nixosModules.hardware-goblin
                 nixos-hardware.nixosModules.common-cpu-intel
                 nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
                 self.nixosModules.configuration-goblin
-              ];
+              ] ++ defaultModules;
           };
 
           # Raspberry Pis
