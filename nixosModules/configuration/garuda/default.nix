@@ -9,9 +9,7 @@
 in {
   config = {
     nixconfig = {
-      plasma = {
-        enable = true;
-      };
+      plasma.enable = true;
     };
 
     boot = {
@@ -84,13 +82,8 @@ in {
 
       power-profiles-daemon.enable = false;
 
-      tailscale = {
-        enable = true;
-      };
-
-      printing = {
-        enable = true;
-      };
+      tailscale.enable = true;
+      printing.enable = true;
 
       unbound = {
         enable = true;
@@ -157,15 +150,6 @@ in {
 
     virtualisation = {
       libvirtd.enable = true;
-
-      # virtualbox = {
-      #   host = {
-      #     enable = true;
-      #     package = pkgs.vbox.virtualbox;
-      #     enableExtensionPack = true;
-      #   };
-      # };
-
       docker.enable = true;
       spiceUSBRedirection.enable = true;
     };

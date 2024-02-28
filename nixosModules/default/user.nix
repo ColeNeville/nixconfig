@@ -8,7 +8,14 @@
   inherit (inputs) self;
   ssh-keys = import ../../ssh-keys.nix;
 in {
+  options.nixconfig = {
+    homeManager = {
+      enable = lib.mkEnableOption "Enable Home Manager";
+    };
+  };
+
   config = {
+    nixconfig.homeManager.enable = lib.mkDefault true;
     nix.settings.trusted-users = ["cole"];
 
     users = {
@@ -35,13 +42,12 @@ in {
         ];
 
         openssh.authorizedKeys.keys = lib.mkDefault [
-          ssh-keys.users."cole@garuda"
           ssh-keys.users."cardno:24_733_178"
         ];
       };
     };
 
-    home-manager = {
+    home-manager = lib.mkIf config.nixconfig.homeManager.enable {
       useGlobalPkgs = lib.mkDefault true;
       useUserPackages = lib.mkDefault true;
       extraSpecialArgs = {inherit inputs;};

@@ -17,11 +17,7 @@
       };
     };
 
-    security = {
-      sudo = {
-        execWheelOnly = true;
-      };
-    };
+    security.sudo.execWheelOnly = true;
 
     networking = {
       hostName = "goblin";
@@ -30,9 +26,7 @@
     };
 
     services = {
-      openssh = {
-        enable = true;
-      };
+      openssh.enable = true;
 
       telegraf = {
         enable = true;
@@ -44,7 +38,6 @@
 
       k3s = {
         enable = true;
-
         role = "server";
         serverAddr = "https://192.168.73.53:6443";
         tokenFile = config.age.secrets."k3s-token".path;
@@ -56,6 +49,8 @@
         suspendKey = "ignore";
         hibernateKey = "ignore";
       };
+
+      ollama.enable = true;
     };
 
     age.secrets = {
@@ -72,33 +67,11 @@
       };
     };
 
-    systemd = {
-      services = {
-        ollama = {
-          wantedBy = [ "multi-user.target" ];
-          description = "Server for local large language models";
-          after = [ "network.target" ];
-          environment = {
-            HOME = "%S/ollama";
-            OLLAMA_MODELS = "%S/ollama/models";
-            OLLAMA_HOST = "127.0.0.1:11434";
-          };
-          serviceConfig = {
-            ExecStart = "${lib.getExe pkgs.ollama} serve";
-            WorkingDirectory = "/var/lib/ollama";
-            StateDirectory = [ "ollama" ];
-            DynamicUser = true;
-          };
-        };
-      };
+    virtualisation = {
+      containerd.enable = true;
+      containers.cdi.dynamic.nvidia.enable = true;
     };
 
-    environment.systemPackages = with pkgs; [
-      ollama
-    ];
-
-    system = {
-      stateVersion = "23.11";
-    };
+    system.stateVersion = "23.11";
   };
 }

@@ -134,7 +134,7 @@
               ++ defaultModules;
           };
 
-          goblin = nixpkgs.lib.nixosSystem {
+          goblin = nixpkgs-unstable.lib.nixosSystem {
             system = "x86_64-linux";
             pkgs = self.pkgs.x86_64-linux;
 
