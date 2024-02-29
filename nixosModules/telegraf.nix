@@ -48,6 +48,10 @@ in {
         inputs.processes = lib.mkDefault {};
         inputs.swap = lib.mkDefault {};
         inputs.system = lib.mkDefault {};
+
+        inputs.systemd_units = {
+          unittype = "service";
+        };
       };
     };
   };
