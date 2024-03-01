@@ -9,11 +9,12 @@
 in {
   config = {
     nixconfig = {
-      plasma.enable = true;
+      plasma.enable = false;
     };
 
     boot = {
       binfmt.emulatedSystems = ["aarch64-linux"];
+      kernelPackages = pkgs.linuxPackages_latest;
 
       loader = {
         systemd-boot.enable = true;
@@ -44,6 +45,8 @@ in {
 
     services = {
       xserver = {
+        enable = true;
+        
         videoDrivers = ["modesetting"];
 
         libinput = {
@@ -56,6 +59,15 @@ in {
 
         digimend.enable = true;
         wacom.enable = true;
+
+        displayManager = {
+          sddm.enable = true;
+        };
+
+        desktopManager = {
+          xfce.enable = true;
+          plasma5.enable = true;
+        };
       };
 
       pipewire = {
@@ -70,17 +82,9 @@ in {
       };
 
       fwupd.enable = true;
+      fprintd.enable = lib.mkDefault true;
 
-      tlp = {
-        enable = true;
-
-        settings = {
-          START_CHARGE_THRESH_BAT0 = 0;
-          STOP_CHARGE_THRESH_BAT0 = 80;
-        };
-      };
-
-      power-profiles-daemon.enable = false;
+      power-profiles-daemon.enable = true;
 
       tailscale.enable = true;
       printing.enable = true;
@@ -124,6 +128,10 @@ in {
       pulseaudio.enable = false;
       bluetooth.enable = true;
       sane.enable = true;
+
+      sensor = {
+        iio.enable = true;
+      };
     };
 
     sound.enable = true;
