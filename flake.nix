@@ -145,6 +145,8 @@
             specialArgs = {inherit inputs;};
             modules =
               [
+                "${nixpkgs-unstable}/modules/services/misc/ollama.nix"
+
                 self.nixosModules.hardware-goblin
                 nixos-hardware.nixosModules.common-cpu-intel
                 nixos-hardware.nixosModules.common-gpu-nvidia-nonprime

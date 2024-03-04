@@ -56,6 +56,12 @@
         suspendKey = "ignore";
         hibernateKey = "ignore";
       };
+
+      ollama = {
+        enable = true;
+        listenAddress = "0.0.0.0:11434";
+        acceleration = "cuda";
+      };
     };
 
     age.secrets = {
@@ -72,30 +78,30 @@
       };
     };
 
-    systemd = {
-      services = {
-        ollama = {
-          wantedBy = [ "multi-user.target" ];
-          description = "Server for local large language models";
-          after = [ "network.target" ];
-          environment = {
-            HOME = "%S/ollama";
-            OLLAMA_MODELS = "%S/ollama/models";
-            OLLAMA_HOST = "127.0.0.1:11434";
-          };
-          serviceConfig = {
-            ExecStart = "${lib.getExe pkgs.ollama} serve";
-            WorkingDirectory = "/var/lib/ollama";
-            StateDirectory = [ "ollama" ];
-            DynamicUser = true;
-          };
-        };
-      };
-    };
+    # systemd = {
+    #   services = {
+    #     ollama = {
+    #       wantedBy = [ "multi-user.target" ];
+    #       description = "Server for local large language models";
+    #       after = [ "network.target" ];
+    #       environment = {
+    #         HOME = "%S/ollama";
+    #         OLLAMA_MODELS = "%S/ollama/models";
+    #         OLLAMA_HOST = "127.0.0.1:11434";
+    #       };
+    #       serviceConfig = {
+    #         ExecStart = "${lib.getExe pkgs.ollama} serve";
+    #         WorkingDirectory = "/var/lib/ollama";
+    #         StateDirectory = [ "ollama" ];
+    #         DynamicUser = true;
+    #       };
+    #     };
+    #   };
+    # };
 
-    environment.systemPackages = with pkgs; [
-      ollama
-    ];
+    # environment.systemPackages = with pkgs; [
+    #   ollama
+    # ];
 
     system = {
       stateVersion = "23.11";
