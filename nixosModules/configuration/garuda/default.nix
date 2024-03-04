@@ -51,6 +51,7 @@ in {
 
         libinput = {
           enable = true;
+
           touchpad = {
             naturalScrolling = true;
             clickMethod = "buttonareas";
@@ -128,6 +129,7 @@ in {
       pulseaudio.enable = false;
       bluetooth.enable = true;
       sane.enable = true;
+      keyboard.qmk.enable = true;
 
       sensor = {
         iio.enable = true;
