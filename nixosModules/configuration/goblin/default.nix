@@ -61,6 +61,9 @@
         enable = true;
         listenAddress = "0.0.0.0:11434";
         acceleration = "cuda";
+        # This needs to be unstabled while this ollama service section is not in
+        # the nixpkgs stable channel
+        package = pkgs.unstable.ollama;
       };
     };
 
