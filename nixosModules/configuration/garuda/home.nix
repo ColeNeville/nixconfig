@@ -85,6 +85,11 @@
       # moonlight-qt # Moonlight is a game streaming service
       # remmina # Remote desktop client
 
+      # Communication clients
+      keybase-gui # Keybase
+
+      unstable.gpt4all # Local LLM tool
+
       # Networking
       nmap # Network scanner
       wireshark # Network packet analyzer

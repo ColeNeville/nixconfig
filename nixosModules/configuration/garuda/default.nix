@@ -109,6 +109,7 @@ in {
 
       flatpak.enable = true;
       packagekit.enable = true;
+      keybase.enable = true;
     };
 
     hardware = {
@@ -183,6 +184,8 @@ in {
       libsForQt5.discover
       libsForQt5.ksshaskpass
       libsForQt5.skanlite
+      libsForQt5.skanpage
+      libsForQt5.yakuake
     ];
 
     time.timeZone = "America/Edmonton";
