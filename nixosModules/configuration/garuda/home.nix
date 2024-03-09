@@ -13,19 +13,19 @@
           SSH_ASKPASS = "${pkgs.libsForQt5.ksshaskpass}/bin/ksshaskpass";
         };
 
-        shellAliases = {
-          # Get kitty to work properly with ssh
-          ssh = "TERM='xterm-256color' ssh";
-        };
+        # shellAliases = {
+        #   # Get kitty to work properly with ssh
+        #   ssh = "TERM='xterm-256color' ssh";
+        # };
       };
 
-      kitty = {
-        enable = true;
+      # kitty = {
+      #   enable = true;
 
-        shellIntegration = {
-          enableZshIntegration = true;
-        };
-      };
+      #   shellIntegration = {
+      #     enableZshIntegration = true;
+      #   };
+      # };
 
       command-not-found.enable = true;
     };
