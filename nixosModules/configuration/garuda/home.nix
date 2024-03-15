@@ -40,7 +40,7 @@
 
     services = {
       gpg-agent = {
-        pinentryFlavor = "curses";
+        pinentryFlavor = "qt";
       };
     };
 
