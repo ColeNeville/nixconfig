@@ -20,7 +20,7 @@ in {
 
     users = {
       mutableUsers = lib.mkDefault false;
-      defaultUserShell = pkgs.zsh;
+      defaultUserShell = pkgs.fish;
 
       users.cole = {
         isNormalUser = true;

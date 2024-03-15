@@ -7,32 +7,40 @@
 
   config = {
     programs = {
-      zsh = {
-        sessionVariables = {
-          KUBECONFIG = "$HOME/.kube/config";
-          SSH_ASKPASS = "${pkgs.libsForQt5.ksshaskpass}/bin/ksshaskpass";
-        };
+      fish = {
+        enable = true;
 
-        # shellAliases = {
-        #   # Get kitty to work properly with ssh
-        #   ssh = "TERM='xterm-256color' ssh";
-        # };
+        shellInit = ''
+          set -x KUBECONFIG $HOME/.kube/config
+          set -x SSH_ASKPASS ${pkgs.libsForQt5.ksshaskpass}/bin/ksshaskpass
+          set -x EDITOR ${pkgs.nano}/bin/nano
+        '';
+
+        shellAliases = {
+          hldr = "hledger --strict";
+          hldrm = "hldr -f $HOME/finance/main.journal";
+        };
       };
 
-      # kitty = {
-      #   enable = true;
+      emacs = {
+        enable = true;
 
-      #   shellIntegration = {
-      #     enableZshIntegration = true;
-      #   };
-      # };
+        extraPackages = epkgs: [
+          epkgs.ledger-mode
+          epkgs.nix-mode
+        ];
+
+	      extraConfig = ''
+          (setq standard-indent 2)
+        '';
+      };
 
       command-not-found.enable = true;
     };
 
     services = {
       gpg-agent = {
-        pinentryFlavor = "qt";
+        pinentryFlavor = "curses";
       };
     };
 
@@ -44,29 +52,7 @@
         };
       };
 
-      desktopEntries = {
-        # # Workaround for a bug that prevents proper rendering without --disable-gpu-driver-bug-workarounds
-        # logseq = {
-        #   name = "Logseq";
-        #   genericName = "Note taking and knowledge base";
-        #   comment = "Logseq is a local-first, non-linear, outliner notebook for organizing and sharing your personal knowledge base.";
-        #   icon = "logseq";
-        #   exec = "${pkgs.unstable.logseq}/bin/logseq --disable-gpu-driver-bug-workarounds";
-        #   terminal = false;
-        #   categories = ["Office" "TextEditor" "Utility"];
-        # };
-
-        # Workaround for a bug that prevents proper rendering without --disable-gpu
-        # vscode-no-gpu = {
-        #   name = "VSCode (No GPU Rendering)";
-        #   genericName = "Text Editor";
-        #   comment = "Visual Studio Code is a source-code editor made by Microsoft for Windows, Linux and macOS.";
-        #   icon = "code";
-        #   exec = "${pkgs.vscode}/bin/code --disable-gpu";
-        #   terminal = false;
-        #   categories = ["Development" "Utility"];
-        # };
-      };
+      desktopEntries = {};
     };
 
     home.packages = with pkgs; [
@@ -79,11 +65,6 @@
       # Development Dependancies
       i2c-tools # I2C tools
       platformio # Arduino development tools
-
-      # Remote desktop
-      # parsec-bin # Parsec is a game streaming service
-      # moonlight-qt # Moonlight is a game streaming service
-      # remmina # Remote desktop client
 
       # Communication clients
       keybase-gui # Keybase
@@ -114,6 +95,14 @@
 
       gcc
       gcc-arm-embedded
+
+      python311
+      python311Packages.pipx
+
+      # Plain text accounting
+      hledger
+      hledger-ui
+      hledger-web
     ];
   };
 }

@@ -34,12 +34,8 @@
         };
       };
 
-      zsh = {
+      fish = {
         enable = lib.mkDefault true;
-
-        oh-my-zsh = {
-          enable = lib.mkDefault true;
-        };
       };
     };
 

@@ -62,7 +62,10 @@ in {
       ];
     };
 
-    programs.dconf.enable = lib.mkDefault true;
+    programs = {
+      dconf.enable = lib.mkDefault true;
+      fish.enable = lib.mkDefault true;
+    };
     
     security = {
       rtkit.enable = lib.mkDefault true;
