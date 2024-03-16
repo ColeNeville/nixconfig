@@ -247,53 +247,6 @@
             config.allowUnfree = true;
             overlays = builtins.attrValues self.overlays;
           };
-
-          availableEmacsPackages = pkgs.emacsPackagesFor pkgs.emacs;
-          emacsWithPackages = availableEmacsPackages.withPackages;
-
-          emacsConfig = ''
-            (load-theme 'zenburn t)
-            (setq standard-indent 2)
-            (tool-bar-mode -1)
-            (scroll-bar-mode -1)
-            (global-display-line-numbers-mode 1)
-
-            (require 'ledger-mode)
-            (add-to-list 'auto-mode-alist '("\\.journal\\'" . ledger-mode))
-            (setq ledger-binary-path "ledger")
-
-            (require 'nix-mode)
-            (add-to-list 'auto-mode-alist '("\\.nix\\'" . nix-mode))
-
-            (require 'helm)
-            (global-set-key (kbd "M-x") 'helm-M-x)
-
-            (require 'which-key)
-            (which-key-mode)
-
-            (require 'treemacs)
-            (treemacs)
-          '';
-
-          emacsPackages = epkgs: let
-            packages = [
-              epkgs.ledger-mode
-              epkgs.nix-mode
-
-              epkgs.which-key
-              epkgs.treemacs
-              epkgs.helm
-
-              epkgs.zenburn-theme
-            ];
-
-            myConfig = epkgs.trivialBuild {
-              pname = "my-config";
-              src = pkgs.writeText "default.el" emacsConfig;
-              version = "0.1";
-              packageRequires = packages;
-            };
-          in packages ++ [myConfig];
         in {
           inherit pkgs;
 
@@ -319,7 +272,8 @@
               ];
             };
 
-            customizedEmacs = import ./packages/emacs pkgs;
+            emacs-customized = import ./packages/emacs pkgs;
+            garuda-wallpaper = import ./packages/garuda-wallpaper pkgs;
           };
 
           formatter = pkgs.alejandra;

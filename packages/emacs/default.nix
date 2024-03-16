@@ -11,10 +11,10 @@ pkgs: let
         epkgs.nix-mode
 
         epkgs.which-key
-        epkgs.treemacs
+        epkgs.neotree
         epkgs.helm
 
-        epkgs.zenburn-theme
+        epkgs.exotica-theme
       ];
 
       myConfig = epkgs.trivialBuild {

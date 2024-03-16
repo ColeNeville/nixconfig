@@ -24,7 +24,7 @@
 
       emacs = {
         enable = true;
-        package = pkgs.nixconfig.customizedEmacs;
+        package = pkgs.nixconfig.emacs-customized;
       };
 
       command-not-found.enable = true;
@@ -34,6 +34,8 @@
           
         };
       };
+
+      feh.enable = true;
     };
 
     services = {
@@ -53,28 +55,45 @@
       desktopEntries = {};
     };
 
-    xsession.windowManager.i3 = {
-      enable = true;
+    xsession = {
+      windowManager.i3 = {
+        enable = true;
       
-      config = {
-        modifier = "Mod4"; # Super Key
+        config = {
+          modifier = "Mod4"; # Super Key
 
-        bars = [
-          {
-            position = "top";
+          startup = [
+            {
+              command = "feh --bg-scale ${pkgs.nixconfig.garuda-wallpaper}/share/dalle2.webp";
+            }
+          ];
+          
+          fonts = {
+            names = ["Fira Code"];
+            size = 12.0;
+          };
 
-            fonts = {
-              names = ["Fira Code"];
-              size = 12.0;
-            };
+          window = {
+            border = 5;
+          };
+
+          bars = [
+            {
+              position = "top";
+
+              fonts = {
+                names = ["Fira Code"];
+                size = 12.0;
+              };
             
-            statusCommand = "${pkgs.i3status}/bin/i3status";
+              statusCommand = "${pkgs.i3status}/bin/i3status";
 
-            extraConfig = ''
-              workspace_min_width 40
-            '';
-          }
-        ];
+              extraConfig = ''
+                workspace_min_width 80
+              '';
+            }
+          ];
+        };
       };
     };
 
@@ -127,6 +146,8 @@
       hledger
       hledger-ui
       hledger-web
+
+      nixconfig.garuda-wallpaper
     ];
   };
 }
