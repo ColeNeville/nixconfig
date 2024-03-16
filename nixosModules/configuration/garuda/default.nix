@@ -62,12 +62,11 @@ in {
         wacom.enable = true;
 
         displayManager = {
-          sddm.enable = true;
+          lightdm.enable = true;
         };
 
-        desktopManager = {
-          xfce.enable = true;
-          plasma5.enable = true;
+        windowManager = {
+          i3.enable = true;
         };
       };
 
@@ -159,6 +158,16 @@ in {
       };
     };
 
+    xdg.portal = {
+      enable = true;
+
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-kde
+      ];
+
+      config.common.default = "*";
+    };
+
     virtualisation = {
       libvirtd.enable = true;
       docker.enable = true;
@@ -180,12 +189,6 @@ in {
       # Filesystems
       ntfs3g
       exfat
-
-      libsForQt5.discover
-      libsForQt5.ksshaskpass
-      libsForQt5.skanlite
-      libsForQt5.skanpage
-      libsForQt5.yakuake
     ];
 
     time.timeZone = "America/Edmonton";

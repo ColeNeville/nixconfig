@@ -24,15 +24,7 @@
 
       emacs = {
         enable = true;
-
-        extraPackages = epkgs: [
-          epkgs.ledger-mode
-          epkgs.nix-mode
-        ];
-
-	      extraConfig = ''
-          (setq standard-indent 2)
-        '';
+        package = pkgs.nixconfig.customizedEmacs;
       };
 
       command-not-found.enable = true;
@@ -40,7 +32,7 @@
 
     services = {
       gpg-agent = {
-        pinentryFlavor = "qt";
+        pinentryFlavor = "curses";
       };
     };
 
@@ -100,6 +92,7 @@
       python311Packages.pipx
 
       # Plain text accounting
+      ledger
       hledger
       hledger-ui
       hledger-web
