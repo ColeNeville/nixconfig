@@ -270,11 +270,9 @@
 
             (require 'which-key)
             (which-key-mode)
-            ;;(use-package witch-key
-            ;;  :init (which-key-mode)
-            ;;  :diminish which-key-mode
-            ;;  :config
-            ;;    (setq which-key-idle-delay))
+
+            (require 'treemacs)
+            (treemacs)
           '';
 
           emacsPackages = epkgs: let
@@ -283,6 +281,7 @@
               epkgs.nix-mode
 
               epkgs.which-key
+              epkgs.treemacs
               epkgs.helm
 
               epkgs.zenburn-theme
@@ -320,7 +319,7 @@
               ];
             };
 
-            customizedEmacs = emacsWithPackages emacsPackages;
+            customizedEmacs = import ./packages/emacs pkgs;
           };
 
           formatter = pkgs.alejandra;

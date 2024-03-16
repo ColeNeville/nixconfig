@@ -28,6 +28,12 @@
       };
 
       command-not-found.enable = true;
+
+      i3status = {
+        general = {
+          
+        };
+      };
     };
 
     services = {
@@ -47,12 +53,37 @@
       desktopEntries = {};
     };
 
+    xsession.windowManager.i3 = {
+      enable = true;
+      
+      config = {
+        modifier = "Mod4"; # Super Key
+
+        bars = [
+          {
+            position = "top";
+
+            fonts = {
+              names = ["Fira Code"];
+              size = 12.0;
+            };
+            
+            statusCommand = "${pkgs.i3status}/bin/i3status";
+
+            extraConfig = ''
+              workspace_min_width 40
+            '';
+          }
+        ];
+      };
+    };
+
     home.packages = with pkgs; [
       # 3D Printing
       printrun # Printrun
 
       # IDEs
-      vscode # Visual Studio Code
+      # vscode # Visual Studio Code
 
       # Development Dependancies
       i2c-tools # I2C tools

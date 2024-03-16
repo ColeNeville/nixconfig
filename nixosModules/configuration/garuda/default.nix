@@ -175,7 +175,8 @@ in {
     };
 
     programs = {
-      virt-manager.enable = true;
+      virt-manager.enable = true; 
+      i3lock.enable = true;
     };
 
     home-manager = {
