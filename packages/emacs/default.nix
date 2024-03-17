@@ -2,26 +2,22 @@ pkgs: let
   availableEmacsPackages = pkgs.emacsPackagesFor pkgs.emacs;
   emacsWithPackages = availableEmacsPackages.withPackages;
 
-  myConfigContents = builtins.readFile ./default.el;
-  
-  emacsPackages = epkgs:
-    let
-      packages = [
-        epkgs.ledger-mode
-        epkgs.nix-mode
+  emacsPackages = epkgs: [
+    # Themes
+    epkgs.modus-themes
+    epkgs.material-theme
+    epkgs.exotica-theme
 
-        epkgs.which-key
-        epkgs.neotree
-        epkgs.helm
+    epkgs.ace-window
+    epkgs.use-package
+    epkgs.spacious-padding
 
-        epkgs.exotica-theme
-      ];
-
-      myConfig = epkgs.trivialBuild {
-        pname = "my-config";
-        src = pkgs.writeText "default.el" myConfigContents;
-        version = "0.1";
-        packageRequires = packages;
-      };
-    in packages ++ [ myConfig ];
+    epkgs.which-key
+    epkgs.neotree
+    epkgs.helm
+    
+    epkgs.ledger-mode
+    epkgs.lua-mode
+    epkgs.nix-mode
+  ];
 in emacsWithPackages emacsPackages

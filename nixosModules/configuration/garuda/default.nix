@@ -66,7 +66,8 @@ in {
         };
 
         windowManager = {
-          i3.enable = true;
+          # i3.enable = true;
+          awesome.enable = true;
         };
       };
 
@@ -190,6 +191,8 @@ in {
       # Filesystems
       ntfs3g
       exfat
+
+      xorg.xauth
     ];
 
     time.timeZone = "America/Edmonton";

@@ -15,11 +15,6 @@
           set -x SSH_ASKPASS ${pkgs.libsForQt5.ksshaskpass}/bin/ksshaskpass
           set -x EDITOR ${pkgs.nano}/bin/nano
         '';
-
-        shellAliases = {
-          hldr = "hledger --strict";
-          hldrm = "hldr -f $HOME/finance/main.journal";
-        };
       };
 
       emacs = {
@@ -45,10 +40,20 @@
     };
 
     xdg = {
+      enable = true;
+
       configFile = {
-        "autostart-scripts/ssh-add.sh" = {
-          source = ./config/autostart-scripts/ssh-add.sh;
+        "emacs/init.el" = {
+          source = ./config/emacs/init.el;
+        };
+ 
+        "autostart-scripts/" = {
+          source = ./config/autostart-scripts;
           executable = true;
+        };
+
+        "awesome/" = {
+          source = ./config/awesome;
         };
       };
 
@@ -56,9 +61,12 @@
     };
 
     xsession = {
-      windowManager.i3 = {
-        enable = true;
+      enable = true;
       
+      windowManager = {
+        i3 = {
+        # enable = true;
+
         config = {
           modifier = "Mod4"; # Super Key
 
@@ -67,10 +75,25 @@
               command = "feh --bg-scale ${pkgs.nixconfig.garuda-wallpaper}/share/dalle2.webp";
             }
           ];
+
+          gaps = {
+            inner = 10;
+            outer = 0;
+          };
+          
+          colors = {
+            focused = {
+              text = "#ffffff";
+              border = "#24715f";
+              childBorder = "#24715f";
+              background = "#24715f";
+              indicator = "#3CAE93";
+            };
+          };
           
           fonts = {
             names = ["Fira Code"];
-            size = 12.0;
+            size = 14.0;
           };
 
           window = {
@@ -94,15 +117,21 @@
             }
           ];
         };
+
+        extraConfig = ''
+          for_window [all] title_window_icon padding 5px
+        '';
+        };
+
+        awesome = {
+          enable = true;
+        };
       };
     };
 
     home.packages = with pkgs; [
       # 3D Printing
       printrun # Printrun
-
-      # IDEs
-      # vscode # Visual Studio Code
 
       # Development Dependancies
       i2c-tools # I2C tools
@@ -147,6 +176,8 @@
       hledger-ui
       hledger-web
 
+      pinentry-emacs
+      
       nixconfig.garuda-wallpaper
     ];
   };
