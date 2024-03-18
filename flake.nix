@@ -29,6 +29,14 @@
       url = "github:nix-community/nixos-generators/246219bc21b943c6f6812bb7744218ba0df08600";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    awesomewm-theme = {
+      url = "github:coleneville/awesome-wm-theme-flake";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "flake-utils";
+      };
+    };
   };
 
   outputs = inputs @ {
@@ -41,7 +49,8 @@
     nixos-generators,
     home-manager,
     home-manager-master,
-    agenix,
+      agenix,
+      awesomewm-theme,
     ...
   }: (
     let
@@ -93,6 +102,10 @@
           default = (
             final: prev: {
               nixconfig = self.packages.${prev.system};
+              awesomewm-theme = awesomewm-theme.packages.${prev.system};
+              lua = prev.lua5_3.withPackages (ps: with ps; [
+                luarocks
+              ]);
             }
           );
 
@@ -274,6 +287,7 @@
 
             emacs-customized = import ./packages/emacs pkgs;
             garuda-wallpaper = import ./packages/garuda-wallpaper pkgs;
+            qtile-config = import ./packages/qtile-config pkgs;
           };
 
           formatter = pkgs.alejandra;

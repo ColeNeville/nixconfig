@@ -51,10 +51,6 @@
           source = ./config/autostart-scripts;
           executable = true;
         };
-
-        "awesome/" = {
-          source = ./config/awesome;
-        };
       };
 
       desktopEntries = {};
@@ -65,7 +61,7 @@
       
       windowManager = {
         i3 = {
-        # enable = true;
+          enable = false;
 
         config = {
           modifier = "Mod4"; # Super Key
@@ -124,8 +120,13 @@
         };
 
         awesome = {
-          enable = true;
+          enable = false;
+          package = pkgs.awesome.override {
+            lua = pkgs.lua; # The value overridden in the overlay (not sure if this is needed)
+          };
         };
+
+        command = "${pkgs.qtile} start";
       };
     };
 
@@ -179,6 +180,9 @@
       pinentry-emacs
       
       nixconfig.garuda-wallpaper
+      awesomewm-theme.default
+
+      lua
     ];
   };
 }

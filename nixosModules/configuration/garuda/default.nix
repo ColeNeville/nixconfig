@@ -62,12 +62,23 @@ in {
         wacom.enable = true;
 
         displayManager = {
-          lightdm.enable = true;
+          startx.enable = true;
         };
 
         windowManager = {
-          # i3.enable = true;
-          awesome.enable = true;
+          awesome = {
+            enable = true;
+            
+            luaModules = with pkgs.luaPackages; [
+              luarocks # Package manager for lua modules
+              vicious
+            ];
+          };
+
+          qtile = {
+            enable = true;
+            configFile = pkgs.nixconfig.qtile-config + /share/qtile/config.py;
+          };
         };
       };
 
@@ -193,6 +204,7 @@ in {
       exfat
 
       xorg.xauth
+      nixconfig.qtile-config
     ];
 
     time.timeZone = "America/Edmonton";

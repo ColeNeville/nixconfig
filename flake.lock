@@ -25,6 +25,29 @@
         "type": "github"
       }
     },
+    "awesomewm-theme": {
+      "inputs": {
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1710705586,
+        "narHash": "sha256-Jb76OyKler9S7hizgIA03rPy1CXukXJKyZ96yNIhHiI=",
+        "owner": "coleneville",
+        "repo": "awesome-wm-theme-flake",
+        "rev": "1948dd0795bc4efc078e492e9cb24b42b7d25257",
+        "type": "github"
+      },
+      "original": {
+        "owner": "coleneville",
+        "repo": "awesome-wm-theme-flake",
+        "type": "github"
+      }
+    },
     "darwin": {
       "inputs": {
         "nixpkgs": [
@@ -211,6 +234,7 @@
     "root": {
       "inputs": {
         "agenix": "agenix",
+        "awesomewm-theme": "awesomewm-theme",
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
         "home-manager-master": "home-manager-master",
