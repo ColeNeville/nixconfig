@@ -268,6 +268,7 @@
             default = pkgs.buildEnv {
               name = "default";
               paths = with pkgs; [
+                cmake
                 coreutils
                 curl
                 dig

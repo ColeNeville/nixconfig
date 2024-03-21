@@ -19,37 +19,61 @@
 
       emacs = {
         enable = true;
-        package = pkgs.nixconfig.emacs-customized;
+        extraPackages = epkgs: [
+          epkgs.use-package
+          epkgs.vterm
+        ];
       };
 
       command-not-found.enable = true;
 
-      i3status = {
-        general = {
-          
+      rofi = {
+        enable = true;
+        location = "center";
+        font = "Fira Code 14";
+        terminal = pkgs.alacritty + /bin/alacritty;
+
+        extraConfig = {
+          modes = ["combi"];
+          combi-modes = ["drun" "window" "ssh"];
         };
       };
 
       feh.enable = true;
+      alacritty.enable = true;
     };
 
     services = {
       gpg-agent = {
         pinentryFlavor = "curses";
       };
+
+      emacs = {
+        enable = true;
+        defaultEditor = true;
+        startWithUserSession = true;
+        
+        client = {
+          enable = true;
+        };
+      };
+
+      betterlockscreen = {
+        enable = true;
+      };
     };
 
     xdg = {
       enable = true;
 
-      configFile = {
-        "emacs/init.el" = {
-          source = ./config/emacs/init.el;
-        };
- 
+      configFile = { 
         "autostart-scripts/" = {
           source = ./config/autostart-scripts;
           executable = true;
+        };
+
+        "alacritty.yml" = {
+          source = ./config/alacritty.yml;
         };
       };
 
@@ -57,77 +81,8 @@
     };
 
     xsession = {
-      enable = true;
-      
-      windowManager = {
-        i3 = {
-          enable = false;
-
-        config = {
-          modifier = "Mod4"; # Super Key
-
-          startup = [
-            {
-              command = "feh --bg-scale ${pkgs.nixconfig.garuda-wallpaper}/share/dalle2.webp";
-            }
-          ];
-
-          gaps = {
-            inner = 10;
-            outer = 0;
-          };
-          
-          colors = {
-            focused = {
-              text = "#ffffff";
-              border = "#24715f";
-              childBorder = "#24715f";
-              background = "#24715f";
-              indicator = "#3CAE93";
-            };
-          };
-          
-          fonts = {
-            names = ["Fira Code"];
-            size = 14.0;
-          };
-
-          window = {
-            border = 5;
-          };
-
-          bars = [
-            {
-              position = "top";
-
-              fonts = {
-                names = ["Fira Code"];
-                size = 12.0;
-              };
-            
-              statusCommand = "${pkgs.i3status}/bin/i3status";
-
-              extraConfig = ''
-                workspace_min_width 80
-              '';
-            }
-          ];
-        };
-
-        extraConfig = ''
-          for_window [all] title_window_icon padding 5px
-        '';
-        };
-
-        awesome = {
-          enable = false;
-          package = pkgs.awesome.override {
-            lua = pkgs.lua; # The value overridden in the overlay (not sure if this is needed)
-          };
-        };
-
-        command = "${pkgs.qtile} start";
-      };
+      enable = false;
+      # command = "${pkgs.qtile} start";
     };
 
     home.packages = with pkgs; [

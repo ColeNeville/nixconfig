@@ -62,7 +62,7 @@ in {
         wacom.enable = true;
 
         displayManager = {
-          startx.enable = true;
+          lightdm.enable = true;
         };
 
         windowManager = {
@@ -77,7 +77,13 @@ in {
 
           qtile = {
             enable = true;
-            configFile = pkgs.nixconfig.qtile-config + /share/qtile/config.py;
+            extraPackages = python3Packages: with python3Packages; [
+              psutil
+            ];
+          };
+
+          bspwm = {
+            enable = true;
           };
         };
       };
@@ -154,13 +160,14 @@ in {
       packages = with pkgs; [
         fira
         fira-code
+        nerdfonts
       ];
 
       fontconfig = {
         enable = true;
 
         subpixel = {
-          rgba = "bgr";
+          rgba = "rgb";
         };
 
         defaultFonts = {
@@ -204,7 +211,7 @@ in {
       exfat
 
       xorg.xauth
-      nixconfig.qtile-config
+      libvterm
     ];
 
     time.timeZone = "America/Edmonton";
