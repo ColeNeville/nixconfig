@@ -14,11 +14,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    home-manager-master = {
-      url = "github:nix-community/home-manager/master";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
-
     agenix = {
       url = "github:ryantm/agenix/13ac9ac6d68b9a0896e3d43a082947233189e247";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -28,14 +23,6 @@
     nixos-generators = {
       url = "github:nix-community/nixos-generators/246219bc21b943c6f6812bb7744218ba0df08600";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    awesomewm-theme = {
-      url = "github:coleneville/awesome-wm-theme-flake";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
-      };
     };
   };
 

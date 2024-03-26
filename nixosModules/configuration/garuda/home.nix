@@ -20,7 +20,10 @@
       emacs = {
         enable = true;
 
+        package = pkgs.emacs29;        
+
         extraPackages = epkgs: [
+          epkgs.org-babel-eval-in-repl
           epkgs.use-package
           epkgs.vterm
         ];
@@ -41,12 +44,23 @@
       };
 
       feh.enable = true;
+      
       alacritty.enable = true;
+
+      ledger = {
+        enable = true;
+        settings = {
+          date-format = "%Y-%m-%d";
+          file = [
+            "~/finance/main.ledger"
+          ];
+        };
+      };
     };
 
     services = {
       gpg-agent = {
-        pinentryFlavor = "curses";
+        pinentryFlavor = "qt";
       };
 
       emacs = {
@@ -128,11 +142,8 @@
 
       # Plain text accounting
       ledger
-      hledger
-      hledger-ui
-      hledger-web
 
-      pinentry-emacs
+      pinentry-qt
       
       nixconfig.garuda-wallpaper
       awesomewm-theme.default
