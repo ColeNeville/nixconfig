@@ -288,7 +288,6 @@
 
             emacs-customized = import ./packages/emacs pkgs;
             garuda-wallpaper = import ./packages/garuda-wallpaper pkgs;
-            qtile-config = import ./packages/qtile-config pkgs;
           };
 
           formatter = pkgs.alejandra;

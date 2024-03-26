@@ -19,6 +19,7 @@
 
       emacs = {
         enable = true;
+
         extraPackages = epkgs: [
           epkgs.use-package
           epkgs.vterm
@@ -82,7 +83,6 @@
 
     xsession = {
       enable = false;
-      # command = "${pkgs.qtile} start";
     };
 
     home.packages = with pkgs; [
