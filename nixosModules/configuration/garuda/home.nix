@@ -83,6 +83,11 @@
         "qtile/config.py" = {
           source = ./config/qtile/config.py;
         };
+
+        "qtile/start_polybar.sh" = {
+          source = ./config/qtile/start_polybar.sh;
+          executable = true;
+        };
       };
 
       desktopEntries = {};

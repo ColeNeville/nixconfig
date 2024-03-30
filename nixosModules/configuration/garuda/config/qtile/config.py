@@ -1,3 +1,6 @@
+import os
+import subprocess
+
 from libqtile import bar, layout, widget, extension, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
@@ -61,6 +64,8 @@ keys = [
     ),
 
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
+    Key([mod, "control", "shift"], "r", lazy.restart()),
+    
     Key([mod, "control", "shift"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
 
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
@@ -243,6 +248,10 @@ wl_input_rules = None
 # java that happens to be on java's whitelist.
 wmname = "LG3D"
 
-@hook.subscribe.startup_once
-def autostart():
-    lazy.spawn("polybar --config='~/.config/polybar/config.ini'")
+# Run the start polybar script after run
+@hook.subscribe.startup
+def autorun_startup_complete():
+    # This script needs to be placed here by the home-manager config
+    # config.xdg.configFile."qtile/start_polybar.sh"
+    run_polybar = os.path.expanduser("~/.config/qtile/start_polybar.sh")
+    subprocess.run([run_polybar])
