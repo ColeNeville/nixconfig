@@ -29,22 +29,7 @@
         ];
       };
 
-      command-not-found.enable = true;
-
-      rofi = {
-        enable = true;
-        location = "center";
-        font = "Fira Code 14";
-        terminal = pkgs.alacritty + /bin/alacritty;
-
-        extraConfig = {
-          modes = ["combi"];
-          combi-modes = ["drun" "window" "ssh"];
-        };
-      };
-
       feh.enable = true;
-      
       alacritty.enable = true;
 
       ledger = {
@@ -89,6 +74,14 @@
 
         "alacritty.yml" = {
           source = ./config/alacritty.yml;
+        };
+
+        "polybar/config.ini" = {
+          source = ./config/polybar/config.ini;
+        };
+
+        "qtile/config.py" = {
+          source = ./config/qtile/config.py;
         };
       };
 
@@ -145,7 +138,11 @@
 
       pinentry-qt
 
-      xfce.thunar
+      xfce.thunar # File manager
+      xfce.xfce4-pulseaudio-plugin
+
+      rofi
+      polybar
     ];
   };
 }

@@ -66,29 +66,15 @@ in {
         };
 
         windowManager = {
-          awesome = {
-            enable = true;
-            
-            luaModules = with pkgs.luaPackages; [
-              luarocks # Package manager for lua modules
-              vicious
-            ];
-          };
-
           qtile = {
             enable = true;
             extraPackages = python3Packages: with python3Packages; [
               psutil
             ];
           };
-
-          bspwm = {
-            enable = true;
-          };
         };
       };
 
-      
       gvfs = {
         enable = true;
         package = pkgs.gnome3.gvfs;
@@ -221,6 +207,10 @@ in {
       libvterm
 
       polkit
+
+      bluez
+      bluez-alsa
+      bluez-tools
     ];
 
     time.timeZone = "America/Edmonton";
