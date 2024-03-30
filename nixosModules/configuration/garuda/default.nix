@@ -88,6 +88,12 @@ in {
         };
       };
 
+      
+      gvfs = {
+        enable = true;
+        package = pkgs.gnome3.gvfs;
+      };
+
       pipewire = {
         enable = true;
 
@@ -196,6 +202,7 @@ in {
     programs = {
       virt-manager.enable = true; 
       i3lock.enable = true;
+      xfconf.enable = true;
     };
 
     home-manager = {
@@ -212,6 +219,8 @@ in {
 
       xorg.xauth
       libvterm
+
+      polkit
     ];
 
     time.timeZone = "America/Edmonton";

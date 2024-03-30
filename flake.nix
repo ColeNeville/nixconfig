@@ -36,8 +36,7 @@
     nixos-generators,
     home-manager,
     home-manager-master,
-      agenix,
-      awesomewm-theme,
+    agenix,
     ...
   }: (
     let
@@ -89,10 +88,6 @@
           default = (
             final: prev: {
               nixconfig = self.packages.${prev.system};
-              awesomewm-theme = awesomewm-theme.packages.${prev.system};
-              lua = prev.lua5_3.withPackages (ps: with ps; [
-                luarocks
-              ]);
             }
           );
 
@@ -272,9 +267,6 @@
                 wget
               ];
             };
-
-            emacs-customized = import ./packages/emacs pkgs;
-            garuda-wallpaper = import ./packages/garuda-wallpaper pkgs;
           };
 
           formatter = pkgs.alejandra;
@@ -284,18 +276,6 @@
               buildInputs = with pkgs; [
                 agenix.packages.${system}.default
                 self.packages.${system}.default
-              ];
-            };
-
-            python = pkgs.mkShell {
-              buildInputs = with pkgs; [
-                python37
-                python38
-                python39
-                python310
-                python311
-
-                pipenv
               ];
             };
           };

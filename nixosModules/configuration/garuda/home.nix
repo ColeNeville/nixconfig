@@ -144,11 +144,8 @@
       ledger
 
       pinentry-qt
-      
-      nixconfig.garuda-wallpaper
-      awesomewm-theme.default
 
-      lua
+      xfce.thunar
     ];
   };
 }
