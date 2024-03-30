@@ -35,7 +35,6 @@
     nixos-hardware,
     nixos-generators,
     home-manager,
-    home-manager-master,
     agenix,
     ...
   }: (
