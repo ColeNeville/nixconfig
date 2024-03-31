@@ -261,6 +261,7 @@
                 gnupg
                 nano
                 pciutils # lspci command
+                psmisc # process utils
                 unzip
                 util-linux
                 usbutils # lsusb command

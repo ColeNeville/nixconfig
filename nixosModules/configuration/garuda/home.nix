@@ -65,11 +65,6 @@
       enable = true;
 
       configFile = { 
-        "autostart-scripts/" = {
-          source = ./config/autostart-scripts;
-          executable = true;
-        };
-
         "alacritty.yml" = {
           source = ./config/alacritty.yml;
         };
@@ -90,6 +85,10 @@
           source = ./config/qtile/start_polybar.sh;
           executable = true;
         };
+
+        "rofi/config.rasi" = {
+          source = ./config/rofi/config.rasi
+        };
       };
 
       desktopEntries = {};
@@ -103,6 +102,10 @@
       # 3D Printing
       printrun # Printrun
 
+      # Web Browsers
+      firefox
+      chromium
+      
       # Development Dependancies
       i2c-tools # I2C tools
       platformio # Arduino development tools
