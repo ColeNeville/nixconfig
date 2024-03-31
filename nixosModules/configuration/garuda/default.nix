@@ -152,7 +152,7 @@ in {
       packages = with pkgs; [
         fira
         fira-code
-        nerdfonts
+        fira-code-nerdfont
       ];
 
       fontconfig = {
@@ -164,7 +164,7 @@ in {
 
         defaultFonts = {
           sansSerif = ["Fira Sans"];
-          monospace = ["Fira Code"];
+          monospace = ["FiraCode Nerd Font"];
         };
       };
     };
@@ -187,7 +187,6 @@ in {
 
     programs = {
       virt-manager.enable = true; 
-      i3lock.enable = true;
       xfconf.enable = true;
     };
 

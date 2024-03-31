@@ -82,8 +82,9 @@ groups = [
     Group("2: Web"),
     Group("3: Files", spawn="thunar"),
     Group("4: Term", spawn=terminal),
-    Group("5: Misc"),
+    Group("5: Chat"),
     Group("6: Misc"),
+    Group("7: Misc"),
 ]
 
 
@@ -130,69 +131,10 @@ extension_defaults = widget_defaults.copy()
 screens = [
     Screen(
         bottom=bar.Gap(20),
-
-        # bar.Bar(
-        #     [
-        #         widget.CurrentLayoutIcon(),
-        #         widget.GroupBox(),
-        #         # widget.Prompt(),
-        #         widget.WindowName(),
-
-        #         # widget.Chord(
-        #         #     chords_colors={
-        #         #         "launch": ("#ff0000", "#ffffff"),
-        #         #     },
-        #         #     name_transform=lambda name: name.upper(),
-        #         # ),
-
-        #         # widget.TextBox("default config", name="default"),
-        #         # widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
-        #         # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
-        #         # widget.StatusNotifier(),
-        #         # widget.Backlight(),
-        #         widget.Spacer(length=10),
-        #         widget.Systray(icon_size=20),
-        #         widget.Spacer(length=10),
-        #         widget.Sep(),
-        #         widget.Spacer(length=10),
-        #         widget.PulseVolume(),
-        #         widget.Spacer(length=10),
-        #         widget.Sep(),
-        #         widget.Spacer(length=10),
-        #         widget.Bluetooth(),
-        #         widget.Spacer(length=10),
-        #         widget.Sep(),
-        #         widget.Spacer(length=10),
-        #         widget.Battery(),
-        #         widget.Spacer(length=10),
-        #         widget.Sep(),
-        #         widget.Spacer(length=10),
-        #         widget.Clock(format="%Y-%m-%d %H:%M:%S"),
-        #         widget.Spacer(length=10),
-        #         # widget.QuickExit(),
-
-        #         # widget.QuickExit(
-        #         #     countdown_start = 7,
-        #         #     fontshadow = None, # 'shadow'
-        #         #     default_text = '',
-        #         #     countdown_format = '<span foreground="' + colors['b2'] + '">{}</span>',
-        #         #     padding = 8,
-        #         #     mouse_callbacks = {
-        #         #         'Button3':
-        #         #         lazy.spawn(['powermenu']),
-        #         #     },
-        #         # ),
-
-        #     ],
-        #     35,
-        #     margin=[20, 0, 0, 0],
-        #     # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
-        #     # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
-        # ),
         top=bar.Gap(20),
         left=bar.Gap(20),
         right=bar.Gap(20),
-        wallpaper="/home/cole/Pictures/dalle3.png",
+        wallpaper=os.path.expanduser("~/.config/qtile/wallpaper.png"),
         wallpaper_mode="fill",
         # You can uncomment this variable if you see that on X11 floating resize/moving is laggy
         # By default we handle these events delayed to already improve performance, however your system might still be struggling

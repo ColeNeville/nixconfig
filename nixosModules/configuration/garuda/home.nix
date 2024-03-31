@@ -51,16 +51,14 @@
       emacs = {
         enable = true;
         defaultEditor = true;
-        startWithUserSession = true;
+        startWithUserSession = false;
         
         client = {
           enable = true;
         };
       };
 
-      betterlockscreen = {
-        enable = true;
-      };
+      betterlockscreen.enable = true;
     };
 
     xdg = {
@@ -82,6 +80,10 @@
 
         "qtile/config.py" = {
           source = ./config/qtile/config.py;
+        };
+
+        "qtile/wallpaper.png" = {
+          source = ./config/qtile/wallpaper.png;
         };
 
         "qtile/start_polybar.sh" = {
@@ -144,7 +146,6 @@
       pinentry-qt
 
       xfce.thunar # File manager
-      xfce.xfce4-pulseaudio-plugin
 
       rofi
       polybar
