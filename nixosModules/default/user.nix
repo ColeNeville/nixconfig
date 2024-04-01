@@ -51,7 +51,7 @@ in {
       useGlobalPkgs = lib.mkDefault true;
       useUserPackages = lib.mkDefault true;
       extraSpecialArgs = {inherit inputs;};
-      users.cole = import ./home.nix;
+      users.cole = lib.mkDefault self.homeManagerModules.home-cole-default;
     };
 
     programs.zsh.enable = true;

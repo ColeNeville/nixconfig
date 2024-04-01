@@ -3,7 +3,7 @@
   config,
   ...
 }: {
-  imports = [../../default/home.nix];
+  imports = [../cole-default];
 
   config = {
     programs = {
@@ -87,7 +87,7 @@
         };
 
         "rofi/config.rasi" = {
-          source = ./config/rofi/config.rasi
+          source = ./config/rofi/config.rasi;
         };
       };
 
@@ -145,6 +145,10 @@
 
       # Plain text accounting
       ledger
+
+      # Qemu/Libvirt Virtual Machines
+      virt-manager
+      virt-viewer
 
       pinentry-qt
 

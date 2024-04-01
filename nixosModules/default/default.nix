@@ -51,8 +51,12 @@ in {
 
       systemPackages = with pkgs; [
         cifs-utils # SMB mounts
+        nfs-utils # NFS mounts
+        ntfs3g # NTFS mounts
+        exfat # exFAT mounts
+        
         htop
-        nfs-utils
+
         uucp # cu command
       ];
 

@@ -7,6 +7,13 @@
 }: let
   inherit (inputs) self nixos-hardware home-manager;
 in {
+  imports = [
+    ./hardware.nix
+    ./programs.nix
+    ./services.nix
+    ./xserver.nix
+  ];
+  
   config = {
     nixconfig = {
       plasma.enable = false;
@@ -40,109 +47,6 @@ in {
 
       interfaces = {
 
-      };
-    };
-
-    services = {
-      xserver = {
-        enable = true;
-        
-        videoDrivers = ["modesetting"];
-
-        libinput = {
-          enable = true;
-
-          touchpad = {
-            naturalScrolling = true;
-            clickMethod = "buttonareas";
-          };
-        };
-
-        digimend.enable = true;
-        wacom.enable = true;
-
-        displayManager = {
-          lightdm.enable = true;
-        };
-
-        windowManager = {
-          qtile = {
-            enable = true;
-            extraPackages = python3Packages: with python3Packages; [
-              psutil
-            ];
-          };
-        };
-      };
-
-      gvfs = {
-        enable = true;
-        package = pkgs.gnome3.gvfs;
-      };
-
-      pipewire = {
-        enable = true;
-
-        alsa = {
-          enable = true;
-          support32Bit = true;
-        };
-
-        pulse.enable = true;
-      };
-
-      fwupd.enable = true;
-      fprintd.enable = lib.mkDefault true;
-
-      power-profiles-daemon.enable = true;
-
-      tailscale.enable = true;
-      printing.enable = true;
-
-      unbound = {
-        enable = true;
-
-        settings = {
-          forward-zone = [
-            {
-              name = "local.coleslab.com";
-              forward-addr = "100.64.59.20";
-            }
-            {
-              name = "alexander.coleslab.com";
-              forward-addr = "100.64.59.20";
-            }
-          ];
-        };
-      };
-
-      flatpak.enable = true;
-      packagekit.enable = true;
-      keybase.enable = true;
-    };
-
-    hardware = {
-      opengl = {
-        enable = true;
-        driSupport = true;
-        driSupport32Bit = true;
-
-        extraPackages = with pkgs; [
-          intel-compute-runtime
-          intel-media-driver
-          vaapiIntel
-          vaapiVdpau
-          libvdpau-va-gl
-        ];
-      };
-
-      pulseaudio.enable = false;
-      bluetooth.enable = true;
-      sane.enable = true;
-      keyboard.qmk.enable = true;
-
-      sensor = {
-        iio.enable = true;
       };
     };
 
@@ -185,32 +89,9 @@ in {
       spiceUSBRedirection.enable = true;
     };
 
-    programs = {
-      virt-manager.enable = true; 
-      xfconf.enable = true;
-    };
-
     home-manager = {
-      users.cole = import ./home.nix;
+      users.cole = self.homeManagerModules.home-cole-garuda;
     };
-
-    environment.systemPackages = with pkgs; [
-      # Virtual Machines
-      virt-viewer
-
-      # Filesystems
-      ntfs3g
-      exfat
-
-      xorg.xauth
-      libvterm
-
-      polkit
-
-      bluez
-      bluez-alsa
-      bluez-tools
-    ];
 
     time.timeZone = "America/Edmonton";
 

@@ -107,6 +107,7 @@
         };
 
         nixosModules = import ./nixosModules inputs;
+        homeManagerModules = import ./homeManagerModules inputs;
 
         nixosConfigurations = {
           # Normal systems
