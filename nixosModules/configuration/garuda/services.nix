@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   config = {    
@@ -20,7 +20,7 @@
       };
 
       fwupd.enable = true;
-      fprintd.enable = lib.mkDefault true;
+      fprintd.enable = true;
 
       power-profiles-daemon.enable = true;
 
