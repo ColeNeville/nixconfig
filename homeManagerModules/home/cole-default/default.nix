@@ -28,6 +28,36 @@
           key = lib.mkDefault "F3686993701CB915"; # Yubikey GPG signing key
         };
 
+        ignores = [
+          "*~"
+          "/#*/#"
+          "/.emacs.desktop"
+          "/.emacs.desktop.lock"
+          ".elc"
+          "auto-save-list"
+          "tramp"
+          "./#*"
+
+          ".org-id-locations"
+          "*_archive"
+
+          "*_flymake.*"
+
+          "/eshell/history"
+          "/eshell/lastdir"
+
+          "/elpa/"
+
+          "*.rel"
+
+          "/auto/"
+
+          ".cask/"
+          "dist/"
+
+          "/server/"
+        ];
+
         extraConfig = {
           pull = {
             rebase = lib.mkDefault true;
