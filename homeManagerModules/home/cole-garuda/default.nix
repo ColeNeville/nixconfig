@@ -25,7 +25,6 @@
         extraPackages = epkgs: [
           epkgs.org-babel-eval-in-repl
           epkgs.use-package
-          epkgs.vterm
         ];
       };
 
