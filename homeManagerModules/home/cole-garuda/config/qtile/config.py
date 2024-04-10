@@ -79,7 +79,7 @@ keys = [
 
 groups = [
     Group("1: Edit", spawn=editor),
-    Group("2: Web"),
+    Group("2: Web", spawn="firefix"),
     Group("3: Files", spawn="thunar"),
     Group("4: Term", spawn=terminal),
     Group("5: Chat"),
