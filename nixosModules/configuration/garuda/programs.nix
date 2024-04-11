@@ -16,6 +16,8 @@
       bluez-tools
 
       home-manager
+
+      fw-ectool
     ];
   };
 }
