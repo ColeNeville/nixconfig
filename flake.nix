@@ -138,7 +138,7 @@
               [
                 # This will eventually be a module in the stable channel
                 # currently we need to import from the unstable branch separately
-                "${nixpkgs-unstable}/nixos/modules/services/misc/ollama.nix"
+                # "${nixpkgs-unstable}/nixos/modules/services/misc/ollama.nix"
 
                 self.nixosModules.hardware-goblin
                 nixos-hardware.nixosModules.common-cpu-intel
