@@ -55,6 +55,8 @@
       k3s = {
         enable = true;
 
+        package = pkgs.unstable.k3s;
+
         role = "agent";
         serverAddr = "https://192.168.73.53:6443";
         tokenFile = config.age.secrets."k3s-token".path;
