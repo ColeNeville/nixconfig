@@ -45,8 +45,7 @@
       k3s = {
         enable = true;
 
-        role = "server";
-        extraFlags = "--disable=servicelb";
+        role = "agent";
         serverAddr = "https://192.168.73.53:6443";
         tokenFile = config.age.secrets."k3s-token".path;
       };
