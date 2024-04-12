@@ -53,7 +53,6 @@
         package = pkgs.unstable.k3s;
 
         role = "server";
-        disableAgent = true;
         clusterInit = true;
         extraFlags = "--disable=servicelb";
         tokenFile = config.age.secrets."k3s-token".path;
