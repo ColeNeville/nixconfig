@@ -59,7 +59,7 @@
         tokenFile = config.age.secrets."k3s-token".path;
       };
     };
-kcl
+
     age.secrets = {
       "telegraf.env" = {
         file = ../../../secrets/telegraf.env.age;
