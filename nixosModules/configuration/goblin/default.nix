@@ -45,8 +45,9 @@
       k3s = {
         enable = true;
 
+        package = pkgs.unstable.k3s;
+
         role = "server";
-        extraFlags = "--disable=servicelb";
         tokenFile = config.age.secrets."k3s-token".path;
       };
 
