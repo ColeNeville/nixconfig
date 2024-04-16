@@ -52,9 +52,10 @@
       k3s = {
         enable = true;
 
-        role = "agent";
+        package = pkgs.unstable.k3s;
 
-        serverAddr = "https://alexander-4.local.coleslab.com:6443";
+        role = "agent";
+        serverAddr = "https://192.168.73.54:6443";
         tokenFile = config.age.secrets."k3s-token".path;
       };
     };
