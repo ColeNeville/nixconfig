@@ -55,7 +55,7 @@
       k3s = {
         enable = true;
 
-        package = pkgs.unstable.k3s;
+        package = pkgs.unstable.k3s_1_28;
 
         role = "agent";
         serverAddr = "https://192.168.73.54:6443";

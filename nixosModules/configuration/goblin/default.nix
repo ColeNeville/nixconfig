@@ -45,7 +45,7 @@
       k3s = {
         enable = true;
 
-        package = pkgs.unstable.k3s;
+        package = pkgs.unstable.k3s_1_28;
 
         role = "server";
         clusterInit = true;
