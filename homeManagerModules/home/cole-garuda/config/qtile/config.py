@@ -65,7 +65,7 @@ keys = [
 
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control", "shift"], "r", lazy.restart()),
-    
+
     Key([mod, "control", "shift"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
 
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
@@ -79,18 +79,18 @@ keys = [
 
 groups = [
     Group("1: Edit", spawn=editor),
-    Group("2: Web", spawn="firefix"),
+    Group("2: Web"),
     Group("3: Files", spawn="thunar"),
     Group("4: Term", spawn=terminal),
     Group("5: Chat"),
-    Group("6: Misc"),
+    Group("6: Music"),
     Group("7: Misc"),
 ]
 
 
 for index, group in enumerate(groups):
     num_key = index + 1
-    
+
     keys.extend(
         [
             # mod1 + letter of group = switch to group
@@ -100,7 +100,7 @@ for index, group in enumerate(groups):
                 lazy.group[group.name].toscreen(),
                 desc="Switch to group {}".format(group.name),
             ),
-            
+
             # mod1 + shift + letter of group = move focused window to group
             Key(
                 [mod, "shift"],
@@ -111,7 +111,7 @@ for index, group in enumerate(groups):
         ]
     )
 
-    
+
 layouts = [
     layout.MonadTall(ratio=0.66),
     layout.Max(),
@@ -142,14 +142,6 @@ screens = [
         # x11_drag_polling_rate = 60,
     ),
 ]
-
-# Drag floating layouts.
-mouse = [
-    Drag([mod], "Button1", lazy.window.set_position_floating(), start=lazy.window.get_position()),
-    Drag([mod], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()),
-    Click([mod], "Button2", lazy.window.bring_to_front()),
-]
-
 
 dgroups_key_binder = None
 dgroups_app_rules = []  # type: list

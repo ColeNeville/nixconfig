@@ -15,9 +15,9 @@
       bluez-alsa
       bluez-tools
 
-      home-manager
+      pulsemixer
 
-      fw-ectool
+      home-manager
     ];
   };
 }
