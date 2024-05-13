@@ -13,7 +13,7 @@ in {
     ./services.nix
     ./xserver.nix
   ];
-  
+
   config = {
     nixconfig = {
       plasma.enable = false;

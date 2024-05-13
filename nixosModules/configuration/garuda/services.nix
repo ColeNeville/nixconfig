@@ -1,23 +1,23 @@
 { pkgs, ... }:
 
 {
-  config = {    
+  config = {
     services = {
       gvfs = {
         enable = true;
         package = pkgs.gnome3.gvfs;
       };
 
-      pipewire = {
-        enable = true;
+      # pipewire = {
+      #   enable = true;
 
-        alsa = {
-          enable = true;
-          support32Bit = true;
-        };
+      #   alsa = {
+      #     enable = true;
+      #     support32Bit = true;
+      #   };
 
-        pulse.enable = true;
-      };
+      #   pulse.enable = true;
+      # };
 
       fwupd.enable = true;
       fprintd.enable = true;
@@ -47,6 +47,14 @@
       flatpak.enable = true;
       packagekit.enable = true;
       keybase.enable = true;
+
+      guix.enable = true;
+
+      avahi = {
+        enable = true;
+        nssmdns = true;
+        openFirewall = true;
+      };
     };
   };
 }

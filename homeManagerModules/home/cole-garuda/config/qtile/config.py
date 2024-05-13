@@ -4,13 +4,11 @@ import subprocess
 from libqtile import bar, layout, widget, extension, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
-from libqtile.utils import guess_terminal
 
 
 mod = "mod4"
 terminal = "alacritty"
-editor = "emacs"
-web_browser = "flatpack run org.mozilla.firefox"
+editor = "emacsclient -c"
 
 lock_command = "betterlockscreen --lock"
 
@@ -73,7 +71,11 @@ keys = [
     Key([mod], "d", lazy.spawn("rofi -show combi")),
     Key([mod], "l", lazy.spawn(lock_command), desc="Lock Session"),
     Key([mod], "e", lazy.spawn(editor), desc="Run Editor"),
-    Key([mod], "w", lazy.spawn(web_browser), desc="Run Firefox")
+    Key([mod], "w", lazy.spawn("firefox"), desc="Run Firefox"),
+
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("pulsemixer --change-volume +5")),
+    Key([], "XF86AudioLowerVolume", lazy.spawn("pulsemixer --change-volume -5")),
+    Key([], "XF86AudioMute", lazy.spawn("pulsemixer --toggle-mute")),
 ]
 
 

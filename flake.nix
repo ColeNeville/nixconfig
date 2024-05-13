@@ -269,6 +269,10 @@
                 wget
               ];
             };
+
+            polybar = pkgs.polybar.override {
+              pulseSupport = true;
+            };
           };
 
           formatter = pkgs.alejandra;

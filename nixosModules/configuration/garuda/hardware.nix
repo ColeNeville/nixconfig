@@ -14,14 +14,16 @@
         ];
       };
 
-      pulseaudio.enable = false;
+      pulseaudio.enable = true;
       bluetooth.enable = true;
       sane.enable = true; # Document Scanner
       keyboard.qmk.enable = true;
 
       sensor = {
-        iio.enable = true; # Ambient Light Sensor
+        iio.enable = false; # Ambient Light Sensor
       };
     };
+
+    sound.enable = true;
   };
 }

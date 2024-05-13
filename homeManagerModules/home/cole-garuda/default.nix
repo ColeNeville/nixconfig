@@ -20,10 +20,9 @@
       emacs = {
         enable = true;
 
-        package = pkgs.emacs29;        
+        package = pkgs.emacs29;
 
         extraPackages = epkgs: [
-          epkgs.org-babel-eval-in-repl
           epkgs.use-package
         ];
       };
@@ -49,9 +48,12 @@
 
       emacs = {
         enable = true;
+
+        package = pkgs.emacs29;
+
         defaultEditor = true;
         startWithUserSession = false;
-        
+
         client = {
           enable = true;
         };
@@ -63,7 +65,7 @@
     xdg = {
       enable = true;
 
-      configFile = { 
+      configFile = {
         "alacritty.yml" = {
           source = ./config/alacritty.yml;
         };
@@ -104,7 +106,7 @@
       # Web Browsers
       firefox
       chromium
-      
+
       # Development Dependancies
       i2c-tools # I2C tools
       platformio # Arduino development tools
@@ -129,6 +131,10 @@
       archiver # Archive manager
       rpi-imager # Raspberry Pi OS image writer
       ddrescue # Data recovery tool
+      tree
+      stow
+
+      ispell # Spell checker util
 
       ark # Archive manager
       nix-index # Nix package search tool
@@ -138,6 +144,9 @@
 
       gcc
       gcc-arm-embedded
+      libclang
+      ccls # C language server
+      platformio
 
       python311
       python311Packages.pipx
@@ -154,7 +163,14 @@
       xfce.thunar # File manager
 
       rofi
-      polybar
+
+      nixconfig.polybar
+
+      guile
+
+      protonmail-bridge
+
+      pass # CLI Password Store
     ];
   };
 }
