@@ -14,6 +14,7 @@
           set -x KUBECONFIG $HOME/.kube/config
           set -x SSH_ASKPASS ${pkgs.libsForQt5.ksshaskpass}/bin/ksshaskpass
           set -x EDITOR ${pkgs.nano}/bin/nano
+          set -x GUIX_PROFILE /home/cole/.config/guix/current
         '';
       };
 
@@ -68,27 +69,6 @@
       configFile = {
         "alacritty.yml" = {
           source = ./config/alacritty.yml;
-        };
-
-        "polybar/config.ini" = {
-          source = ./config/polybar/config.ini;
-        };
-
-        "qtile/config.py" = {
-          source = ./config/qtile/config.py;
-        };
-
-        "qtile/wallpaper.png" = {
-          source = ./config/qtile/wallpaper.png;
-        };
-
-        "qtile/start_polybar.sh" = {
-          source = ./config/qtile/start_polybar.sh;
-          executable = true;
-        };
-
-        "rofi/config.rasi" = {
-          source = ./config/rofi/config.rasi;
         };
       };
 
@@ -171,6 +151,10 @@
       protonmail-bridge
 
       pass # CLI Password Store
+
+      veracrypt
+      kubeseal
+      openssl
     ];
   };
 }
