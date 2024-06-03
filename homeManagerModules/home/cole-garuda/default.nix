@@ -155,6 +155,8 @@
       veracrypt
       kubeseal
       openssl
+
+      openjdk
     ];
   };
 }

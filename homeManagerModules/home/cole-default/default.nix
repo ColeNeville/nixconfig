@@ -20,12 +20,12 @@
       git = {
         enable = lib.mkDefault true;
 
-        userEmail = lib.mkDefault "colewneville2@gmail.com";
-        userName = lib.mkDefault "ColeNeville";
+        userEmail = lib.mkDefault "personal@coleneville.com";
+        userName = lib.mkDefault "Cole Neville";
 
         signing = {
           signByDefault = lib.mkDefault true;
-          key = lib.mkDefault "F3686993701CB915"; # Yubikey GPG signing key
+          key = lib.mkDefault "5FCE9441FDDA8774"; # Yubikey GPG signing key
         };
 
         ignores = [

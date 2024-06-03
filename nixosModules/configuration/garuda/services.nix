@@ -47,6 +47,7 @@
       flatpak.enable = true;
       packagekit.enable = true;
       keybase.enable = true;
+      kbfs.enable = true;
 
       guix.enable = true;
 

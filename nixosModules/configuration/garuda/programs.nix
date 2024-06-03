@@ -18,6 +18,10 @@
       pulsemixer
 
       home-manager
+
+      kbfs
+
+      arandr
     ];
   };
 }
